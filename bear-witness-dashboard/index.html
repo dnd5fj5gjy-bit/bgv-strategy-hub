@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bear Witness Dashboard — BGV Strategy Hub</title>
+<style>
+  :root { --fg:#1a1a1a; --muted:#666; --bg:#fafaf7; --card:#fff; --accent:#cc4a14; --line:#e6e3dc; --warn:#7c2d12; --warn-bg:#fff7ed; --warn-line:#fed7aa; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif; background:var(--bg); color:var(--fg); line-height:1.6; }
+  .wrap { max-width:760px; margin:0 auto; padding:60px 24px 80px; }
+  .crumb { color:var(--muted); font-size:13px; margin-bottom:24px; }
+  .crumb a { color:var(--muted); text-decoration:none; border-bottom:1px solid transparent; }
+  .crumb a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+  h1 { font-size:30px; margin:0 0 10px; letter-spacing:-0.01em; }
+  .lede { color:var(--muted); font-size:16px; margin:0 0 32px; }
+  .note { background:var(--warn-bg); border:1px solid var(--warn-line); border-radius:8px; padding:14px 18px; font-size:14px; color:var(--warn); margin-bottom:28px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin:32px 0 12px; font-weight:600; }
+  ul { margin:0; padding-left:22px; }
+  li { margin-bottom:8px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px 22px; margin-bottom:14px; }
+  .card strong { display:block; margin-bottom:6px; }
+  .card .desc { color:var(--muted); font-size:14px; }
+  code { background:#f0e6d3; padding:2px 6px; border-radius:3px; font-size:0.9em; }
+  footer { color:var(--muted); font-size:12px; margin-top:48px; padding-top:24px; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumb"><a href="../">← BGV Strategy Hub</a></div>
+  <h1>Bear Witness Dashboard</h1>
+  <p class="lede">Ultimate Social Media Management Dashboard — dark premium React app with 8 interconnected modules, AI strategy engine, and cross-portfolio client management.</p>
+
+  <div class="note">
+    <strong>This is a live application, not a static document.</strong> It runs as a React frontend + Node backend on the Mac Studio. Access from outside the studio's local network requires Tailscale (or a public tunnel if exposed).
+  </div>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Cross-portfolio social management across BGV brands (Modern Savage, Ted's Health, Sister Directory, BMF)</li>
+    <li>AI strategy engine producing content briefs and calendar plans</li>
+    <li>8 interconnected modules: clients, calendar, content, briefs, analytics, narratives, library, settings</li>
+    <li>Dark, premium UI — designed to read as a serious operator tool, not a content-mill</li>
+  </ul>
+
+  <h2>Access</h2>
+  <div class="card">
+    <strong>Local (on Mac Studio LAN):</strong>
+    <div class="desc">Typically served at <code>http://localhost:&lt;port&gt;</code> with the backend running.</div>
+  </div>
+  <div class="card">
+    <strong>Remote (Olly):</strong>
+    <div class="desc">Tailscale is required — see Nexus / Felix for set-up. Direct internet access has not been provisioned for this dashboard.</div>
+  </div>
+
+  <h2>Repository</h2>
+  <div class="card">
+    <strong>Source:</strong>
+    <div class="desc">Private GitHub repo (<code>dnd5fj5gjy-bit/bear-witness-dashboard</code>). Code is not published publicly; this page exists so the catalogue link resolves cleanly.</div>
+  </div>
+
+  <footer>
+    BGV Strategy Hub · Bear Witness Dashboard info card · Updated 13 May 2026
+  </footer>
+</div>
+</body>
+</html>
