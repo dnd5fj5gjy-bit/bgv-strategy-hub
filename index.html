@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BGV Strategy Hub</title>
+<style>
+  :root { --fg:#1a1a1a; --muted:#666; --bg:#fafaf7; --card:#fff; --accent:#cc4a14; --line:#e6e3dc; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif; background:var(--bg); color:var(--fg); line-height:1.55; }
+  .wrap { max-width:880px; margin:0 auto; padding:48px 24px 96px; }
+  header { border-bottom:1px solid var(--line); padding-bottom:24px; margin-bottom:32px; }
+  h1 { font-size:32px; margin:0 0 6px; letter-spacing:-0.01em; }
+  .sub { color:var(--muted); margin:0; font-size:15px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin:32px 0 12px; font-weight:600; }
+  ul { list-style:none; padding:0; margin:0; }
+  li { background:var(--card); border:1px solid var(--line); border-radius:8px; margin-bottom:10px; padding:14px 18px; transition:border-color .15s; }
+  li:hover { border-color:var(--accent); }
+  li a { color:var(--fg); text-decoration:none; font-weight:600; display:block; }
+  li a:hover { color:var(--accent); }
+  li .desc { color:var(--muted); font-size:14px; font-weight:400; margin-top:4px; }
+  .note { background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; padding:14px 18px; font-size:14px; color:#7c2d12; margin-bottom:32px; }
+  footer { color:var(--muted); font-size:12px; margin-top:48px; padding-top:24px; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>BGV Strategy Hub</h1>
+    <p class="sub">Public deliverables for Bear Grylls Ventures — Modern Savage, GSET, Ted's Health, cross-brand strategy.</p>
+  </header>
+
+  <div class="note">
+    <strong>URL update:</strong> sites have moved from
+    <code>dnd5fj5gjy-bit.github.io/&lt;repo&gt;/</code> to
+    <code>dnd5fj5gjy-bit.github.io/bgv-strategy-hub/&lt;repo&gt;/</code>. All previous sub-paths still work under the new prefix.
+  </div>
+
+  <h2>Modern Savage</h2>
+  <ul>
+    <li><a href="./modern-savage-strategy/">modern-savage-strategy</a><div class="desc">Master strategy hub — Dirtea audits, GSET plans, Ted's Health brand guidelines.</div></li>
+    <li><a href="./modern-savage-scripts/">modern-savage-scripts</a><div class="desc">Bear-to-camera script library (30+30+10).</div></li>
+    <li><a href="./modern-savage-scripts-final/">modern-savage-scripts-final</a><div class="desc">Final teleprompter-ready script set.</div></li>
+    <li><a href="./modern-savage-ads-brief/">modern-savage-ads-brief</a><div class="desc">Ads creative brief.</div></li>
+    <li><a href="./modern-savage-public/">modern-savage-public</a><div class="desc">Public-facing MS dashboard.</div></li>
+    <li><a href="./modern-savage-website/">modern-savage-website</a><div class="desc">Website design concept brief (placeholder).</div></li>
+  </ul>
+
+  <h2>GSET</h2>
+  <ul>
+    <li><a href="./bgv-gset-self-execution-plan/">bgv-gset-self-execution-plan</a><div class="desc">In-house GSET execution plan (production-only scope).</div></li>
+    <li><a href="./modern-savage-strategy/gset-next-actions/">modern-savage-strategy/gset-next-actions</a><div class="desc">Live GSET action tracker.</div></li>
+    <li><a href="./modern-savage-strategy/gset-jesse-plan/">modern-savage-strategy/gset-jesse-plan</a><div class="desc">Jesse's GSET plan.</div></li>
+    <li><a href="./modern-savage-strategy/gset-pivot/">modern-savage-strategy/gset-pivot</a><div class="desc">GSET pivot rationale.</div></li>
+  </ul>
+
+  <h2>Seeding & Referral</h2>
+  <ul>
+    <li><a href="./bgv-ms-seeding-shortlist/">bgv-ms-seeding-shortlist</a><div class="desc">Modern Savage seeding contacts shortlist.</div></li>
+    <li><a href="./bgv-ms-referral-strategy/">bgv-ms-referral-strategy</a><div class="desc">Modern Savage referral / ambassador strategy.</div></li>
+  </ul>
+
+  <h2>Ted's Health</h2>
+  <ul>
+    <li><a href="./modern-savage-strategy/teds-health-brand-guidelines/">teds-health-brand-guidelines</a><div class="desc">TH brand guidelines.</div></li>
+  </ul>
+
+  <h2>Dirtea Research</h2>
+  <ul>
+    <li><a href="./modern-savage-strategy/dirtea-brand-audit/">dirtea-brand-audit</a></li>
+    <li><a href="./modern-savage-strategy/dirtea-commercial-audit/">dirtea-commercial-audit</a></li>
+    <li><a href="./modern-savage-strategy/dirtea-competitor-analysis/">dirtea-competitor-analysis</a></li>
+    <li><a href="./modern-savage-strategy/dirtea-competitive-analysis-raw/">dirtea-competitive-analysis-raw</a></li>
+    <li><a href="./modern-savage-strategy/dirtea-market-research/">dirtea-market-research</a></li>
+    <li><a href="./modern-savage-strategy/dirtea-marketing-audit/">dirtea-marketing-audit</a></li>
+  </ul>
+
+  <h2>Central Hub</h2>
+  <ul>
+    <li><a href="./central-hub-dashboard/">central-hub-dashboard</a><div class="desc">BGV central hub — read-only static build (localStorage only; live writes happen on the backend-enabled instance).</div></li>
+  </ul>
+
+  <footer>
+    Migrated to a single public repo to restore GitHub Pages after Free-plan downgrade. Backend-dependent dashboards (TH whitelabel, Bear Witness, live Central Hub) are hosted separately.
+  </footer>
+</div>
+</body>
+</html>

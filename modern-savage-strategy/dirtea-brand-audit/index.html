@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIRTEA — Brand Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; }
+  p { margin-bottom: 0.95em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; word-break: break-word; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(36px, 5.5vw, 58px); color: var(--cream); margin-bottom: 18px; }
+  .hero p { color: rgba(245, 239, 226, 0.78); font-size: 18px; max-width: 680px; }
+  .hero .meta { margin-top: 28px; font-size: 13px; color: rgba(245, 239, 226, 0.55); letter-spacing: 0.06em; }
+
+  main { padding: 56px 24px 40px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+
+  main h1 { font-size: clamp(30px, 4.2vw, 40px); margin: 36px 0 18px; color: var(--evergreen-deep); }
+  main h2 { font-size: clamp(24px, 3.4vw, 32px); margin: 40px 0 14px; color: var(--evergreen-deep); padding-top: 12px; border-top: 1px solid var(--line); }
+  main h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  main h3 { font-size: 20px; margin: 28px 0 10px; color: var(--evergreen-deep); }
+  main h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin: 22px 0 8px; }
+
+  ul, ol { margin: 0.4em 0 1.1em 1.5em; }
+  li { margin-bottom: 0.45em; }
+
+  blockquote {
+    border-left: 3px solid var(--gold);
+    background: var(--cream-warm);
+    padding: 14px 20px;
+    margin: 18px 0;
+    border-radius: 0 4px 4px 0;
+    color: var(--charcoal);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  code {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.88em;
+    background: rgba(21, 24, 28, 0.06);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  pre {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 14px 0 20px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  pre code { background: transparent; padding: 0; color: var(--cream); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 22px;
+    font-size: 14.5px;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table th {
+    background: var(--cream-warm);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 36px 0;
+  }
+
+  footer {
+    padding: 36px 24px 56px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--slate);
+    font-size: 13px;
+    background: var(--cream);
+  }
+  footer a { color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 20px 60px; }
+    main { padding: 40px 20px 28px; }
+    table { font-size: 13px; }
+    table th, table td { padding: 9px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">DIRTEA · Brand Audit</div>
+    <h1>Website, YouTube, press, reputation.</h1>
+    <p>Strengths to leverage and gaps to exploit in pitch positioning.</p>
+    <div class="meta">Prepared by Ted · April 2026 · For Olly / BGV pitch</div>
+  </div>
+</div>
+
+<main>
+  <div class="inner">
+<p><strong>Conducted: April 2026 | For: Bear Witness / BGV Marketing Pitch</strong></p>
+<hr />
+<h2 id="website-dirteaworldcom">WEBSITE (dirteaworld.com)</h2>
+<h3 id="1-homepage-messaging">1. Homepage Messaging</h3>
+<ul>
+<li><strong>Hero headline:</strong> "Mushrooms for Focus, Energy, Calm"</li>
+<li><strong>Primary CTA:</strong> Shop products / Subscribe &amp; Save (20% off)</li>
+<li><strong>Shopify-based</strong> with premium design, clean product photography</li>
+</ul>
+<h3 id="2-brand-tone-of-voice">2. Brand Tone of Voice</h3>
+<p><strong>Three adjectives: Premium, Science-backed, Aspirational</strong>
+- <em>Premium:</em> High-end product photography, £38-49 price points, luxury packaging
+- <em>Science-backed:</em> Dr Tara Swart as Chief Science Officer, "40%+ beta-glucans per serving — highest standard in the industry", every batch third-party tested
+- <em>Aspirational:</em> Bear Grylls partnership, adventure imagery, wellness lifestyle positioning</p>
+<h3 id="3-product-range-price-points-subscription">3. Product Range, Price Points &amp; Subscription</h3>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mushroom Coffee (Lion's Mane)</td>
+<td>~£38</td>
+<td>Bestseller</td>
+</tr>
+<tr>
+<td>Matcha Super Blend</td>
+<td>~£44.99</td>
+<td></td>
+</tr>
+<tr>
+<td>Cacao Super Blend</td>
+<td>~£39.99</td>
+<td>30 servings (~£1.60/mug)</td>
+</tr>
+<tr>
+<td>Focus Gummies</td>
+<td>~£34</td>
+<td></td>
+</tr>
+<tr>
+<td>Creatine (Pure Essentials)</td>
+<td>~£24</td>
+<td>New non-mushroom SKU</td>
+</tr>
+<tr>
+<td>Collagen (Pure Essentials)</td>
+<td>~£27</td>
+<td>New non-mushroom SKU</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subscription:</strong> 20% discount. 86% of creatine+collagen sales are subscription. 80% of buyers purchase both as a set.</p>
+<h3 id="4-blog-editorial-content">4. Blog / Editorial Content</h3>
+<ul>
+<li><strong>Topics:</strong> Mushroom education, wellness routines, neuroscience (via Dr Tara Swart), founder stories, product deep-dives</li>
+<li><strong>Quality:</strong> Polished, long-form content on-site blog + Medium</li>
+<li><strong>Frequency:</strong> Regular posting, tied to product launches and partnerships</li>
+</ul>
+<h3 id="5-press-logos-displayed">5. Press Logos Displayed</h3>
+<p>Confirmed press coverage from: The Grocer, Marie Claire UK, PopSugar, Beverage Daily, Grocery Gazette, NutraIngredients, Natural Products, Hip &amp; Healthy, SME Business News, London Daily News, FITT Insider</p>
+<h3 id="6-email-capture-strategy">6. Email Capture Strategy</h3>
+<p>Standard Shopify popup — likely discount-for-signup (common 10-15% off first order pattern)</p>
+<h3 id="7-visible-partnerships">7. Visible Partnerships</h3>
+<ul>
+<li><strong>Bear Grylls:</strong> Global Ambassador + Investor. Seven-figure investment described as his "most significant personal investment to date." Dedicated collection page on site. Partnership announced with a skydive in Switzerland.</li>
+<li><strong>Dr Tara Swart Bieber:</strong> Chief Science Officer. Neuroscientist, MD, PhD. Creates content, hosts events, guides product development and Science Board. Joined 2024.</li>
+<li><strong>Certifications:</strong> Soil Association, Organic Food Federation</li>
+<li><strong>Retail:</strong> Tesco (249 superstores + online, Jan 2026), Holland &amp; Barrett, Planet Organic, The Vitamin Shoppe (US nationwide)</li>
+</ul>
+<hr />
+<h2 id="youtube-dirtea-world">YOUTUBE (DIRTEA World)</h2>
+<h3 id="channel-overview">Channel Overview</h3>
+<ul>
+<li><strong>URL:</strong> youtube.com/channel/UChnvfNMzVrG2MCVQSnhy6hA</li>
+<li><strong>Subscriber count:</strong> Not publicly displayed (relatively small compared to Instagram at 387K followers)</li>
+<li>YouTube appears to be a secondary platform — Instagram and TikTok are primary channels</li>
+</ul>
+<h3 id="content-themes-categorised">Content Themes (categorised)</h3>
+<ol>
+<li><strong>Mushroom Education</strong> — Benefits of Lion's Mane, Reishi, Cordyceps, Chaga</li>
+<li><strong>Founder Journey</strong> — Simon &amp; Andrew Salter origin story, brand building</li>
+<li><strong>Wellness Lifestyle</strong> — Daily routines, wellness tips, product integration</li>
+<li><strong>Product Launches</strong> — New SKU announcements, Super Blends, Gummies</li>
+<li><strong>Partnership Content</strong> — Bear Grylls announcement, Dr Tara Swart features</li>
+</ol>
+<h3 id="founder-presence">Founder Presence</h3>
+<ul>
+<li><strong>Yes.</strong> Simon and Andrew Salter appear on camera in podcast-style interviews and brand storytelling content</li>
+<li>Dr Tara Swart features in educational/science content</li>
+<li>Bear Grylls features in partnership announcement content</li>
+</ul>
+<h3 id="performance">Performance</h3>
+<ul>
+<li>Channel appears to have modest view counts relative to their social following</li>
+<li>External review videos of DIRTEA products on other channels (Marie Claire, health reviewers) generate moderate engagement</li>
+<li>No viral breakout videos identified</li>
+</ul>
+<hr />
+<h2 id="press-reputation">PRESS &amp; REPUTATION</h2>
+<h3 id="recent-press-mentions-2025-2026">Recent Press Mentions (2025-2026)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Publication</th>
+<th>Date</th>
+<th>Headline</th>
+<th>Angle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Beverage Daily</td>
+<td>Apr 2026</td>
+<td>"Wellness brands dominate Alantra fast-growth poll as Dirtea takes gold"</td>
+<td>Ranked #1 in Alantra fast-growth wellness index</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Grocery Gazette</td>
+<td>Jan 2026</td>
+<td>"Dirtea secures Tesco listing"</td>
+<td>Launched in 249 Tesco superstores + online</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The Grocer</td>
+<td>2024</td>
+<td>"Dirtea partners with Bear Grylls to get mushrooms to the masses"</td>
+<td>Seven-figure investment + ambassador</td>
+</tr>
+<tr>
+<td>4</td>
+<td>London Daily News</td>
+<td>2024</td>
+<td>"Bear Grylls braves new adventure as investor and ambassador for DIRTEA"</td>
+<td>Partnership coverage</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Marie Claire UK</td>
+<td>2024</td>
+<td>"Dirtea Cacao Review: After 12 Months Of Testing, I'm A Fan"</td>
+<td>Positive long-form product review</td>
+</tr>
+<tr>
+<td>6</td>
+<td>PopSugar UK</td>
+<td>2024</td>
+<td>"I Tried Mushroom Coffee For a Month and It's Transformed My Day-to-Day Life"</td>
+<td>Positive editor review</td>
+</tr>
+<tr>
+<td>7</td>
+<td>NutraIngredients</td>
+<td>2023</td>
+<td>"Dirtea duo on the mushroom revolution"</td>
+<td>Podcast feature with founders</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Natural Products Online</td>
+<td>2024</td>
+<td>"Dr Tara Swart appointed as Chief Science Officer for DIRTEA"</td>
+<td>CSO appointment</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SME Business News</td>
+<td>2024</td>
+<td>"Dirtea Announces Global Partnership With Bear Grylls"</td>
+<td>Partnership announcement</td>
+</tr>
+<tr>
+<td>10</td>
+<td>FITT Insider</td>
+<td>2025</td>
+<td>"DIRTEA Takes America: Launches Nationwide in The Vitamin Shoppe"</td>
+<td>US expansion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trustpilot">Trustpilot</h3>
+<ul>
+<li><strong>Score:</strong> 4.0 / 5.0 stars</li>
+<li><strong>Total reviews:</strong> 2,756</li>
+<li><strong>URL:</strong> trustpilot.com/review/dirteaworld.com</li>
+</ul>
+<p><strong>Top 3 Positive Review Themes:</strong>
+1. <strong>Product quality</strong> — "smooth taste", "superior consistency", mushroom coffee and cacao praised most
+2. <strong>Customer service</strong> — described as "kind, generous, professional", quick response times
+3. <strong>Delivery &amp; packaging</strong> — "quick and reliable", premium packaging frequently mentioned</p>
+<p><strong>Top 3 Negative Review Themes:</strong>
+1. <strong>Taste</strong> — some find coffee tastes like "cheap instant coffee", divisive flavour profile
+2. <strong>Gummies</strong> — complaints about "artificial aftertaste that lingers for hours", some customers discarded them
+3. <strong>Price</strong> — products seen as expensive (~£1.60/mug for cacao, £38+ for coffee)</p>
+<h3 id="reddit-sentiment">Reddit Sentiment</h3>
+<ul>
+<li>No significant DIRTEA-specific Reddit threads found</li>
+<li>General Reddit sentiment on functional mushroom brands tends to be sceptical about health claims and critical of pricing</li>
+<li>No major controversies or viral negative posts identified</li>
+</ul>
+<hr />
+<p><em>Audit sources: dirteaworld.com, YouTube, Trustpilot, The Grocer, Beverage Daily, Grocery Gazette, Marie Claire UK, PopSugar UK, NutraIngredients, Natural Products Online, SME Business News, London Daily News, FITT Insider</em></p>
+  </div>
+</main>
+
+<footer>
+  Prepared by Ted for Olly · BGV · <a href="https://dnd5fj5gjy-bit.github.io/modern-savage-strategy/">Index</a>
+</footer>
+
+</body>
+</html>

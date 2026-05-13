@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modern Savage — Referral & Ambassador Strategy (v2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1a1a18;
+    --char: #2a2722;
+    --cream: #f6f1e7;
+    --cream-warm: #ece3d0;
+    --cream-deep: #e3d6bb;
+    --olive: #3d4a2a;
+    --olive-deep: #2b3520;
+    --honey: #b88438;
+    --honey-soft: #d4a35a;
+    --rust: #a8492b;
+    --slate: #6b675e;
+    --line: rgba(26, 26, 24, 0.12);
+    --line-strong: rgba(26, 26, 24, 0.28);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; }
+  p { margin-bottom: 0.95em; }
+  a { color: var(--olive); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, var(--olive-deep) 0%, var(--olive) 100%);
+    color: var(--cream);
+    padding: 100px 28px 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 25% 15%, rgba(212, 163, 90, 0.10), transparent 55%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2.6px; color: var(--honey-soft);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 5.8vw, 68px);
+    color: var(--cream);
+    margin-bottom: 26px;
+    max-width: 940px;
+    font-weight: 400;
+  }
+  .hero-sub {
+    font-size: clamp(17px, 1.9vw, 21px);
+    color: rgba(246, 241, 231, 0.82);
+    max-width: 780px; line-height: 1.55;
+    font-weight: 300;
+  }
+  .hero-meta {
+    margin-top: 44px; padding-top: 26px;
+    border-top: 1px solid rgba(246, 241, 231, 0.18);
+    display: flex; flex-wrap: wrap; gap: 32px;
+    font-size: 12.5px; color: rgba(246, 241, 231, 0.7);
+    letter-spacing: 0.5px;
+  }
+  .hero-meta strong { color: var(--honey-soft); font-weight: 600; }
+
+  /* NAV */
+  .nav {
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(8px);
+    background: rgba(246, 241, 231, 0.94);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 16px 28px;
+    display: flex; gap: 32px; align-items: center;
+    overflow-x: auto;
+  }
+  .nav-brand {
+    font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600;
+    color: var(--olive-deep); white-space: nowrap;
+    margin-right: 8px;
+  }
+  .nav a {
+    font-size: 13px; color: var(--slate);
+    text-decoration: none; white-space: nowrap;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: var(--olive); }
+
+  /* SECTION */
+  section { padding: 80px 28px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2.4px; color: var(--honey);
+    margin-bottom: 20px;
+  }
+  section h2 {
+    font-size: clamp(28px, 3.6vw, 42px);
+    margin-bottom: 28px;
+    max-width: 820px;
+    font-weight: 500;
+  }
+  section h3 {
+    font-size: clamp(20px, 2vw, 24px);
+    margin-bottom: 14px;
+    color: var(--olive-deep);
+    font-weight: 500;
+  }
+  section p { max-width: 760px; color: var(--char); }
+
+  /* TLDR */
+  .tldr {
+    background: var(--cream-warm);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .tldr p {
+    font-size: 18px; line-height: 1.65;
+    max-width: 860px; color: var(--char);
+  }
+
+  /* TIER CARDS */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .tier-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .tier-card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+  .tier-num {
+    font-family: 'Fraunces', serif;
+    font-size: 13px; color: var(--honey);
+    letter-spacing: 1.6px; font-weight: 600;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .tier-card h3 { margin-bottom: 10px; font-size: 22px; }
+  .tier-tag {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 1.2px;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 18px;
+  }
+  .tier-body { font-size: 14.5px; color: var(--char); line-height: 1.65; }
+  .tier-body p { margin-bottom: 12px; }
+  .tier-meta {
+    margin-top: 18px; padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    font-size: 13px; color: var(--slate);
+  }
+  .tier-meta strong { color: var(--olive); }
+
+  /* DETAILED TIER */
+  .tier-deep {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--honey);
+    border-radius: 4px;
+    padding: 36px 36px;
+    margin-bottom: 22px;
+  }
+  .tier-deep h3 {
+    font-size: 26px;
+    color: var(--olive-deep);
+    margin-bottom: 8px;
+  }
+  .tier-deep .tier-num { margin-bottom: 6px; }
+  .tier-deep ul { list-style: none; padding: 0; margin: 14px 0; }
+  .tier-deep ul li {
+    padding: 8px 0 8px 22px;
+    position: relative;
+    color: var(--char);
+    font-size: 15px;
+  }
+  .tier-deep ul li::before {
+    content: "";
+    position: absolute; left: 0; top: 17px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--honey);
+  }
+  .tier-deep h4 {
+    font-size: 14px;
+    color: var(--slate);
+    letter-spacing: 0.4px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+  }
+  .success-markers {
+    background: var(--cream);
+    padding: 16px 20px;
+    margin-top: 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--char);
+  }
+  .success-markers strong { color: var(--olive); }
+
+  /* TIMELINE */
+  .timeline {
+    background: var(--cream-warm);
+  }
+  .week-block {
+    margin-top: 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .week-head {
+    background: var(--olive-deep);
+    color: var(--cream);
+    padding: 20px 28px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .week-head h3 {
+    color: var(--cream);
+    font-size: 22px;
+    margin: 0;
+  }
+  .week-head .week-theme {
+    font-size: 12px; letter-spacing: 1.6px;
+    color: var(--honey-soft);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .week-body {
+    padding: 8px 0;
+  }
+  .step {
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    color: var(--honey);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .step-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .step-action {
+    display: inline-block;
+    font-size: 10.5px; letter-spacing: 1.4px;
+    background: var(--olive);
+    color: var(--cream);
+    padding: 3px 9px;
+    border-radius: 2px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    font-weight: 600;
+    vertical-align: 2px;
+  }
+  .step-action.decide { background: var(--rust); }
+  .step-action.ask { background: var(--honey); }
+  .step-body {
+    font-size: 14.5px;
+    color: var(--char);
+    line-height: 1.65;
+  }
+  .step-meta {
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--slate);
+    font-style: italic;
+  }
+
+  /* WORKING TOGETHER */
+  .triangle {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .triangle-card {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 24px;
+    background: #fff;
+  }
+  .triangle-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--olive-deep);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .triangle-card p {
+    font-size: 14.5px;
+    color: var(--char);
+    margin: 0;
+  }
+
+  /* GUARDRAILS */
+  .guardrails { background: var(--ink); color: var(--cream); }
+  .guardrails .section-eyebrow { color: var(--honey-soft); }
+  .guardrails h2 { color: var(--cream); }
+  .guard-grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .guard {
+    border-left: 2px solid var(--honey);
+    padding: 4px 0 4px 18px;
+    font-size: 15px;
+    color: rgba(246, 241, 231, 0.85);
+    line-height: 1.55;
+  }
+  .guard strong { color: var(--honey-soft); font-weight: 600; }
+
+  /* OPEN QS */
+  .questions { background: var(--cream-deep); }
+  .q-list { margin-top: 28px; }
+  .q-item {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(26, 26, 24, 0.18);
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+  }
+  .q-item:last-child { border-bottom: none; }
+  .q-num {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--rust);
+    font-weight: 500;
+  }
+  .q-body { font-size: 15.5px; color: var(--char); line-height: 1.65; }
+
+  /* STANDING */
+  .standing { background: var(--cream); }
+  .standing-card {
+    margin-top: 22px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .standing-item h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--olive-deep);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .standing-item p {
+    font-size: 14.5px;
+    color: var(--char);
+    margin: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--olive-deep);
+    color: rgba(246, 241, 231, 0.7);
+    padding: 50px 28px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+  }
+  footer a { color: var(--honey-soft); }
+
+  @media (max-width: 640px) {
+    section { padding: 60px 22px; }
+    .hero { padding: 70px 22px 80px; }
+    .step { grid-template-columns: 36px 1fr; gap: 12px; padding: 20px 22px; }
+    .step-num { font-size: 22px; }
+    .week-head { padding: 18px 22px; }
+    .tier-deep { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Modern Savage · Referral & Ambassador Strategy</div>
+    <h1>Three tiers, premium-protected, built to drive launch without turning MS into a discount-code affiliate brand.</h1>
+    <p class="hero-sub">A customer referral programme that rewards loyalty not bounty-hunting. A small named ambassador roster with real commercial terms. And an indirect seeding tier with zero post obligation — designed to generate earned mentions while the brand stays premium.</p>
+    <div class="hero-meta">
+      <span><strong>Status</strong> · v2, strengthened for Jesse</span>
+      <span><strong>Launch window</strong> · July 2026 (UK + US)</span>
+      <span><strong>Prepared by</strong> · Ted, for Olly</span>
+      <span><strong>Date</strong> · 11 May 2026</span>
+    </div>
+  </div>
+</section>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">MS Referral v2</div>
+    <a href="#tldr">TL;DR</a>
+    <a href="#tiers">The Three Tiers</a>
+    <a href="#together">How They Combine</a>
+    <a href="#guardrails">Premium Guardrails</a>
+    <a href="#plan">Action Plan</a>
+    <a href="#questions">Open Questions</a>
+  </div>
+</nav>
+
+<section id="tldr" class="tldr">
+  <div class="section-inner">
+    <div class="section-eyebrow">The short version</div>
+    <h2>One configuration that drives volume without cheapening the brand.</h2>
+    <p>Tier 1 — a tightened customer referral programme that rewards loyalty, not bounty-hunting. Tier 2 — a small, named ambassador roster (6–8 creators, 10k–100k bracket) with a real commercial stack, not just "you're with Bear." Tier 3 — Jesse's angle, refined: 30 hand-picked creators receive a free pouch with zero post obligation, designed to generate earned mentions while protecting the premium feel.</p>
+    <p>None of it relies on Bear's ongoing content bandwidth. All three run in parallel from pre-launch through Q4 2026.</p>
+  </div>
+</section>
+
+<section id="tiers">
+  <div class="section-inner">
+    <div class="section-eyebrow">The Three Tiers</div>
+    <h2>Each tier does a different job. Together they cover the channels we'd otherwise leave on the table.</h2>
+
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-num">Tier One</div>
+        <h3>Customer Referral Promo</h3>
+        <div class="tier-tag">The compounding base</div>
+        <div class="tier-body">
+          <p>Existing-customers-only link. Referrer's next subscription month ships free when a referral converts. Referred customer gets 15% off first order — no deeper, because deeper cuts cheapen the brand.</p>
+        </div>
+        <div class="tier-meta"><strong>Mode:</strong> Gated, share-your-shelf framing. No leaderboards, no MLM mechanics.</div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-num">Tier Two</div>
+        <h3>Named Ambassador Program</h3>
+        <div class="tier-tag">The narrative engine</div>
+        <div class="tier-body">
+          <p>6 ambassadors signed by July launch, growing to 8 by year-end. 10k–100k follower band. 15% recurring lifetime commission, free monthly product, quarterly brand-asset drops, soft competitor exclusivity.</p>
+        </div>
+        <div class="tier-meta"><strong>Mode:</strong> Curated, invite-only. Scarcity is the premium signal.</div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-num">Tier Three</div>
+        <h3>Indirect Seeding (Jesse's angle)</h3>
+        <div class="tier-tag">The earned-media surface</div>
+        <div class="tier-body">
+          <p>30 creators in first batch, 20k–500k range, drawn from the existing 50-creator shortlist. Free pouch + formulator's note. Explicit "no obligation to post." The absence of an ask is the premium signal.</p>
+        </div>
+        <div class="tier-meta"><strong>Mode:</strong> Hand-picked. Tracked via mentions, code redemptions, UGC pickup.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px;">
+
+      <div class="tier-deep">
+        <div class="tier-num">Tier One — Customer Referral Promo</div>
+        <h3>The compounding base.</h3>
+        <h4>Mechanic</h4>
+        <p>On-site referral hub gated by email capture. Customer enters name + email, gets a unique link and a 6-character code. When a new customer makes their first purchase via that link, the referrer's next subscription month ships free. The new customer gets 15% off — not deeper, because deeper cuts cheapen the brand and pull in the wrong buyer.</p>
+        <h4>Why this is premium-safe</h4>
+        <p>The reward goes to <strong>existing paying customers only</strong>. Framed as "share what's on your shelf," not "make money from your friends." No public leaderboards, no super-referrer status, no cash payouts. Rewards genuine word-of-mouth from people already using the product — how premium nutrition brands actually grow.</p>
+        <h4>Promotion</h4>
+        <p>Soft-launch in the order confirmation email and month-2 retention email. Single organic Meta post per month referencing the programme — never a paid ad. A line in the unboxing card: <em>"If this works for your family, there's a way to share it."</em></p>
+        <div class="success-markers">
+          <strong>Success markers.</strong> Month 1: 5% of customers generate a link, 1 in 8 of those drives a referral. Month 3: referred customers = 12–15% of new acquisition volume, retention at parity or better than paid-acquired customers.
+        </div>
+      </div>
+
+      <div class="tier-deep">
+        <div class="tier-num">Tier Two — Named Ambassador Program (10k–100k creators)</div>
+        <h3>The narrative engine.</h3>
+        <h4>The honest read</h4>
+        <p>"Be part of Bear's team" is a strong opener but not enough on its own to convert a working creator in this band. Creators here are running businesses — they need commercial terms that respect that. The Bear association gets the meeting; the stack closes it.</p>
+        <h4>The stack we offer</h4>
+        <ul>
+          <li><strong>15% commission per sale</strong>, recurring on subscription renewals for the lifetime of the referred customer. Industry generic is 10% one-shot — we don't cap, and that's the differentiator.</li>
+          <li><strong>Named ambassador status</strong> on a dedicated MS site page. 8 names max in year one. Scarcity is the premium signal.</li>
+          <li><strong>Free monthly product</strong> (Adult Blend; Kids Blend on request for families).</li>
+          <li><strong>Quarterly brand-asset drop</strong> — shoot-ready product photography, formulation cards, b-roll. Cheapest thing for us to provide; biggest unlock for working creators.</li>
+          <li><strong>One Bear touchpoint at onboarding</strong> — signed welcome pack, batched, one-time. No ongoing Bear commitment.</li>
+          <li><strong>Soft competitor exclusivity</strong> — cannot represent Heart & Soil, Lineage, Ancestral Supplements for the duration. Other categories fine.</li>
+        </ul>
+        <h4>What they commit in return</h4>
+        <ul>
+          <li>Minimum 1 organic post/month featuring MS — their format, their voice. We don't script.</li>
+          <li>Code sharing in bio for the duration.</li>
+          <li>One 15-min quarterly creative call.</li>
+          <li>Right of first refusal on paid usage of their content.</li>
+        </ul>
+        <div class="success-markers">
+          <strong>Target roster:</strong> 6 signed by 1 July 2026 launch, 8 by year-end. Small is the point.
+        </div>
+      </div>
+
+      <div class="tier-deep">
+        <div class="tier-num">Tier Three — Indirect Seeding (Jesse's angle, refined)</div>
+        <h3>The earned-media surface.</h3>
+        <h4>Batch size + timing</h4>
+        <p>30 creators in batch one, sent over a 6-week window beginning 6 weeks pre-launch. Drawn from the existing 50-name MS seeding shortlist. Second batch of 30 in October if batch one performs.</p>
+        <h4>Follower bands</h4>
+        <p>20k–500k (the existing MS seeding cap). Skew the batch toward the 30k–250k middle — under-30k lacks reach, over-500k rarely posts about a free send.</p>
+        <h4>Selection criteria (all four must hold)</h4>
+        <ul>
+          <li>Genuine fit with one of the five MS content pillars — family, whole-food, real-ingredients, real life. No biohackers, no performance-supplement creators.</li>
+          <li>Documented history of posting about products they personally use, unprompted.</li>
+          <li>No active conflict (Heart & Soil, Ancestral Supplements, Lineage, or equivalent).</li>
+          <li>UK/US weighted 60/40 to match the launch geography.</li>
+        </ul>
+        <h4>Seeding package contents</h4>
+        <ul>
+          <li>One Adult Blend pouch (Kids Blend added for families).</li>
+          <li>A printed one-page formulator's note from Jesse — his voice, why it exists, sourcing one-liners, allergen call-out.</li>
+          <li>An ingredient-sourcing card.</li>
+          <li>A handwritten note — no PR-agency template.</li>
+          <li>A discrete personalised code with 15% off — matching the customer-referral discount, never deeper.</li>
+        </ul>
+        <h4>The ask, in writing</h4>
+        <p><em>"We made this for families like yours. We'd genuinely love to know what you think. There is no obligation to post — if you do, that's a bonus, and your code is in the pack."</em> The lack of ask is the premium signal.</p>
+        <h4>What we track</h4>
+        <ul>
+          <li>Mentions (existing social-listening tooling).</li>
+          <li>Code redemptions per creator (signal, not target).</li>
+          <li>UGC pickup — request rights, re-share, or run as paid.</li>
+          <li>Reply rate to the seed (proxy for warmth, leading indicator).</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="together">
+  <div class="section-inner">
+    <div class="section-eyebrow">How the three tiers combine</div>
+    <h2>Each tier covers what the others can't.</h2>
+    <div class="triangle">
+      <div class="triangle-card">
+        <h4>Tier 1 — Compounding base</h4>
+        <p>Every happy customer becomes a low-cost acquisition channel. Without it we leave the cheapest channel on the table.</p>
+      </div>
+      <div class="triangle-card">
+        <h4>Tier 2 — Consistent narrative</h4>
+        <p>6–8 trusted voices showing MS in their lives every month. Named, on-record advocates. Gives paid social fresh creative.</p>
+      </div>
+      <div class="triangle-card">
+        <h4>Tier 3 — Earned reach</h4>
+        <p>Bigger, less predictable mentions with no commercial tie — which is what makes them credible. Without this, the programme reads as "another supplement affiliate stack."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guardrails" class="guardrails">
+  <div class="section-inner">
+    <div class="section-eyebrow">Premium guardrails</div>
+    <h2>The lines that hold the brand at premium even while volume grows.</h2>
+    <div class="guard-grid">
+      <div class="guard"><strong>No discount deeper than 15%</strong> to anyone, ever — referrer, creator, ambassador audience.</div>
+      <div class="guard"><strong>No public leaderboards</strong>, no top-earner badges, no MLM-feel mechanics.</div>
+      <div class="guard"><strong>No paid-post obligations in Tier 3</strong> — the absence of an ask is the entire point.</div>
+      <div class="guard"><strong>No mass affiliate sign-up form.</strong> Tier 2 is curated, invite-only.</div>
+      <div class="guard"><strong>No stacked discount-code spam</strong> in creator bios. MS code only, or they're not the right ambassador.</div>
+      <div class="guard"><strong>No celebrity bounty offers.</strong> The brand pays in product, equity-of-association, and recurring commission. Not cash bungs.</div>
+      <div class="guard"><strong>Bear appears in the onboarding pack and ambassador-page footer only.</strong> Never in a scripted creator caption.</div>
+    </div>
+  </div>
+</section>
+
+<section id="plan" class="timeline">
+  <div class="section-inner">
+    <div class="section-eyebrow">Action plan for Olly</div>
+    <h2>Chronological, dependency-ordered, calendar-dated. To execute the strategy.</h2>
+    <p>Today is Mon 11 May 2026. MS launches July 2026 — ~7 weeks out. Tags: <span class="step-action">DO</span> a thing to ship, <span class="step-action decide">DECIDE</span> a call to make, <span class="step-action ask">ASK</span> someone for input.</p>
+
+    <div class="week-block">
+      <div class="week-head">
+        <h3>Week of 11 May — this week</h3>
+        <div class="week-theme">Unblockers</div>
+      </div>
+      <div class="week-body">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Lock the three tiers with Jesse + sign off commission % <span class="step-action decide">Decide</span></div>
+            <div class="step-body">Highest-leverage call in the whole plan. 15% recurring lifetime vs 12% recurring. Get it in writing in a short Slack/email thread referencing the strategy doc so it's a fixed reference point.</div>
+            <div class="step-meta">Olly + Jesse · by Fri 15 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Confirm Bear's involvement is capped at the onboarding pack <span class="step-action ask">Ask</span></div>
+            <div class="step-body">One message to Jesse: "Bear signs a welcome pack for each ambassador at onboarding — one-time, batched. No ongoing posts. Confirm." Mirrors the GSET 'no new Bear content' line. Removes a downstream blocker on the Tier 2 pitch.</div>
+            <div class="step-meta">Olly · by Fri 15 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Brief Ted on Tier 2 pitch deck + contract template <span class="step-action">Do</span></div>
+            <div class="step-body">Ted drafts a 6-slide ambassador pitch deck (offer, stack, commitment, exclusivity, working-together, next steps) plus a one-page commercial summary and a draft contract template. Olly reviews + edits.</div>
+            <div class="step-meta">Briefed Mon 11 May · draft by Thu 14 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <div class="step-title">Pull the first 30 names from the 50-creator seeding shortlist <span class="step-action">Do</span></div>
+            <div class="step-body">Ted segments UK/US 60/40, skews 30k–250k, flags any conflicts (Heart & Soil / Ancestral / Lineage), and tags each with which content pillar they fit. Olly reviews.</div>
+            <div class="step-meta">Ted drafts by Wed 13 May · Olly signs off Thu 14 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <div class="step-title">Decide Tier 3 batch size — 30 or tighter <span class="step-action decide">Decide</span></div>
+            <div class="step-body">If Jesse wants 20 to protect quality, we trim from the 30 before pack production starts — avoids waste. Worth deciding on the same call as Step 1.</div>
+            <div class="step-meta">Olly + Jesse · same call as Step 1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-head">
+        <h3>Week of 18 May</h3>
+        <div class="week-theme">Build & brief</div>
+      </div>
+      <div class="week-body">
+        <div class="step">
+          <div class="step-num">06</div>
+          <div>
+            <div class="step-title">Brief dev on the on-site referral hub <span class="step-action">Do</span></div>
+            <div class="step-body">Spec sheet: email-gated form, unique link + 6-char code, attribution to subscription <em>renewals</em> (not just first order — that's the commercial differentiator), monthly free-pouch reward fulfilment flow. Needs to be live by 4 weeks pre-launch.</div>
+            <div class="step-meta">Olly briefs dev Mon 18 May · build kick-off Wed 20 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">07</div>
+          <div>
+            <div class="step-title">Commission Jesse's one-page formulator's note <span class="step-action ask">Ask</span></div>
+            <div class="step-body">Single page, his voice, why the formulation exists, sourcing one-liners, allergen call-out. The differentiator vs every other seeding pack the creator will receive that month.</div>
+            <div class="step-meta">Jesse · draft by Fri 22 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">08</div>
+          <div>
+            <div class="step-title">Order seeding pack components <span class="step-action">Do</span></div>
+            <div class="step-body">30 Adult Blend pouches + Kids Blend stock for creators with kids, printed formulator's notes, ingredient-sourcing cards, handwritten note cards, unbranded outer mailer. Lead time on print + assembly is 2 weeks — order this week to ship 6 weeks pre-launch.</div>
+            <div class="step-meta">Olly · by Fri 22 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">09</div>
+          <div>
+            <div class="step-title">Set up attribution + tracking baseline <span class="step-action">Do</span></div>
+            <div class="step-body">(a) Unique discount codes per creator (Shopify code groups), (b) paid social-listening alerts for MS mentions (existing BGV tooling), (c) UGC rights template ready, (d) UTM scheme for ambassador links. Failure mode is doing this in launch week.</div>
+            <div class="step-meta">Ted · Mon–Wed 18–20 May</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-head">
+        <h3>Week of 25 May</h3>
+        <div class="week-theme">Outreach begins</div>
+      </div>
+      <div class="week-body">
+        <div class="step">
+          <div class="step-num">10</div>
+          <div>
+            <div class="step-title">Send Tier 2 ambassador outreach to first 8–10 targets <span class="step-action">Do</span></div>
+            <div class="step-body">Use the deck + commercial summary from Step 3. Personalised intro per creator. Aim for 6 signed by 1 July.</div>
+            <div class="step-meta">Olly · Mon 25 May · follow-ups Thu 28 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">11</div>
+          <div>
+            <div class="step-title">Ship Tier 3 seeding batch — first 15 of 30 <span class="step-action">Do</span></div>
+            <div class="step-body">Stagger the send so we have feedback before the second 15. UK first (matches launch geo), US to follow 1 week later.</div>
+            <div class="step-meta">Ship Wed 27 May</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">12</div>
+          <div>
+            <div class="step-title">Quarterly creative-call cadence locked in calendar <span class="step-action">Do</span></div>
+            <div class="step-body">15-min recurring slot per ambassador, first one scheduled for week of contract signing. Calendar invite template ready in advance.</div>
+            <div class="step-meta">Olly · by Fri 29 May</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-head">
+        <h3>Week of 1 June</h3>
+        <div class="week-theme">Mid-cycle check</div>
+      </div>
+      <div class="week-body">
+        <div class="step">
+          <div class="step-num">13</div>
+          <div>
+            <div class="step-title">Ship Tier 3 seeding batch — second 15 <span class="step-action">Do</span></div>
+            <div class="step-body">Adjust the cover note if anything from batch one (reply rate, early mentions, complaints) needs reflecting.</div>
+            <div class="step-meta">Ship Wed 3 June</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">14</div>
+          <div>
+            <div class="step-title">Review Tier 2 pipeline <span class="step-action decide">Decide</span></div>
+            <div class="step-body">If we've signed fewer than 3 ambassadors by 5 June, the pitch needs reworking — most likely the commission stack isn't landing. Course-correct before launch, not after.</div>
+            <div class="step-meta">Olly + Jesse · Fri 5 June</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">15</div>
+          <div>
+            <div class="step-title">Test the referral hub end-to-end <span class="step-action">Do</span></div>
+            <div class="step-body">Dummy account, dummy purchase, confirm the free-month attribution fires on a real renewal. Bugs found now are cheap; bugs found in launch week are not.</div>
+            <div class="step-meta">Olly + dev · week of 1 June</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-head">
+        <h3>Weeks of 8 + 15 June</h3>
+        <div class="week-theme">Pre-launch polish</div>
+      </div>
+      <div class="week-body">
+        <div class="step">
+          <div class="step-num">16</div>
+          <div>
+            <div class="step-title">Referral hub goes live, silent <span class="step-action">Do</span></div>
+            <div class="step-body">No public announcement yet — live so we can stress-test it on the first wave of real customer purchases.</div>
+            <div class="step-meta">Dev pushes Mon 8 June</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">17</div>
+          <div>
+            <div class="step-title">Final Tier 2 sign — close to 6 ambassadors pre-launch <span class="step-action">Do</span></div>
+            <div class="step-body">Last-call outreach to any creator who's been warm but unsigned.</div>
+            <div class="step-meta">Olly · by Fri 19 June</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">18</div>
+          <div>
+            <div class="step-title">Confirm Tier 3 mention tracking is live and surfacing posts <span class="step-action">Do</span></div>
+            <div class="step-body">If creators are starting to post (and they will, if the pack lands well), we need to see it inside 24hrs so we can engage and request UGC rights.</div>
+            <div class="step-meta">Ted · by Fri 19 June</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-head">
+        <h3>Launch month — July 2026</h3>
+        <div class="week-theme">Go live</div>
+      </div>
+      <div class="week-body">
+        <div class="step">
+          <div class="step-num">19</div>
+          <div>
+            <div class="step-title">Tier 1 goes public <span class="step-action">Do</span></div>
+            <div class="step-body">Order-confirmation email + month-2 retention email now carry the referral mechanic. One organic Meta post in week one of launch referencing it.</div>
+            <div class="step-meta">Olly + comms · launch week</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">20</div>
+          <div>
+            <div class="step-title">Ambassadors begin organic posting cadence <span class="step-action">Do</span></div>
+            <div class="step-body">Minimum 1 post/month each, their format. First wave coincides with launch week.</div>
+            <div class="step-meta">Ambassadors · ongoing</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">21</div>
+          <div>
+            <div class="step-title">Open second seeding batch decision <span class="step-action decide">Decide</span></div>
+            <div class="step-body">Review batch one performance (mention rate, code redemptions, UGC quality) end of July. If it cleared the bar, queue batch two for October — the autumn push window.</div>
+            <div class="step-meta">Olly + Jesse · by Fri 31 July</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="standing" class="standing">
+  <div class="section-inner">
+    <div class="section-eyebrow">Standing cadence — once launched</div>
+    <h2>The rhythms that keep the programme healthy.</h2>
+    <div class="standing-card">
+      <div class="standing-item">
+        <h4>Monthly KPI review</h4>
+        <p>Tier 1 link-generation %, Tier 2 commission paid + ambassador post compliance, Tier 3 mentions + UGC volume. 30 minutes, monthly, permanent in Olly's calendar.</p>
+      </div>
+      <div class="standing-item">
+        <h4>Quarterly creative call per ambassador</h4>
+        <p>15 minutes each. Non-negotiable — this is the relationship investment that holds Tier 2 together.</p>
+      </div>
+      <div class="standing-item">
+        <h4>Seeding rolling window</h4>
+        <p>30 creators per batch. October batch two if batch one cleared the bar. January batch three is the standing default unless paused.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="questions" class="questions">
+  <div class="section-inner">
+    <div class="section-eyebrow">Open questions for Jesse</div>
+    <h2>The calls that need locking before the plan can fully execute.</h2>
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-num">01</div>
+        <div class="q-body"><strong>15% recurring lifetime commission on Tier 2</strong> — does that hold against COG/margin, or does he want 12% recurring as the realistic ceiling?</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">02</div>
+        <div class="q-body"><strong>Soft exclusivity for ambassadors</strong> — is he comfortable enforcing it, or does he want a non-binding "preferred partner" framing instead?</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">03</div>
+        <div class="q-body"><strong>Tier 3 batch size</strong> — 30 in batch one, or does he want to start tighter at 20 to protect quality?</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">04</div>
+        <div class="q-body"><strong>Kids Blend in seeding packs by default</strong> for creators with kids, or held back to a second wave?</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">05</div>
+        <div class="q-body"><strong>Bear's involvement capped at the onboarding pack only</strong> — confirm there's no expectation of ongoing posts from Bear tied to ambassador activity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Modern Savage · Referral & Ambassador Strategy v2 · Prepared by Ted for Olly · 11 May 2026 · Source markdown <a href="https://github.com/dnd5fj5gjy-bit/modern-savage-strategy/blob/main/ms-referral-strategy-v2.md">on GitHub</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSET — Next Operational Actions · 13 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.15; }
+  p { margin-bottom: 0.9em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; background: var(--cream-warm); padding: 1px 6px; border-radius: 3px; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(40px, 6vw, 60px); color: var(--cream); margin-bottom: 18px; }
+  .hero p { color: rgba(245, 239, 226, 0.78); font-size: 18px; max-width: 680px; }
+  .hero .meta { margin-top: 28px; font-size: 13px; color: rgba(245, 239, 226, 0.55); letter-spacing: 0.06em; }
+
+  .downloads {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: 28px;
+  }
+  .downloads a {
+    background: var(--gold); color: var(--ink);
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.15s ease;
+  }
+  .downloads a:hover { background: var(--gold-soft); }
+  .downloads a .ext { font-size: 11px; opacity: 0.7; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  section { padding: 60px 24px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+
+  h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 18px; color: var(--evergreen-deep); }
+  h3 { font-size: 22px; margin: 28px 0 12px; color: var(--evergreen-deep); }
+  h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin: 24px 0 8px; }
+
+  .summary {
+    background: var(--cream-warm);
+    border-left: 3px solid var(--gold);
+    padding: 22px 26px;
+    border-radius: 4px;
+    margin: 24px 0 34px;
+  }
+  .summary p { margin-bottom: 0.5em; }
+  .summary p:last-child { margin-bottom: 0; }
+
+  .streams {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 8px 0 12px;
+  }
+  .streams .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--evergreen);
+    padding: 18px 20px;
+    border-radius: 4px;
+  }
+  .streams .card .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .streams .card .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--evergreen-deep);
+    margin: 6px 0 6px;
+  }
+  .streams .card p { font-size: 13.5px; color: var(--slate); margin: 0; line-height: 1.45; }
+
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--evergreen);
+    color: var(--cream);
+    margin-right: 8px;
+  }
+  .pill.gold { background: var(--gold); color: var(--ink); }
+  .pill.rust { background: var(--rust); }
+  .pill.slate { background: var(--slate); }
+
+  .phase-band {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 14px 0 4px;
+    border-top: 1px solid var(--line-strong);
+    margin-top: 36px;
+  }
+  .phase-band h2 { margin-bottom: 0; }
+
+  ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 8px 0 0; }
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding: 22px 0 22px 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  ol.steps > li:last-child { border-bottom: none; }
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 22px;
+    width: 42px; height: 42px;
+    background: var(--evergreen);
+    color: var(--cream);
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  ol.steps > li strong.step-title {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 19px;
+    color: var(--evergreen-deep);
+    margin-bottom: 6px;
+  }
+  ol.steps > li p { font-size: 15px; margin-bottom: 8px; }
+  ol.steps > li ul { padding-left: 22px; margin: 6px 0 8px; font-size: 15px; }
+  ol.steps > li ul li { margin-bottom: 4px; }
+  ol.steps > li .done-when {
+    color: var(--slate);
+    font-size: 13.5px;
+    display: block;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 8px;
+    font-size: 14.5px;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table th {
+    background: var(--cream-warm);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  table tr.total td { font-weight: 700; background: var(--cream-warm); color: var(--evergreen-deep); }
+
+  .decisions {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--rust);
+    padding: 28px;
+    border-radius: 4px;
+    margin: 28px 0 12px;
+  }
+  .decisions h3 { margin-top: 0; color: var(--rust); }
+  .decisions ol { padding-left: 22px; }
+  .decisions li { margin-bottom: 12px; font-size: 15px; }
+
+  .questions {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--slate);
+    padding: 24px 28px;
+    border-radius: 4px;
+    margin: 22px 0 12px;
+  }
+  .questions h3 { margin-top: 0; color: var(--slate); }
+  .questions ul { padding-left: 22px; }
+  .questions li { margin-bottom: 8px; font-size: 15px; }
+
+  footer {
+    padding: 40px 24px 60px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--slate);
+    font-size: 13px;
+  }
+  footer a { color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 60px 20px 70px; }
+    section { padding: 44px 20px; }
+    ol.steps > li { padding-left: 56px; }
+    ol.steps > li::before { width: 36px; height: 36px; font-size: 18px; }
+    table { font-size: 13px; }
+    table th, table td { padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">GSET · Next operational actions · For Olly</div>
+    <h1>20 episodes. One actor. One shoot. Live on 19 June.</h1>
+    <p>A YouTube series of ~20 episodes, ~8 minutes each, cut from the existing audiobook of <em>The Greatest Story Ever Told</em>. ~160 minutes of new filming, batched into one shoot. Channel exists. Graphics in flight. This is the operational do-list to get them filmed, edited, and on air.</p>
+    <div class="meta">Prepared by Ted · 13 May 2026 · Post-format-pivot · Channel created</div>
+    <div class="downloads">
+      <a href="GSET-Next-Physical-Actions-2026-05-13.docx" download>Download <span class="ext">DOCX</span></a>
+      <a href="GSET-Next-Physical-Actions-2026-05-13.pdf" download>Download <span class="ext">PDF</span></a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="inner">
+    <h2>The five operational workstreams</h2>
+    <p>Everything below sits inside one of these. Nothing else is in scope — no domain, no landing page, no spin-off platforms.</p>
+    <div class="streams">
+      <div class="card"><div class="num">1</div><div class="title">Rights</div><p>Written permission from Hodder to cut, re-cut and monetise the audiobook on YouTube.</p></div>
+      <div class="card"><div class="num">2</div><div class="title">Editor</div><p>One freelancer on retainer to edit 20 episodes + shorts across nine months.</p></div>
+      <div class="card"><div class="num">3</div><div class="title">Actor</div><p>One performer, 20 episodes, single fee, batched shoot.</p></div>
+      <div class="card"><div class="num">4</div><div class="title">Studio</div><p>One London studio booked for a 2-day batch shoot in mid-June.</p></div>
+      <div class="card"><div class="num">5</div><div class="title">Cost</div><p>Year-one budget signed off by Jesse before any commitments are made.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="inner">
+    <div class="phase-band"><span class="pill rust">Rights</span><h2>This week</h2></div>
+    <ol class="steps">
+      <li>
+        <strong class="step-title">Send the Hodder rights email today</strong>
+        <p>10 min. Email Andy Lyon at Hodder Faith. Ask for written confirmation on:</p>
+        <ul>
+          <li>Use of audiobook audio in 8-minute YouTube episodes</li>
+          <li>Editorial rights to cut chapters into episodes</li>
+          <li><strong>YouTube monetisation of those episodes</strong></li>
+          <li>Use of audio clips for promo shorts</li>
+        </ul>
+        <p>Template is in <code>gset-operator-playbook.md</code> Step 1 — add the monetisation line.</p>
+        <span class="done-when">Done when: sent. Reply may take a week — don't block other workstreams on it.</span>
+      </li>
+      <li>
+        <strong class="step-title">Confirm where the master audiobook audio lives</strong>
+        <p>Either Hodder has the masters and we license access, or we already have files and need a usage re-license. Ask Andy in the same email: <em>"How do we get clean audio masters by Mon 9 Jun for the edit?"</em></p>
+        <span class="done-when">Done when: clear answer on file delivery path and date.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="phase-band"><span class="pill">Editor</span><h2>Hire by Fri 23 May</h2></div>
+    <ol class="steps">
+      <li>
+        <strong class="step-title">Write the editor brief</strong>
+        <p>60 min. Spec the role tight to this format:</p>
+        <ul>
+          <li>Comfortable layering audiobook audio over picture</li>
+          <li>Cuts to 8:30–10:30 mins for YouTube mid-roll monetisation</li>
+          <li>Builds shorts (~30–60s) from each episode's offcuts</li>
+          <li>Available for ~9 months of fortnightly cuts after the shoot</li>
+          <li>Retainer £1,500–2,000/mo</li>
+        </ul>
+        <p>Ask Felix who BGV's used before. If nothing usable, post to People Per Hour / Production Hub.</p>
+        <span class="done-when">Done when: brief is written, 3+ candidates lined up.</span>
+      </li>
+      <li>
+        <strong class="step-title">Interview 3, hire one</strong>
+        <p>By end of next week. Get a 60-second test edit from each: audiobook audio + any B-roll, their choice. Pick on craft, not pitch.</p>
+        <span class="done-when">Done when: contract signed.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section style="background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="inner">
+    <div class="phase-band"><span class="pill gold">Actor</span><h2>Longlist Wed 21 May · sign Fri 30 May</h2></div>
+    <ol class="steps">
+      <li>
+        <strong class="step-title">Build the longlist (5–6 names)</strong>
+        <p>Criteria:</p>
+        <ul>
+          <li>Face you can watch for ~3 hours of cumulative screen time across 20 episodes</li>
+          <li>Physically and tonally credible for the material</li>
+          <li>Available for 2–3 batch shoot days in mid-June</li>
+          <li>Single fee covering all 20 episodes + buyout</li>
+        </ul>
+        <p>Mix known and unknown. A recognisable name accelerates launch; an unknown is cheaper and easier to lock in.</p>
+        <span class="done-when">Done when: longlist sat in a doc, top 2 contacted.</span>
+      </li>
+      <li>
+        <strong class="step-title">Sign one actor</strong>
+        <p>Decision by Fri 30 May. Budget envelope £2–5k depending on name. <strong>Single-fee buyout</strong> covering all 20 episodes, all platforms, in perpetuity. Don't agree to per-episode fees.</p>
+        <span class="done-when">Done when: signed contract in hand.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="phase-band"><span class="pill slate">Studio</span><h2>Book by Fri 6 Jun</h2></div>
+    <ol class="steps">
+      <li>
+        <strong class="step-title">Get 2–3 quotes for a 2-day batch shoot</strong>
+        <p>London likely. One neutral set, lighting setup once, all 20 chapters back-to-back. Ask Felix for previous BGV studios. Budget envelope <strong>£1.5–3k/day inclusive of crew</strong> (cam op + sound).</p>
+        <span class="done-when">Done when: quotes in.</span>
+      </li>
+      <li>
+        <strong class="step-title">Book the studio</strong>
+        <p>Two days: <strong>Tue 16 – Wed 17 Jun</strong> (anniversary 19 Jun, tight against launch). Pay deposit.</p>
+        <span class="done-when">Done when: dates locked, deposit paid.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section style="background: var(--cream-warm);">
+  <div class="inner">
+    <div class="phase-band"><span class="pill rust">Cost</span><h2>Signed off by Fri 16 May</h2></div>
+    <p>One message to Jesse with the line items:</p>
+    <table>
+      <thead><tr><th>Line</th><th>£</th></tr></thead>
+      <tbody>
+        <tr><td>Editor retainer (9 months × £1.8k)</td><td>16,200</td></tr>
+        <tr><td>Actor fee + buyout</td><td>3,500</td></tr>
+        <tr><td>Studio (2 days + crew)</td><td>4,500</td></tr>
+        <tr><td>Sound design / mix-in (occasional, post)</td><td>1,200</td></tr>
+        <tr><td>Contingency 10%</td><td>2,540</td></tr>
+        <tr class="total"><td>Total</td><td>~27,940</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 14.5px; color: var(--slate); margin-top: 14px;">Roughly half the original drama-version budget. No paid media, no landing page, no domain — none of that is in scope.</p>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="phase-band"><span class="pill">Run-up</span><h2>From hires to launch</h2></div>
+    <ol class="steps">
+      <li>
+        <strong class="step-title">Confirm the chapter map — week of 26 May</strong>
+        <p>Half-page table: ep # → audiobook chapter → timestamp range → working episode title. If chapters don't divide into 8-min units, decide whether to combine or split. Flag to Hodder if it changes the cut materially.</p>
+      </li>
+      <li>
+        <strong class="step-title">Pre-prod with actor — week of 9 June</strong>
+        <p>Read-through, blocking, basic mood per chapter. Half-day with actor + editor + you.</p>
+      </li>
+      <li>
+        <strong class="step-title">Shoot — Tue 16 / Wed 17 June</strong>
+        <p>All 20 chapters in two days. Editor on set day 2 to check footage usability before everyone leaves.</p>
+      </li>
+      <li>
+        <strong class="step-title">Edit ep 1 + trailer in parallel — Wed 17 / Thu 18 June</strong>
+        <p>Editor's only job for 48 hours.</p>
+      </li>
+      <li>
+        <strong class="step-title">Launch — Thursday 19 June 2026</strong>
+        <p>Episode 1 live. 90-sec trailer live. Channel public.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section style="background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="inner">
+    <div class="decisions">
+      <h3>What Ted needs you to decide</h3>
+      <ol>
+        <li><strong>Budget envelope to send Jesse:</strong> £28k as estimated, or pad to £32k for unknowns?</li>
+        <li><strong>Actor route:</strong> known name (faster reach, £4–5k) or unknown (cheaper, £2–3k, takes longer to find the right one)?</li>
+        <li><strong>Studio:</strong> who do you want me to ask Felix about first — does he have a preferred London studio for a single-set shoot of this kind?</li>
+      </ol>
+    </div>
+    <div class="questions">
+      <h3>Open questions</h3>
+      <ul>
+        <li>Is there an existing actor relationship we should approach first, or do we go cold?</li>
+        <li>Is the audiobook 20 chapters as-is, or are we re-cutting?</li>
+        <li>Who is point on Hodder if Andy Lyon goes quiet?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Related: <a href="../gset-jesse-plan/">GSET — Concrete Plan for Jesse (12 May)</a> · <a href="../gset-pivot/">Format Pivot (12 May)</a></p>
+  <p style="margin-top: 8px;">Prepared by Ted · 13 May 2026</p>
+</footer>
+
+</body>
+</html>

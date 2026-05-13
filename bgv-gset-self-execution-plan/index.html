@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Greatest Story Ever Told — BGV Self-Execution Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.15; }
+  p { margin-bottom: 0.85em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 90px 24px 110px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(212, 176, 106, 0.08), transparent 55%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2.2px; color: var(--gold-soft);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 5.5vw, 64px);
+    color: var(--cream);
+    margin-bottom: 22px; max-width: 920px;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.8vw, 20px);
+    color: rgba(245, 239, 226, 0.78);
+    max-width: 760px; line-height: 1.5;
+  }
+  .hero-meta {
+    margin-top: 38px; padding-top: 22px;
+    border-top: 1px solid rgba(245, 239, 226, 0.18);
+    display: flex; flex-wrap: wrap; gap: 28px;
+    font-size: 13px; color: rgba(245, 239, 226, 0.7);
+    letter-spacing: 0.4px;
+  }
+  .hero-meta strong { color: var(--gold-soft); font-weight: 600; }
+
+  /* LAYOUT */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  section:nth-of-type(even) { background: var(--cream-warm); }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2.5px; color: var(--gold);
+    margin-bottom: 14px;
+  }
+  section h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 18px; color: var(--ink);
+    max-width: 880px;
+  }
+  .section-lede {
+    font-size: 17px; color: var(--charcoal);
+    max-width: 780px; margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  /* PULL QUOTE */
+  .pullquote {
+    margin: 36px 0 8px;
+    padding: 24px 28px;
+    background: var(--evergreen);
+    color: var(--cream);
+    border-left: 4px solid var(--gold-soft);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-style: italic;
+    line-height: 1.35;
+  }
+  .pullquote-attr {
+    display: block; margin-top: 12px;
+    font-family: 'Inter', sans-serif; font-style: normal;
+    font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gold-soft);
+  }
+
+  /* NON-NEGOTIABLE CALLOUT */
+  .non-negotiable {
+    margin: 28px 0 8px;
+    padding: 22px 26px;
+    background: #faf3e0;
+    border: 2px solid var(--rust);
+    border-left-width: 6px;
+    border-radius: 4px;
+  }
+  .non-negotiable-tag {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2.5px; color: var(--rust);
+    margin-bottom: 10px;
+  }
+  .non-negotiable p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink); }
+
+  /* CARD ROWS */
+  .card-row {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px 20px;
+    position: relative;
+  }
+  section:nth-of-type(even) .card { background: #fbf6e8; }
+  .card-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: var(--gold);
+    line-height: 1; margin-bottom: 12px; display: block;
+  }
+  .card h4 {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: 14px; line-height: 1.35;
+    margin-bottom: 6px; color: var(--ink);
+  }
+  .card p { font-size: 13.5px; color: var(--slate); line-height: 1.5; margin: 0; }
+  .card.voice h4 em { font-style: italic; color: var(--evergreen); font-weight: 500; }
+
+  /* THREE COLUMN */
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+  }
+  .three-col .col {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-top: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 26px 24px;
+  }
+  section:nth-of-type(even) .three-col .col { background: #fbf6e8; }
+  .three-col .col.survives { border-top-color: var(--evergreen); }
+  .three-col .col.adds { border-top-color: var(--gold); }
+  .three-col .col.changes { border-top-color: var(--rust); }
+  .three-col h3 {
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    font-size: 13px; margin-bottom: 18px; color: var(--ink);
+  }
+  .three-col ul { list-style: none; padding: 0; }
+  .three-col li {
+    padding: 10px 0; border-bottom: 1px dashed var(--line);
+    font-size: 14px; line-height: 1.5; color: var(--charcoal);
+  }
+  .three-col li:last-child { border-bottom: none; }
+  .three-col li strong { display: block; margin-bottom: 4px; color: var(--ink); }
+  .three-col li.changes-headline {
+    background: rgba(168, 65, 42, 0.08);
+    border: 1px solid rgba(168, 65, 42, 0.35);
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  .three-col li.changes-headline strong { color: var(--rust); }
+  @media (max-width: 760px) { .three-col { grid-template-columns: 1fr; } }
+
+  /* TRIAGE — 10 IDEAS */
+  .triage-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: 1fr;
+    margin-top: 18px;
+  }
+  .triage-item {
+    display: grid;
+    grid-template-columns: 56px 1fr 130px;
+    gap: 18px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 20px;
+    align-items: start;
+  }
+  section:nth-of-type(even) .triage-item { background: #fbf6e8; }
+  .triage-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--gold); line-height: 1;
+  }
+  .triage-body h4 {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: 15px; margin-bottom: 5px; color: var(--ink);
+  }
+  .triage-body p { font-size: 13.5px; color: var(--slate); margin: 0; line-height: 1.5; }
+  .triage-tag {
+    align-self: start;
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 3px;
+    text-align: center; line-height: 1.2;
+    white-space: nowrap;
+  }
+  .tag-run { background: var(--evergreen); color: var(--cream); }
+  .tag-layer { background: var(--gold-soft); color: var(--ink); }
+  .tag-deprio { background: rgba(168, 65, 42, 0.15); color: var(--rust); border: 1px solid rgba(168, 65, 42, 0.3); }
+  @media (max-width: 600px) {
+    .triage-item { grid-template-columns: 1fr; gap: 8px; }
+    .triage-tag { justify-self: start; }
+  }
+
+  /* TWIN ENGINE */
+  .twin-engine {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 26px;
+  }
+  .engine {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 28px;
+    position: relative;
+  }
+  section:nth-of-type(even) .engine { background: #fbf6e8; }
+  .engine.youtube { border-top: 5px solid var(--rust); }
+  .engine.substack { border-top: 5px solid var(--evergreen); }
+  .engine-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--gold); margin-bottom: 8px;
+  }
+  .engine h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px; margin-bottom: 4px; color: var(--ink);
+  }
+  .engine .role {
+    font-style: italic; color: var(--slate);
+    font-size: 14px; margin-bottom: 16px;
+  }
+  .engine ul { list-style: none; padding: 0; }
+  .engine li {
+    padding: 7px 0; padding-left: 18px;
+    position: relative; font-size: 14px;
+    color: var(--charcoal); line-height: 1.5;
+  }
+  .engine li::before {
+    content: "→"; position: absolute; left: 0;
+    color: var(--gold); font-weight: 700;
+  }
+  .engine-feeders {
+    margin-top: 24px; padding: 22px;
+    background: var(--charcoal); color: var(--cream);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .engine-feeders strong { color: var(--gold-soft); display: block; margin-bottom: 10px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .feeders-list {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center; margin-top: 8px;
+  }
+  .feeder-pill {
+    background: rgba(245, 239, 226, 0.1);
+    border: 1px solid rgba(245, 239, 226, 0.25);
+    padding: 7px 14px; border-radius: 100px;
+    font-size: 13px; color: var(--cream);
+  }
+  @media (max-width: 760px) { .twin-engine { grid-template-columns: 1fr; } }
+
+  /* READER JOURNEY LOOP */
+  .journey {
+    margin-top: 26px;
+    display: flex; flex-wrap: wrap;
+    gap: 0; align-items: stretch;
+  }
+  .journey-step {
+    flex: 1 1 180px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    padding: 20px 18px;
+    position: relative;
+    text-align: center;
+    min-width: 160px;
+  }
+  section:nth-of-type(even) .journey-step { background: #fbf6e8; }
+  .journey-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -14px; top: 50%; transform: translateY(-50%);
+    color: var(--gold); font-weight: 700; font-size: 22px;
+    z-index: 2; background: inherit; padding: 4px;
+  }
+  .journey-step .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; color: var(--gold); display: block; margin-bottom: 6px;
+  }
+  .journey-step h4 {
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 14px; text-transform: uppercase;
+    letter-spacing: 1.2px; margin-bottom: 8px; color: var(--ink);
+  }
+  .journey-step p { font-size: 12.5px; color: var(--slate); margin: 0; line-height: 1.4; }
+  .journey-loop-note {
+    margin-top: 18px; text-align: center;
+    font-size: 13px; font-style: italic; color: var(--slate);
+  }
+  .journey-loop-note strong { color: var(--evergreen); font-style: normal; }
+  @media (max-width: 720px) {
+    .journey-step:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -14px; transform: translateX(50%); }
+  }
+
+  /* CALENDAR */
+  .calendar {
+    margin-top: 26px;
+    display: grid; gap: 12px;
+    grid-template-columns: 1fr;
+  }
+  .cal-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 22px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--gold);
+    border-radius: 4px;
+    padding: 18px 22px;
+    align-items: start;
+  }
+  section:nth-of-type(even) .cal-row { background: #fbf6e8; }
+  .cal-row.peak { border-left-color: var(--rust); }
+  .cal-row.anchor { border-left-color: var(--evergreen); }
+  .cal-when {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px; color: var(--ink); line-height: 1.2;
+  }
+  .cal-when small {
+    display: block; font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--slate);
+    margin-top: 4px;
+  }
+  .cal-content { font-size: 14px; color: var(--charcoal); line-height: 1.55; }
+  @media (max-width: 600px) { .cal-row { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* YOUTUBE FORMATS */
+  .formats {
+    margin-top: 26px;
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .format {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 20px;
+  }
+  section:nth-of-type(even) .format { background: #fbf6e8; }
+  .format-num {
+    display: inline-block;
+    width: 28px; height: 28px;
+    background: var(--evergreen); color: var(--cream);
+    border-radius: 50%; line-height: 28px;
+    text-align: center; font-size: 13px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .format h4 {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: 15px; margin-bottom: 6px; color: var(--ink);
+  }
+  .format p { font-size: 13.5px; color: var(--slate); line-height: 1.5; margin: 0; }
+  .format-bar {
+    margin-top: 14px;
+    height: 6px; background: var(--line); border-radius: 3px;
+    overflow: hidden;
+  }
+  .format-bar span {
+    display: block; height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+  }
+  .format-mix-label { font-size: 11px; color: var(--slate); margin-top: 6px; letter-spacing: 0.5px; }
+  .format-badge {
+    display: inline-block; margin-left: 8px; padding: 2px 8px;
+    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 1.4px; text-transform: uppercase;
+    background: var(--gold); color: var(--ink); border-radius: 3px;
+    vertical-align: middle;
+  }
+  .format-badge.primary { background: var(--evergreen); color: var(--cream); }
+
+  .channel-banner {
+    margin-top: 24px; margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--evergreen-deep), var(--evergreen));
+    color: var(--cream);
+    padding: 30px 32px;
+    border-radius: 10px;
+    border-left: 6px solid var(--gold-soft);
+  }
+  .channel-banner .channel-eyebrow {
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 8px;
+  }
+  .channel-banner h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 32px); margin-bottom: 10px;
+    color: var(--cream);
+  }
+  .channel-banner p { font-size: 15px; color: rgba(245, 239, 226, 0.85); margin: 0; line-height: 1.55; max-width: 720px; }
+
+  /* 30/60/90 TIMELINE */
+  .timeline {
+    margin-top: 30px;
+    display: grid; gap: 18px;
+  }
+  .phase {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  section:nth-of-type(even) .phase { background: #fbf6e8; }
+  .phase-head {
+    background: var(--charcoal); color: var(--cream);
+    padding: 16px 24px;
+    display: flex; align-items: baseline;
+    justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .phase.urgent .phase-head { background: var(--rust); }
+  .phase-head h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; color: var(--cream); margin: 0;
+  }
+  .phase-head .phase-when {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold-soft); font-weight: 600;
+  }
+  .phase.urgent .phase-head .phase-when { color: var(--cream); }
+  .phase-body { padding: 22px 26px; }
+  .phase-body ol {
+    padding-left: 22px;
+    counter-reset: item;
+  }
+  .phase-body li {
+    padding: 8px 0;
+    font-size: 14.5px; color: var(--charcoal);
+    line-height: 1.55;
+  }
+  .phase-body li strong { color: var(--ink); }
+  .phase-body .meta {
+    display: block; margin-top: 4px;
+    font-size: 12px; color: var(--slate);
+    letter-spacing: 0.3px;
+  }
+  .phase-body .meta strong { color: var(--evergreen); font-weight: 600; }
+
+  /* KPIs */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px; margin-top: 22px;
+  }
+  .kpi-block {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-top: 5px solid var(--evergreen);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  section:nth-of-type(even) .kpi-block { background: #fbf6e8; }
+  .kpi-block h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.8px;
+    margin-bottom: 16px; color: var(--ink);
+  }
+  .kpi-list { list-style: none; padding: 0; }
+  .kpi-list li {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 9px 0; border-bottom: 1px dashed var(--line);
+    font-size: 14px; color: var(--charcoal);
+  }
+  .kpi-list li:last-child { border-bottom: none; }
+  .kpi-list .kpi-target {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: var(--evergreen); margin-left: 12px;
+  }
+  .kill-criteria {
+    margin-top: 22px; padding: 22px 24px;
+    background: rgba(168, 65, 42, 0.08);
+    border-left: 4px solid var(--rust);
+    border-radius: 4px;
+  }
+  .kill-criteria strong { color: var(--rust); display: block; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .kill-criteria p { font-size: 14px; color: var(--charcoal); margin: 0; line-height: 1.55; }
+  @media (max-width: 600px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+  /* RESOURCING */
+  .resourcing {
+    margin-top: 26px;
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .res-tile {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 20px;
+  }
+  section:nth-of-type(even) .res-tile { background: #fbf6e8; }
+  .res-tile h4 {
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .res-tile .res-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; color: var(--ink); line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .res-tile p { font-size: 13.5px; color: var(--slate); margin: 0; line-height: 1.5; }
+
+  /* RISKS */
+  .risks { margin-top: 22px; display: grid; gap: 12px; }
+  .risk {
+    display: grid;
+    grid-template-columns: 56px 1fr 140px;
+    gap: 18px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 22px;
+    align-items: start;
+  }
+  section:nth-of-type(even) .risk { background: #fbf6e8; }
+  .risk.high { border-left: 5px solid var(--rust); }
+  .risk.med { border-left: 5px solid var(--gold); }
+  .risk.low { border-left: 5px solid var(--evergreen); }
+  .risk-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px; color: var(--gold); line-height: 1;
+  }
+  .risk-body h4 {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: 15px; margin-bottom: 5px; color: var(--ink);
+  }
+  .risk-body p { font-size: 13.5px; color: var(--slate); margin: 0; line-height: 1.5; }
+  .risk-tag {
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 3px;
+    text-align: center; align-self: start;
+    line-height: 1.2; white-space: nowrap;
+  }
+  .risk-tag.high { background: var(--rust); color: var(--cream); }
+  .risk-tag.med { background: var(--gold-soft); color: var(--ink); }
+  .risk-tag.low { background: var(--evergreen); color: var(--cream); }
+  @media (max-width: 600px) {
+    .risk { grid-template-columns: 1fr; gap: 8px; }
+    .risk-tag { justify-self: start; }
+  }
+
+  /* OPEN QUESTIONS */
+  .questions { margin-top: 22px; display: grid; gap: 12px; }
+  .question {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px; align-items: start;
+  }
+  section:nth-of-type(even) .question { background: #fbf6e8; }
+  .question-q {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; color: var(--gold); line-height: 1;
+  }
+  .question p { font-size: 14.5px; color: var(--charcoal); margin: 0; line-height: 1.5; }
+
+  /* APPENDIX */
+  .appendix-box {
+    margin-top: 24px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 30px 32px;
+  }
+  section:nth-of-type(even) .appendix-box { background: #fbf6e8; }
+  .appendix-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; margin-bottom: 14px; color: var(--ink);
+  }
+  .appendix-box h3:not(:first-child) { margin-top: 28px; }
+  .appendix-box ol, .appendix-box ul { padding-left: 22px; }
+  .appendix-box li {
+    padding: 6px 0; font-size: 14px;
+    color: var(--charcoal); line-height: 1.55;
+  }
+  .appendix-box li strong { color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: rgba(245, 239, 226, 0.65);
+    padding: 50px 24px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  footer strong { color: var(--gold-soft); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Bear Grylls Ventures · Operating Plan</div>
+    <h1>The Greatest Story Ever Told — BGV Self-Execution Plan</h1>
+    <p class="hero-sub">From the Hodder publisher framework to a BGV-owned engine, post-handover. Picking up the channel, the audience, and the calendar — and running them ourselves.</p>
+    <div class="hero-meta">
+      <span><strong>Date</strong> &nbsp;8 May 2026</span>
+      <span><strong>Author</strong> &nbsp;BGV (for Olly Westmacott)</span>
+      <span><strong>Source</strong> &nbsp;Hodder Faith framework, March 2026</span>
+      <span><strong>Version</strong> &nbsp;v3 — corrects v2's Bear-bandwidth misread</span>
+      <span><strong>Status</strong> &nbsp;Draft for sign-off</span>
+    </div>
+  </div>
+</header>
+
+<!-- WHERE WE ARE -->
+<section id="where">
+  <div class="container">
+    <div class="section-eyebrow">01 · Where we are</div>
+    <h2>A bestseller, a strong publisher framework, and a decision to run it ourselves.</h2>
+    <p class="section-lede">
+      <em>The Greatest Story Ever Told</em> by Bear Grylls launched in June 2025 and hit <strong>#1 Sunday Times</strong> — the first Christian title in Hodder Faith's history to do so. 4.8★ across 1,400+ Amazon reviews. 288 pages. A narrative built around five eyewitness voices.
+    </p>
+    <p class="section-lede">
+      In March 2026, Hodder delivered a thoughtful 9-section framework for a publisher-driven, community-owned promotion engine that didn't depend on Bear's time. Hodder hasn't actioned it. <strong>BGV is going to.</strong> The shift from "publisher promoting a Hodder asset" to "BGV owning the channel and monetising the audience" changes what we keep, what we layer in, and where the moat is. This document is the plan for that. From here on, "GSET" is shorthand for the full title.
+    </p>
+
+    <blockquote class="pullquote">
+      "Never sell the product. Educate people on the problems it solves."
+      <span class="pullquote-attr">— The marketing philosophy from the Hodder framework</span>
+    </blockquote>
+
+    <div class="non-negotiable">
+      <div class="non-negotiable-tag">One non-negotiable</div>
+      <p><strong>Bear's bandwidth constraint stays.</strong> The Hodder doc was right about this — no new filming, no new podcast or audiobook recording, only 2–3 calendar-anchored posts/year on his channels (written by the BGV team and posted on his behalf), and occasional Story reposts at his discretion. Bear's time is genuinely scarce across BGV's portfolio — TV, expeditions, family, the wider brand network. Anything in this plan is built to run <em>without</em> new Bear content. If execution starts depending on it, the plan is breaking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FIVE DOORS -->
+<section id="doors">
+  <div class="container">
+    <div class="section-eyebrow">02 · The five doors</div>
+    <h2>Five problems the book solves. Every piece of content goes through one of these doors.</h2>
+    <p class="section-lede">
+      The Hodder framework's central marketing principle: don't market the book, address the audience problem the book answers. Each door defines a content lane and a viewer state-of-mind.
+    </p>
+    <div class="card-row">
+      <div class="card">
+        <span class="card-num">01</span>
+        <h4>The Curious Outsider</h4>
+        <p>"I've heard of Jesus but don't know the story."</p>
+      </div>
+      <div class="card">
+        <span class="card-num">02</span>
+        <h4>The Shy Witness</h4>
+        <p>"I want to share my faith but don't know how."</p>
+      </div>
+      <div class="card">
+        <span class="card-num">03</span>
+        <h4>The Stuck Reader</h4>
+        <p>"The Bible feels impenetrable to me."</p>
+      </div>
+      <div class="card">
+        <span class="card-num">04</span>
+        <h4>The Returning Believer</h4>
+        <p>"I know the story but I've lost the feeling."</p>
+      </div>
+      <div class="card">
+        <span class="card-num">05</span>
+        <h4>The Parent / Youth Leader</h4>
+        <p>"I want my kids or youth group to engage with this."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIVE VOICES -->
+<section id="voices">
+  <div class="container">
+    <div class="section-eyebrow">03 · The five voices</div>
+    <h2>The book's structure is its content engine. Five eyewitness perspectives — five readers, five lanes.</h2>
+    <p class="section-lede">
+      The narrative spine of <em>The Greatest Story Ever Told</em> is five first-person testimonies. That's not just literary — it's our casting brief, our calendar, and our format. Each voice maps to a different audience door and gives us five distinct emotional registers to work with.
+    </p>
+    <div class="card-row">
+      <div class="card voice">
+        <span class="card-num">i.</span>
+        <h4>Maryam <em>(Mary, mother of Jesus)</em></h4>
+        <p>The watching mother. The longest arc — birth to cross. Tone: tender, devotional, family-facing.</p>
+      </div>
+      <div class="card voice">
+        <span class="card-num">ii.</span>
+        <h4>Ta'om <em>(Thomas)</em></h4>
+        <p>The doubter. Honest scepticism, then encounter. Tone: questioning — perfect for the Curious Outsider.</p>
+      </div>
+      <div class="card voice">
+        <span class="card-num">iii.</span>
+        <h4>Shimon <em>(Simon Peter)</em></h4>
+        <p>The action lead. Failure, restoration, calling. Tone: gruff, redemptive — the soldier-of-faith arc.</p>
+      </div>
+      <div class="card voice">
+        <span class="card-num">iv.</span>
+        <h4>Yohannan <em>(John)</em></h4>
+        <p>The beloved disciple. Closest to the inner circle. Tone: poetic, contemplative — emotional peak chapters.</p>
+      </div>
+      <div class="card voice">
+        <span class="card-num">v.</span>
+        <h4>Maryam of Magdala <em>(Mary Magdalene)</em></h4>
+        <p>The first witness of the resurrection. Tone: raw, redemptive, female-led — Easter centrepiece.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT SURVIVES / ADDS / CHANGES -->
+<section id="shift">
+  <div class="container">
+    <div class="section-eyebrow">04 · The strategic shift</div>
+    <h2>What survives from Hodder. What BGV adds. What changes when we own it.</h2>
+    <p class="section-lede">
+      Hodder's framework is good. The Bear-bandwidth constraint inside it is real — not a publisher concession. BGV's edge is <em>not</em> "more Bear time." It comes from owning the engine: editorial control and speed, an owned audience, commerce attribution into the BGV brand network, and faster non-Bear commissioning. The plan is built to deliver on those without asking Bear for anything new.
+    </p>
+    <div class="three-col">
+      <div class="col survives">
+        <h3>What survives</h3>
+        <ul>
+          <li><strong>The five-voice principle</strong>Different actors per eyewitness — emotional range and casting variety.</li>
+          <li><strong>Twin-engine YouTube + Substack</strong>Public library + private study. Still the right two platforms.</li>
+          <li><strong>Calendar anchoring</strong>Lent, Holy Week, Pentecost, Anniversary, Autumn, Advent.</li>
+          <li><strong>The Reader Journey loop</strong>Discover → Engage → Relate → Act → Give. Loop, not funnel.</li>
+          <li><strong>The five doors</strong>Educate on the problem. Never advertise the product.</li>
+          <li><strong>The Bear-bandwidth constraint</strong>No new filming, no new podcast or audiobook recording. 2–3 calendar-anchored posts/year on his channels, written by BGV. Occasional Story reposts at his discretion. That's it.</li>
+        </ul>
+      </div>
+      <div class="col adds">
+        <h3>What BGV adds</h3>
+        <ul>
+          <li><strong>An on-screen host (Olly)</strong>Olly fronts the channel under the GSET banner. Bear is patron, not host. No new Bear time-cost.</li>
+          <li><strong>Editorial control + speed</strong>BGV commissions and ships without publisher sign-off cycles. Hodder is a partner, not a gatekeeper.</li>
+          <li><strong>Owned-audience moat</strong>Substack list and YouTube subscribers belong to BGV. They convert across the BGV portfolio over time.</li>
+          <li><strong>Commerce attribution</strong>BGV can route faith-aligned audience into adjacent BGV products where genuinely brand-aligned — a publisher cannot.</li>
+          <li><strong>BGV brand-network cross-promo</strong>Modern Savage, Be Military Fit, Ted's Health share a values-driven, family-first audience overlap. Where it's <em>native</em>, share reach.</li>
+          <li><strong>Faster commissioning of non-Bear content</strong>Theologian conversations, actor readings, reader-spotlight pieces, host-led discussions. We move at BGV pace, not a publishing schedule.</li>
+        </ul>
+      </div>
+      <div class="col changes">
+        <h3>What changes</h3>
+        <ul>
+          <li class="changes-headline"><strong>BGV preserves Hodder's bandwidth constraint on Bear.</strong>The shift is in editorial control, owned audience, commerce attribution, and faster non-Bear commissioning — <em>not</em> in asking Bear for more time.</li>
+          <li><strong>Substack is now a moat, not a tactic</strong>Hodder sold books. We're building an owned audience for life.</li>
+          <li><strong>Audio rights are a pre-condition</strong>The clip factory dies without recut rights. Resolve in week one.</li>
+          <li><strong>The Chosen crossover gets aggressive</strong>Hodder mentioned it; for BGV it's the single biggest external unlock.</li>
+          <li><strong>De-prioritise low-ROI lanes</strong>Prisons / military / schools — great PR, slow commerce. Keep, but late.</li>
+          <li><strong>Need a sales-data agreement</strong>If BGV is funding the engine, BGV needs the conversion read.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 IDEAS — TRIAGE -->
+<section id="triage">
+  <div class="container">
+    <div class="section-eyebrow">05 · The 10 ideas — triaged</div>
+    <h2>Hodder gave us 10 ideas. Five run hard. Three layer in. Two get de-prioritised.</h2>
+    <p class="section-lede">
+      All ten are good ideas. They're not all good <em>now</em>, and not all of equal weight for a self-executing BGV. Here's how we sequence them.
+    </p>
+    <div class="triage-grid">
+
+      <div class="triage-item">
+        <span class="triage-num">01</span>
+        <div class="triage-body">
+          <h4>YouTube channel — actor readings</h4>
+          <p>Five readers, one per eyewitness. Plus theologian discussions, church-leader stories, reader testimonials. Low cost: camera, reader, quiet room. <strong>This is the spine of the channel.</strong></p>
+        </div>
+        <span class="triage-tag tag-run">Run hard</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">02</span>
+        <div class="triage-body">
+          <h4>Give One Away campaign</h4>
+          <p>Buy two — one for self, one to gift. Bookplates, gifting cards, hashtag amplification. Best fit for the Christmas peak. Layer in once cadence is stable.</p>
+        </div>
+        <span class="triage-tag tag-layer">Layer in</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">03</span>
+        <div class="triage-body">
+          <h4>Substack reading companion</h4>
+          <p>Weekly. Owned email list. Historical context, discussion questions, reader letters, guest reflections. <strong>The long-term moat — double down.</strong></p>
+        </div>
+        <span class="triage-tag tag-run">Run hard</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">04</span>
+        <div class="triage-body">
+          <h4>Leverage The Chosen audience</h4>
+          <p>Tens of millions of fans globally. Crossover content, fan-account collabs, the framing "If you loved The Chosen, this is the book." <strong>Highest-leverage outside lever we have.</strong></p>
+        </div>
+        <span class="triage-tag tag-run">Run hard</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">05</span>
+        <div class="triage-body">
+          <h4>Audiobook clip factory</h4>
+          <p>3–5 clips/week, 30–60s, audiogram + atmospheric visuals + text. One editor. Source: the existing Bear-narrated audiobook. <strong>Critically dependent on audio rights.</strong></p>
+        </div>
+        <span class="triage-tag tag-run">Run hard</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">06</span>
+        <div class="triage-body">
+          <h4>Church partnership programme</h4>
+          <p>Year-round sign-up. Free starter pack (existing 5-week guides + Big Church Read videos). Track participation, collect stories. Permanent fixture.</p>
+        </div>
+        <span class="triage-tag tag-run">Run hard</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">07</span>
+        <div class="triage-body">
+          <h4>Facebook reading community</h4>
+          <p>Closed group, weekly prompts, reader stories. For BGV's audience profile, Reddit / Discord may serve better. Test — don't commit early.</p>
+        </div>
+        <span class="triage-tag tag-deprio">De-prioritise</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">08</span>
+        <div class="triage-body">
+          <h4>Dramatic readings &amp; live events</h4>
+          <p>Five-actor live performances at churches, festivals, Christian events. Recorded → evergreen YouTube. Strong, but expensive — layer in once channel is established.</p>
+        </div>
+        <span class="triage-tag tag-layer">Layer in</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">09</span>
+        <div class="triage-body">
+          <h4>Prisons, military, schools</h4>
+          <p>Chaplaincies, RE departments, youth orgs. PR-rich ("1,000 copies in UK prisons") but slow direct-commerce ROI. Keep, de-prioritise for self-execution Year 1.</p>
+        </div>
+        <span class="triage-tag tag-deprio">De-prioritise</span>
+      </div>
+
+      <div class="triage-item">
+        <span class="triage-num">10</span>
+        <div class="triage-body">
+          <h4>Reader-generated content programme</h4>
+          <p>Website form ("how did this book reach you?"), hashtag, monthly spotlight. Stories feed back to the top of the funnel. Layer in around month 2.</p>
+        </div>
+        <span class="triage-tag tag-layer">Layer in</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TWIN ENGINE -->
+<section id="engine">
+  <div class="container">
+    <div class="section-eyebrow">06 · The twin-engine thesis</div>
+    <h2>YouTube and Substack are the two platforms. Everything else feeds them.</h2>
+    <p class="section-lede">
+      Hodder's framing — and one we keep. YouTube is the <em>public library</em>: searchable, evergreen, algorithmic discovery. Substack is the <em>private study</em>: owned email, weekly cadence, intimate. They feed each other. Every YouTube video invites to Substack; every Substack links to YouTube.
+    </p>
+    <div class="twin-engine">
+      <div class="engine youtube">
+        <div class="engine-label">Engine 01</div>
+        <h3>YouTube</h3>
+        <div class="role">"The public library" — searchable, evergreen, algorithmic discovery.</div>
+        <ul>
+          <li>Five-voice cinematic readings (the spine)</li>
+          <li>Olly-hosted theologian conversations</li>
+          <li>Audiobook-derived shorts (3–5/week)</li>
+          <li>Big Church Read re-cuts (existing footage)</li>
+          <li>Reader / testimonial spots</li>
+        </ul>
+      </div>
+      <div class="engine substack">
+        <div class="engine-label">Engine 02</div>
+        <h3>Substack</h3>
+        <div class="role">"The private study" — owned email, weekly, intimate.</div>
+        <ul>
+          <li>Weekly reading-companion essay</li>
+          <li>Historical context + discussion questions</li>
+          <li>Reader letters + guest reflections</li>
+          <li>Pastor / theologian guest essays</li>
+          <li>The owned audience that survives platform shifts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="engine-feeders">
+      <strong>Feeder platforms</strong>
+      Drive traffic into the two engines — never the destination.
+      <div class="feeders-list">
+        <span class="feeder-pill">Instagram + Reels</span>
+        <span class="feeder-pill">TikTok</span>
+        <span class="feeder-pill">Church partnerships</span>
+        <span class="feeder-pill">The Chosen crossover</span>
+        <span class="feeder-pill">Reader-generated content</span>
+        <span class="feeder-pill">Podcast appearances</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- READER JOURNEY -->
+<section id="journey">
+  <div class="container">
+    <div class="section-eyebrow">07 · The reader journey</div>
+    <h2>A loop, not a funnel. The reader's story becomes someone else's discovery.</h2>
+    <p class="section-lede">
+      The Hodder framework's most useful structural insight: this isn't a one-shot conversion. A reader who acts becomes a reader who gives, and that gift is someone else's discovery. The whole system is designed to close the loop.
+    </p>
+    <div class="journey">
+      <div class="journey-step">
+        <span class="step-num">01</span>
+        <h4>Discover</h4>
+        <p>TikTok, Reels, YouTube search. The audiobook clip factory does the work here.</p>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">02</span>
+        <h4>Engage</h4>
+        <p>YouTube channel, Instagram. The five-voice readings, the Olly-hosted conversations.</p>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">03</span>
+        <h4>Relate</h4>
+        <p>Substack, Facebook / Discord, church partnerships. Where shallow becomes deep.</p>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">04</span>
+        <h4>Act</h4>
+        <p>Website buy, church sign-up, Big Church Read. The conversion moment.</p>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">05</span>
+        <h4>Give</h4>
+        <p>Gifting, sharing, reader-story submission. The act that re-seeds the loop.</p>
+      </div>
+    </div>
+    <p class="journey-loop-note">
+      <strong>The loop closes here.</strong> A reader who gives the book becomes someone else's "Discover" moment — and the cycle restarts.
+    </p>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar">
+  <div class="container">
+    <div class="section-eyebrow">08 · Calendar anchors</div>
+    <h2>The Christian liturgical calendar is the publishing schedule.</h2>
+    <p class="section-lede">
+      Six anchor points define the year. Off-peak is steady cadence (3–5 posts/week — testimonials, quote graphics, audiobook clips, community engagement). At anchor points, we surge.
+    </p>
+    <div class="calendar">
+      <div class="cal-row anchor">
+        <div class="cal-when">Lent <small>From 18 Feb 2026</small></div>
+        <div class="cal-content">The 5-part book maps cleanly to the 5 weeks of Lent. Activate the Big Church Read with Lent guides. Substack runs a 5-week series. YouTube: crucifixion / resurrection clips and Maryam-of-Magdala-led readings.</div>
+      </div>
+      <div class="cal-row peak">
+        <div class="cal-when">Holy Week / Easter <small>29 Mar – 5 Apr 2026</small></div>
+        <div class="cal-content">Emotional peak. The most shareable week of the year. Yohannan and Maryam of Magdala lead the content schedule. Daily clips. Calendar-anchored Easter post drafted by BGV and posted on Bear's channels (one of the 2–3 a year).</div>
+      </div>
+      <div class="cal-row anchor">
+        <div class="cal-when">Pentecost <small>24 May 2026</small></div>
+        <div class="cal-content">The book's final scenes — Ascension and Holy Spirit. Frame: "The story doesn't end at the resurrection." Shimon-led content. No Bear ask — channel content carries this anchor.</div>
+      </div>
+      <div class="cal-row anchor">
+        <div class="cal-when">One-year anniversary <small>19 Jun 2026</small></div>
+        <div class="cal-content">UK publication anniversary. Reader-story roundup. The "year-on-year" testimonials moment. Substack longform retrospective. YouTube: best-of compilation + new actor reading.</div>
+      </div>
+      <div class="cal-row anchor">
+        <div class="cal-when">Autumn church push <small>Sep – Oct 2026</small></div>
+        <div class="cal-content">Denominations are planning their winter programmes. Activate the church partnership pipeline. New Big Church Read cohorts. Substack pivot to "small group" tone.</div>
+      </div>
+      <div class="cal-row peak">
+        <div class="cal-when">Advent / Christmas <small>From 29 Nov 2026</small></div>
+        <div class="cal-content">The biggest sales window of the year. Full Give One Away campaign in market. Daily Advent content. Church bulk orders. Calendar-anchored Christmas post drafted by BGV and posted on Bear's channels (the second of the 2–3 a year). Maryam (mother) leads.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YOUTUBE CHANNEL ARCHITECTURE -->
+<section id="channel">
+  <div class="container">
+    <div class="section-eyebrow">09 · YouTube channel architecture</div>
+    <h2>The channel is a brand. Five formats. One host. One patron — patron means no new content.</h2>
+
+    <div class="channel-banner">
+      <div class="channel-eyebrow">Channel name</div>
+      <h3>The Greatest Story Ever Told</h3>
+      <p>The channel takes the book's full title — that's the brand. <strong>Hosted by Olly Westmacott.</strong> Bear Grylls is the <strong>patron</strong>: no new appearances, no recurring presence, no quarterly commitments. The five-voice principle handles chapter content; Olly hosts the conversations, reactions, and theologian discussions. Bear's on-screen footprint is entirely re-cuts of existing audiobook, Big Church Read, and podcast assets.</p>
+    </div>
+
+    <p class="section-lede">
+      Five formats, mixed across the publishing schedule. The percentages are starting weights — they shift with what works. <strong>None of these formats requires new Bear time.</strong>
+    </p>
+
+    <div class="formats">
+      <div class="format">
+        <span class="format-num">1</span>
+        <h4>Cinematic guest readings <span class="format-badge primary">Primary</span></h4>
+        <p>Five actors, one per eyewitness — the five-voice principle. Quiet room, single camera, candle-lit. Long-form. The spine.</p>
+        <div class="format-bar"><span style="width: 35%;"></span></div>
+        <div class="format-mix-label">~35% of cadence</div>
+      </div>
+      <div class="format">
+        <span class="format-num">2</span>
+        <h4>Olly-hosted theologian conversations</h4>
+        <p>Bi-weekly. Olly with pastors, theologians, scholars. Doors-led — pick the audience problem, then book the guest. The host-driven engine.</p>
+        <div class="format-bar"><span style="width: 25%;"></span></div>
+        <div class="format-mix-label">~25% of cadence</div>
+      </div>
+      <div class="format">
+        <span class="format-num">3</span>
+        <h4>Audiobook-derived shorts</h4>
+        <p>3–5 per week. 30–60s clips from the existing Bear-narrated audiobook + atmospheric visuals + text. The discovery layer.</p>
+        <div class="format-bar"><span style="width: 25%;"></span></div>
+        <div class="format-mix-label">~25% of cadence</div>
+      </div>
+      <div class="format">
+        <span class="format-num">4</span>
+        <h4>Big Church Read re-cuts</h4>
+        <p>Repurpose existing five-segment Bear + Ollerton footage for shorts and long-form. No new shoots — leverage what's already in the can.</p>
+        <div class="format-bar"><span style="width: 8%;"></span></div>
+        <div class="format-mix-label">~8% of cadence</div>
+      </div>
+      <div class="format">
+        <span class="format-num">5</span>
+        <h4>Reader / testimonial spots</h4>
+        <p>UGC stories sourced via the website form. Church partnership case studies, "how this book reached me." Closes the loop.</p>
+        <div class="format-bar"><span style="width: 7%;"></span></div>
+        <div class="format-mix-label">~7% of cadence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 30/60/90 -->
+<section id="plan">
+  <div class="container">
+    <div class="section-eyebrow">10 · The 30 / 60 / 90</div>
+    <h2>Days 1–7 to Day 90. Numbered actions, owners, outcomes.</h2>
+    <p class="section-lede">
+      Week 1 is gated by one thing — audio rights. Without those, the engine doesn't run. Everything else flows from that lock.
+    </p>
+
+    <div class="timeline">
+
+      <div class="phase urgent">
+        <div class="phase-head">
+          <h3>Days 1–7 — Week 1: gates</h3>
+          <span class="phase-when">Critical path</span>
+        </div>
+        <div class="phase-body">
+          <ol>
+            <li><strong>Confirm audio + Big Church Read recut rights with Hodder.</strong> Without this, the audiobook clip factory and ~30% of the YouTube engine don't exist.<span class="meta"><strong>Owner:</strong> Olly + BGV legal · <strong>Outcome:</strong> signed memo of rights scope</span></li>
+            <li><strong>Confirm with Bear (≤15 min).</strong> One short conversation that the plan respects the existing Hodder framework — no new filming, no new podcast appearances, only 2–3 calendar-anchored posts/year on his channels — and that he's comfortable with Olly hosting under the GSET banner with no new content asks. This is the <em>only</em> Bear-time ask in the entire plan, and it's a confirmation, not a commitment to new work.<span class="meta"><strong>Owner:</strong> Olly · <strong>Outcome:</strong> patron-role confirmation, no new deliverables agreed</span></li>
+            <li><strong>Year-1 budget sign-off.</strong> £35–45k. Freelance editor hired. Channel + Substack technical setup approved.<span class="meta"><strong>Owner:</strong> BGV finance + Olly · <strong>Outcome:</strong> approved budget, freelance editor onboarded</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">
+          <h3>Days 8–30 — Stand up the engine</h3>
+          <span class="phase-when">Build phase</span>
+        </div>
+        <div class="phase-body">
+          <ol>
+            <li><strong>YouTube channel branded and live.</strong> Channel name, art, about, trailer. Channel name is the book name in full — "The Greatest Story Ever Told".<span class="meta"><strong>Owner:</strong> Olly + designer · <strong>Outcome:</strong> public channel</span></li>
+            <li><strong>First 3 actor readings cast and filmed.</strong> Start with Yohannan and Maryam of Magdala — emotional peaks first.<span class="meta"><strong>Owner:</strong> Olly + casting · <strong>Outcome:</strong> 3 readings in edit</span></li>
+            <li><strong>Substack live, first 4 weekly essays drafted.</strong> Tone, structure, guest pipeline.<span class="meta"><strong>Owner:</strong> Olly · <strong>Outcome:</strong> 4 essays banked</span></li>
+            <li><strong>Audiobook clip pipeline running.</strong> 3 per week minimum, freelance editor delivering on standing brief.<span class="meta"><strong>Owner:</strong> Freelance editor · <strong>Outcome:</strong> 9–12 clips live by Day 30</span></li>
+            <li><strong>Church partnership starter pack uploaded.</strong> New dedicated landing page. 5-week guides + Big Church Read videos behind a sign-up.<span class="meta"><strong>Owner:</strong> Olly + dev · <strong>Outcome:</strong> live landing page + first sign-ups</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">
+          <h3>Days 31–60 — Calendar anchor + crossover</h3>
+          <span class="phase-when">Reach phase</span>
+        </div>
+        <div class="phase-body">
+          <ol>
+            <li><strong>First calendar-anchored hero piece live.</strong> Pentecost (24 May 2026) if launching from now; otherwise the next available anchor. Built from existing audiobook and Big Church Read assets — no new Bear shoot. Channel-led; if a calendar-anchored post on Bear's channels is in the year's 2–3, BGV drafts it for him.<span class="meta"><strong>Owner:</strong> Olly + freelance editor · <strong>Outcome:</strong> 1 high-reach anchor piece live</span></li>
+            <li><strong>The Chosen crossover outreach.</strong> 3 fan accounts, 1 podcast. Framing prepared.<span class="meta"><strong>Owner:</strong> Olly + outreach freelancer · <strong>Outcome:</strong> 3 conversations open, 1 confirmed collab</span></li>
+            <li><strong>First reader-generated story spotlight published.</strong> Website form live, monthly spotlight format settled.<span class="meta"><strong>Owner:</strong> Olly · <strong>Outcome:</strong> 1 spotlight live, hashtag in market</span></li>
+            <li><strong>Theologian guest pipeline filled.</strong> Next 6 conversations booked, doors-aligned.<span class="meta"><strong>Owner:</strong> Olly · <strong>Outcome:</strong> 6 guests confirmed</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head">
+          <h3>Days 61–90 — Stabilise + Christmas decision</h3>
+          <span class="phase-when">Cadence phase</span>
+        </div>
+        <div class="phase-body">
+          <ol>
+            <li><strong>Cadence stable.</strong> 1 long-form YouTube/week, 3–5 shorts/week, 1 Substack/week. No misses.<span class="meta"><strong>Owner:</strong> Olly + freelance editor · <strong>Outcome:</strong> 4 weeks of unbroken cadence</span></li>
+            <li><strong>Hit 90-day KPI gates.</strong> Substack &gt;1,000 subs, YouTube &gt;500 subs, 12+ shorts live.<span class="meta"><strong>Owner:</strong> Olly · <strong>Outcome:</strong> KPI report delivered</span></li>
+            <li><strong>Christmas decision.</strong> Decide whether to layer Give One Away in for Advent — biggest sales window of the year.<span class="meta"><strong>Owner:</strong> Olly + BGV exec · <strong>Outcome:</strong> go / no-go documented</span></li>
+            <li><strong>180-day plan reviewed.</strong> Set Q3 / Q4 layer-ins (dramatic readings, RGC, Give One Away) against budget runway.<span class="meta"><strong>Owner:</strong> Olly · <strong>Outcome:</strong> approved Q3 / Q4 plan</span></li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section id="kpis">
+  <div class="container">
+    <div class="section-eyebrow">11 · KPIs &amp; kill criteria</div>
+    <h2>Targets at 90 and 180 days. A clear stop sign if we miss.</h2>
+    <div class="kpi-grid">
+      <div class="kpi-block">
+        <h3>90-day targets</h3>
+        <ul class="kpi-list">
+          <li>Substack subscribers <span class="kpi-target">1,000</span></li>
+          <li>YouTube subscribers <span class="kpi-target">500</span></li>
+          <li>Audiobook shorts live <span class="kpi-target">12+</span></li>
+          <li>Theologian conversations live <span class="kpi-target">3+</span></li>
+          <li>The Chosen crossover content <span class="kpi-target">1 piece</span></li>
+          <li>Audio rights confirmed <span class="kpi-target">Yes</span></li>
+        </ul>
+      </div>
+      <div class="kpi-block">
+        <h3>180-day targets</h3>
+        <ul class="kpi-list">
+          <li>Substack subscribers <span class="kpi-target">5,000</span></li>
+          <li>YouTube subscribers <span class="kpi-target">5,000</span></li>
+          <li>Cadence stable on both <span class="kpi-target">26 wks</span></li>
+          <li>Christmas Give-Away in market <span class="kpi-target">Yes</span></li>
+          <li>Bulk-order option live <span class="kpi-target">Yes</span></li>
+          <li>First sales attribution read <span class="kpi-target">Yes</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kill-criteria">
+      <strong>Kill criteria — pause and reassess if any of these fire at 180 days</strong>
+      <p>Substack &lt; 2,000 subs · OR · YouTube &lt; 2,000 subs · OR · audio rights still unresolved. Don't keep spending into a non-moving signal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCING -->
+<section id="resourcing">
+  <div class="container">
+    <div class="section-eyebrow">12 · Resourcing &amp; budget</div>
+    <h2>Lean. Year-1 budget, freelance editorial, in-house host, BGV cross-promo.</h2>
+    <div class="resourcing">
+      <div class="res-tile">
+        <h4>Year-1 budget</h4>
+        <div class="res-value">£35 – 45k</div>
+        <p>Freelance editor, casting, light production, Substack stack, channel art, paid amplification budget.</p>
+      </div>
+      <div class="res-tile">
+        <h4>Editorial</h4>
+        <div class="res-value">1× freelance editor</div>
+        <p>Owns the audiobook clip factory + YouTube long-form post-production. Standing brief, weekly delivery.</p>
+      </div>
+      <div class="res-tile">
+        <h4>Hosting</h4>
+        <div class="res-value">Olly (in-house)</div>
+        <p>Olly fronts YouTube and writes Substack. No incremental hosting cost. Bear-credible-by-association.</p>
+      </div>
+      <div class="res-tile">
+        <h4>Bear's time</h4>
+        <div class="res-value">Zero new shoots</div>
+        <p>Patron, not host. No new filming, no new podcast or audiobook recording. 2–3 calendar-anchored posts/year on his channels, drafted by BGV. Occasional Story reposts at his discretion.</p>
+      </div>
+      <div class="res-tile">
+        <h4>Cross-promo</h4>
+        <div class="res-value">BGV brand network</div>
+        <p>BMF, Modern Savage, Ted's Health. Native, faith-aligned only. Drop if it feels commercial.</p>
+      </div>
+      <div class="res-tile">
+        <h4>Existing assets</h4>
+        <div class="res-value">No new shoots</div>
+        <p>Audiobook, Big Church Read videos, podcast catalog, The Flame Wembley footage, 1,400+ reviews.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section id="risks">
+  <div class="container">
+    <div class="section-eyebrow">13 · Risks</div>
+    <h2>Five risks. The first is a binary; the rest are managed.</h2>
+    <div class="risks">
+
+      <div class="risk high">
+        <span class="risk-num">01</span>
+        <div class="risk-body">
+          <h4>Audio rights unresolved</h4>
+          <p>Without recut rights to the audiobook, the entire clip factory and ~30% of the YouTube engine doesn't run. Resolve in Week 1, before any spend.</p>
+        </div>
+        <span class="risk-tag high">High · Wk 1</span>
+      </div>
+
+      <div class="risk med">
+        <span class="risk-num">02</span>
+        <div class="risk-body">
+          <h4>Bear bandwidth — the real constraint</h4>
+          <p>The plan is built to respect the existing Hodder constraint: no new filming, no new podcast appearances, only 2–3 calendar-anchored posts/year on Bear's channels. <strong>If anything in execution starts depending on new Bear content, the plan is breaking and needs a rethink.</strong> Audit every content brief against this rule before commissioning.</p>
+        </div>
+        <span class="risk-tag med">Medium</span>
+      </div>
+
+      <div class="risk med">
+        <span class="risk-num">03</span>
+        <div class="risk-body">
+          <h4>Hodder data sharing</h4>
+          <p>Without sales attribution we cannot measure conversion. Negotiate a sales-data agreement into the rights conversation — same legal moment, less friction.</p>
+        </div>
+        <span class="risk-tag med">Medium</span>
+      </div>
+
+      <div class="risk low">
+        <span class="risk-num">04</span>
+        <div class="risk-body">
+          <h4>The "controversy" risk</h4>
+          <p>The Palestinian / refugee language issue is closed (resolved Dec 2024). Do not relitigate. Brief everyone touching content.</p>
+        </div>
+        <span class="risk-tag low">Low (managed)</span>
+      </div>
+
+      <div class="risk low">
+        <span class="risk-num">05</span>
+        <div class="risk-body">
+          <h4>Brand-fit on cross-promo</h4>
+          <p>Faith-audience cross-promo to BMF / Modern Savage / Ted's Health must feel native, not commercial. If it feels off, drop it. The Substack moat is worth more than a quick cross-sell.</p>
+        </div>
+        <span class="risk-tag low">Low</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OPEN QUESTIONS -->
+<section id="questions">
+  <div class="container">
+    <div class="section-eyebrow">14 · Open questions</div>
+    <h2>Four questions to put to Hodder and Bear before we commit.</h2>
+    <div class="questions">
+      <div class="question">
+        <span class="question-q">?</span>
+        <p><strong>Audio rights.</strong> Does BGV already hold recut rights to the Bear-narrated audiobook, or do we negotiate? This is the gating question — the engine depends on the answer.</p>
+      </div>
+      <div class="question">
+        <span class="question-q">?</span>
+        <p><strong>Editorial structure.</strong> Freelance editor or in-house? This plan assumes freelance for cost flexibility — confirm before hiring.</p>
+      </div>
+      <div class="question">
+        <span class="question-q">?</span>
+        <p><strong>Confirm patron role.</strong> Is Bear comfortable with Olly hosting the channel under the GSET banner — assumes no new content asks, his role is patron + occasional Story repost at his discretion? This is a confirmation conversation, not a negotiation of new deliverables.</p>
+      </div>
+      <div class="question">
+        <span class="question-q">?</span>
+        <p><strong>Revenue share with Hodder.</strong> If BGV's engine drives book sales, what's the counterparty position? Referral fee, affiliate, royalty share on YouTube monetisation? Worth raising while the rights conversation is open.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPENDIX -->
+<section id="appendix">
+  <div class="container">
+    <div class="section-eyebrow">15 · Appendix</div>
+    <h2>Verbatim Hodder framework — what we are building on.</h2>
+    <p class="section-lede">
+      Source: <em>The Greatest Story Ever Told — Publisher Promotion Framework</em>. Bear Grylls Ventures, prepared March 2026, addressed to Hodder Faith (Andy Lyon). Post-launch handover document. Reproduced here in condensed form so this plan's choices can be audited against the original.
+    </p>
+
+    <div class="appendix-box">
+      <h3>The 9-section structure of the Hodder doc</h3>
+      <ol>
+        <li><strong>Status of the book</strong> — June 2025 launch, #1 Sunday Times, 4.8★, 1,400+ reviews, 288 pages, 5-eyewitness narrative.</li>
+        <li><strong>Central thesis</strong> — Bear's channels did the heavy lift at launch; not sustainable. Build a publisher-owned, community-driven engine on existing assets.</li>
+        <li><strong>The five doors</strong> — five audience problems the book solves; marketing principle "educate on the problem, never advertise the product."</li>
+        <li><strong>The 10 ideas</strong> — see verbatim list below.</li>
+        <li><strong>The twin-engine thesis</strong> — YouTube ("public library") + Substack ("private study") if forced to pick two.</li>
+        <li><strong>Calendar anchors</strong> — Lent, Holy Week / Easter, Pentecost, 1-yr anniversary, autumn church push, Advent / Christmas.</li>
+        <li><strong>The Reader Journey</strong> — Discover → Engage → Relate → Act → Give → loop back.</li>
+        <li><strong>Existing assets</strong> — produced audiobook, Big Church Read videos, podcast appearances, 1,400+ reviews, press, The Flame 2025 Wembley footage.</li>
+        <li><strong>Constraints</strong> — no new Bear filming; ~2–3 calendar-anchored posts per year on Bear's behalf; avoid Palestinian / refugee language controversy (resolved Dec 2024; do not relitigate).</li>
+      </ol>
+
+      <h3>The 10 ideas — verbatim</h3>
+      <ol>
+        <li><strong>YouTube channel — actor readings.</strong> Five different readers (one per eyewitness — examples: "young Black British woman" for Maryam of Magdala, "retired soldier" for Shimon, "teenager" for Ta'om). Plus theologian discussions, church-leader stories, reader testimonials.</li>
+        <li><strong>Give One Away campaign.</strong> Buy two copies (self + gift). Bookplates / gifting cards. Photograph the gifting + hashtag → publisher amplifies.</li>
+        <li><strong>Substack reading companion.</strong> Weekly. Historical context, discussion questions, reader letters, guest reflections. Owned email list.</li>
+        <li><strong>Leverage The Chosen audience.</strong> Tens of millions of fans globally. Content bridging, Chosen-fan podcast / account collabs. Framing: "If you loved The Chosen, this is the book."</li>
+        <li><strong>Audiobook clip factory.</strong> 30–60s audiograms (existing audiobook audio + text overlay + atmospheric visuals). 3–5 clips/week. One editor.</li>
+        <li><strong>Church partnership programme.</strong> Permanent year-round sign-up. Free downloadable starter pack (existing 5-week guides + Big Church Read videos). Track participation.</li>
+        <li><strong>Facebook reading community.</strong> Closed group, not page. Weekly prompts, reader stories, behind-the-book.</li>
+        <li><strong>Dramatic readings &amp; live events.</strong> Five actors doing the five voices. Churches, literary festivals, Christian events. Record everything → evergreen YouTube.</li>
+        <li><strong>Prisons, military, schools.</strong> Chaplaincies + RE departments + youth orgs. Documented partnerships → social content.</li>
+        <li><strong>Reader-generated content programme.</strong> Website form ("how did this book reach you?"), dedicated hashtag, monthly reader spotlight.</li>
+      </ol>
+
+      <h3>Notes on the framework</h3>
+      <ul>
+        <li>Hodder's framework gives <strong>no KPIs, no budget, no phased timeline</strong>. It is a framework, not an operational plan. The 30 / 60 / 90 in this document is BGV's addition.</li>
+        <li>Hodder explicitly built around a "no new Bear content" constraint. <strong>BGV preserves that constraint.</strong> Bear's time is genuinely scarce across the BGV portfolio — TV, expeditions, family, the wider brand network. This plan's edge over a publisher comes from editorial control, owned audience, commerce attribution, and faster non-Bear commissioning — not from asking Bear for more.</li>
+        <li>Where this plan paraphrases Hodder, it does so to compress. Where the language is load-bearing — the five doors, the twin-engine thesis, the journey verbs — it's quoted.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>The Greatest Story Ever Told — BGV Self-Execution Plan</strong><br />
+  Prepared 8 May 2026 · Bear Grylls Ventures · For internal review and Hodder counterparty discussions.<br />
+  Source: Hodder Faith Publisher Promotion Framework, March 2026.
+</footer>
+
+</body>
+</html>

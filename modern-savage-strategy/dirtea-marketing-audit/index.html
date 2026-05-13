@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIRTEA — Marketing Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; }
+  p { margin-bottom: 0.95em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; word-break: break-word; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(36px, 5.5vw, 58px); color: var(--cream); margin-bottom: 18px; }
+  .hero p { color: rgba(245, 239, 226, 0.78); font-size: 18px; max-width: 680px; }
+  .hero .meta { margin-top: 28px; font-size: 13px; color: rgba(245, 239, 226, 0.55); letter-spacing: 0.06em; }
+
+  main { padding: 56px 24px 40px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+
+  main h1 { font-size: clamp(30px, 4.2vw, 40px); margin: 36px 0 18px; color: var(--evergreen-deep); }
+  main h2 { font-size: clamp(24px, 3.4vw, 32px); margin: 40px 0 14px; color: var(--evergreen-deep); padding-top: 12px; border-top: 1px solid var(--line); }
+  main h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  main h3 { font-size: 20px; margin: 28px 0 10px; color: var(--evergreen-deep); }
+  main h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin: 22px 0 8px; }
+
+  ul, ol { margin: 0.4em 0 1.1em 1.5em; }
+  li { margin-bottom: 0.45em; }
+
+  blockquote {
+    border-left: 3px solid var(--gold);
+    background: var(--cream-warm);
+    padding: 14px 20px;
+    margin: 18px 0;
+    border-radius: 0 4px 4px 0;
+    color: var(--charcoal);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  code {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.88em;
+    background: rgba(21, 24, 28, 0.06);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  pre {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 14px 0 20px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  pre code { background: transparent; padding: 0; color: var(--cream); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 22px;
+    font-size: 14.5px;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table th {
+    background: var(--cream-warm);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 36px 0;
+  }
+
+  footer {
+    padding: 36px 24px 56px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--slate);
+    font-size: 13px;
+    background: var(--cream);
+  }
+  footer a { color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 20px 60px; }
+    main { padding: 40px 20px 28px; }
+    table { font-size: 13px; }
+    table th, table td { padding: 9px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">DIRTEA · Marketing Audit</div>
+    <h1>Consolidated marketing audit — pitch-ready.</h1>
+    <p>Brand audit, competitive landscape, commercial/editorial audit, and market research consolidated into a single deliverable.</p>
+    <div class="meta">Prepared by Ted · May 2026 · For Olly / BGV pitch</div>
+  </div>
+</div>
+
+<main>
+  <div class="inner">
+<p><strong>Prepared for:</strong> Olly Westmacott, Bear Witness / BGV
+<strong>Use case:</strong> Pitch deck input — "we'll run your existing marketing better"
+<strong>Date:</strong> April 2026
+<strong>Audit window:</strong> Live site, social, ad library and press observed in April 2026</p>
+<hr />
+<h2 id="1-brand-snapshot">1. Brand snapshot</h2>
+<p>Dirtea is a UK-founded functional mushroom drinks brand launched in 2021 (legal entity Dirtea Ltd, registered 2019, Hammersmith W6) by brothers <strong>Simon and Andrew Salter</strong>. The company sits at the front of the UK functional-mushroom category alongside Spacegoods and London Nootropics, and has been described in trade press as "the UK's fastest-growing food and drink brand."</p>
+<p><strong>Range and pricing</strong>
+- Super Blends — Coffee (£31 sale / £38 RRP), Cacao (£35/£43), Matcha (£39/£48), Chai (£35/£43)
+- Mushroom Powders — Lion's Mane (Focus), Reishi (Calm), Chaga (Immunity), Cordyceps, Tremella; £31/£38
+- Gummies — Focus, Beauty, Performance, Immunity
+- Pure Essentials — Creatine (£24), Collagen (£27) — newest line, hero on home page
+- Stacks/bundles, accessories (frother, mug)</p>
+<p>Subscribe &amp; Save discounts of 20–25% with 4/6/8-week cadences. Average price-per-serving 47–63p.</p>
+<p><strong>Distribution</strong>
+- DTC: dirteaworld.com (UK) and us.dirteaworld.com (US storefront live)
+- UK retail: Harrods, Selfridges, Boots, Planet Organic, Tesco (spotted in TikTok content)
+- US retail: nationwide launch in <strong>The Vitamin Shoppe</strong> (640+ doors) on 1 September 2025 — gummies first
+- Marketplaces: Amazon UK presence</p>
+<p><strong>Size signals</strong>
+- Companies House: Dirtea Ltd accounts year-ending 31 Dec 2024 filed September 2025 (unaudited abridged); registered office moved to 245 Hammersmith Road in Jan 2026 (likely scaling); registered a charge in June 2025 (debt facility) — consistent with a growth-stage business taking on inventory financing
+- Senior hires: ex-Huel COO <strong>Grant Coetzee</strong> appointed CEO May 2024, terminated as director September 2024 (short-lived); <strong>Jessica Salmanpour</strong> appointed CEO thereafter
+- Investor / ambassador: <strong>Bear Grylls</strong> (announced June 2024 — global ambassador and investor)
+- Chief Science Officer: <strong>Dr Tara Swart</strong> (lends credibility, but underused in marketing — see gap #4)
+- Featured in Forbes (June 2025), Soho House House Notes, Glamour, Vogue, GQ, Tatler, Elle
+- Instagram (@dirteaworld) <strong>386K followers</strong>, TikTok (@dirteaworld) <strong>331.9K followers / 2.4M likes</strong>, YouTube (@dirteaworld) <strong>only 398 subscribers / 70 videos</strong>
+- Trustpilot: <strong>4.0 stars from ~3,079 reviews</strong> — solid but not class-leading; 4.0 with that review volume suggests a meaningful tail of complaints</p>
+<p><strong>Critical context for the pitch:</strong> A JBH Digital PR case study published in late 2025 reports that, between March and September 2025, Spacegoods' brand search interest grew <strong>+122%</strong> while Dirtea's brand share <strong>dropped 35%</strong> (from ~70% to 46%). Spacegoods overtook Dirtea on share of search. Dirtea is no longer the runaway category leader its press coverage implies — it's actively losing ground to a smaller, hungrier competitor. <strong>This is the wedge for the pitch.</strong></p>
+<hr />
+<h2 id="2-channel-by-channel-audit">2. Channel-by-channel audit</h2>
+<h3 id="website-dirteaworldcom">Website (dirteaworld.com)</h3>
+<p>What's working:
+- Premium visual identity, strong photography, video on PDPs
+- Detailed FAQ (20+ Qs) on the coffee PDP — answers pregnancy, B-vitamin form, contamination
+- Press logo wall (Vogue/GQ/Glamour/Tatler/Elle) above the fold
+- Comprehensive ingredient transparency (1,000mg Lion's Mane per serving, &gt;40% beta glucans called out)
+- Subscribe &amp; Save offered with three cadences and a clear price-per-serving
+- Smart upsell module: "Upgrade to Stack" with Collagen+Creatine at 30% off
+- 150+ country/currency selector — built for international growth</p>
+<p>What's broken or missing:
+- <strong>No reviews on the PDP.</strong> The Trustpilot link sits in the footer but the actual rating, review count and customer quotes are absent from product pages. For a wellness brand, this is the single biggest CRO leak. They have 3,079 Trustpilot reviews — they're not surfacing them.
+- <strong>No exit-intent popup or first-order email capture.</strong> The footer newsletter signup is unincentivised. Industry standard is "10% off your first order" exchanged for email + SMS. (They do have a separate <code>/pages/offers-sign-up</code> page with SMS consent language, but it isn't triggered behaviourally.)
+- <strong>No sticky add-to-cart</strong> on PDPs — users have to scroll back up.
+- <strong>Free-shipping threshold messaging is passive</strong> ("Free shipping over £50") — no progress bar or "you're £X away" prompt in cart.
+- <strong>No quiz.</strong> A "Find your ritual" or "Which mushroom is right for you?" quiz is industry-standard for supplement brands (Bloom, Athletic Greens, Huel all run them) — captures email, segments lists, lifts AOV via guided stack-building.
+- <strong>No urgency/scarcity</strong> anywhere — no stock counters, no countdown on the 20% sale (which is presented as evergreen and therefore disbelieved).
+- <strong>Trust badges thin.</strong> "Organic certified" and "third-party tested" are stated as text — no badge imagery, no certifier names, no clinical-study links despite the science-led positioning.
+- <strong>No live chat / on-site help</strong> — Gorgias or Zendesk Chat would catch pre-purchase questions on a £31–£48 SKU.
+- <strong>Subscription cancellation friction is rumoured in Trustpilot reviews</strong> — recurring complaint theme; needs a "skip / pause / cancel anytime" guarantee front and centre.</p>
+<h3 id="instagram-dirteaworld">Instagram (@dirteaworld)</h3>
+<p>386K followers, 1,003 posts. Bio: "Functional drinks, supplements and gummies. Improve your focus, energy and immunity."</p>
+<p>Observations:
+- Cadence appears regular (multiple posts per week, mix of Reels and static)
+- Content mix skews <strong>brand-led / studio-shot</strong> — beautifully composed product flatlays, founder appearances, ambassador moments (Bear Grylls reel from June 2025 only got ~108 likes despite 386K followers — that's a <strong>0.03% engagement rate on a tentpole asset</strong>, which is very weak)
+- Very little raw UGC, very little creator-takeover content, very little "person actually drinking it on the way to the gym" energy
+- The Bear Grylls partnership content reads like CSR rather than performance creative — no clear CTA, no UTM, no offer code
+- Reels engagement low relative to follower base — the algorithm is not rewarding the content</p>
+<p>A separate handle (@dirtea, 73K followers, German market via Shirin David collab) shows a totally different — and much louder — content style. Why isn't that energy on the main account?</p>
+<h3 id="tiktok-dirteaworld">TikTok (@dirteaworld)</h3>
+<p>331.9K followers, 2.4M likes. This is actually their <strong>strongest</strong> social channel by relative engagement.</p>
+<ul>
+<li>Recent posts include Tesco-spotting UGC, "Mushroom Week" community content</li>
+<li>Content is more native than Instagram — but still under-leveraged</li>
+<li>No visible TikTok Shop integration shown in search results (UK TikTok Shop is now a major DTC channel for wellness; Spacegoods' TikTok strategy reportedly drove the +450% "Rainbow Dust review" search growth)</li>
+<li>Spacegoods' @tryspacegoods has only 42K followers but <strong>632.8K likes</strong> — a much higher likes-to-follower ratio (~15x), suggesting their content earns reach where Dirtea's earns impressions</li>
+</ul>
+<h3 id="youtube-dirteaworld">YouTube (@dirteaworld)</h3>
+<p><strong>398 subscribers. 70 videos.</strong> This is the headline finding for the pitch.</p>
+<p>For a brand with a Chief Science Officer (Dr Tara Swart, neuroscientist, bestselling author), Bear Grylls as ambassador, and a £31+ AOV that requires consumer education, having effectively no YouTube presence is a strategic miss. YouTube is where:
+- Mushroom-coffee comparison reviews live (Spacegoods is winning these — see "Spacegoods Rainbow Dust review" search growth)
+- Long-form education content compounds (Huel, Athletic Greens, Four Sigmatic all run heavy YouTube)
+- Tara Swart-led content would print</p>
+<h3 id="email-sms">Email / SMS</h3>
+<ul>
+<li>Footer newsletter capture exists but isn't incentivised</li>
+<li>Separate <code>/pages/offers-sign-up</code> page collects SMS with autodialer consent — but it's a destination, not a trigger</li>
+<li>No exit-intent overlay observed</li>
+<li>No abandoned-cart, browse-abandon or post-purchase flow signals visible from public-facing collateral</li>
+<li>This is impossible to fully audit without subscribing — recommend Olly subscribes pre-pitch and screenshots the actual flow (or absence of one). Working hypothesis: they are sending Klaviyo broadcasts but lifecycle automation is thin</li>
+</ul>
+<h3 id="paid-ads-meta">Paid ads — Meta</h3>
+<p><strong>AdScan.ai shows 0 active Dirtea Meta ads.</strong> Two readings of this:
+1. They genuinely aren't running paid social right now (unlikely for a brand at their size — but possible if they're cash-conserving ahead of US rollout)
+2. Ads are running through a different ad account or are heavily geo-segmented</p>
+<p>Either way, the inference for the pitch is: <strong>paid acquisition appears to be either dormant or under-invested</strong> at exactly the moment Spacegoods is scaling its share of voice. Worth Olly verifying via Meta Ad Library directly the day before the pitch.</p>
+<h3 id="influencer-ambassador">Influencer / ambassador</h3>
+<ul>
+<li>Affiliate program runs through <strong>Shopify Collabs</strong> — 10–15% commission, 10% audience discount</li>
+<li>Tier system mentioned ("VIP unlocks highest commission") but criteria opaque</li>
+<li>Bear Grylls headline ambassador; Roxie Nafousi (manifestation author) and Dr Tara Swart in the inner circle</li>
+<li>Discount codes seen in the wild: ROXIEN[XXX], healf 10%, student 10% — pattern is ad-hoc rather than a structured creator economy</li>
+<li>No public roster, no creator landing page showing "the Dirtea community," no UGC hashtag campaign visible</li>
+</ul>
+<p>The ambassador stable is genuinely impressive. They are not extracting full value from it.</p>
+<h3 id="seo">SEO</h3>
+<ul>
+<li>Blog is mature: 15+ pages of posts, consistent recent activity, intent-led titles ("Why You Crash at 11am", "7 Surprising Benefits of Mushroom Coffee")</li>
+<li>Multi-tier keyword strategy in place per ex-copywriter LinkedIn evidence</li>
+<li>BUT: Spacegoods grew organic traffic +75.7% in six months via digital PR while Dirtea's brand share fell — Dirtea's blog is producing content but not earning the high-DA backlinks that move share of voice</li>
+<li>Meta description, schema and review-snippet markup on PDPs not surfacing star ratings in SERPs (likely because reviews aren't on PDPs to begin with)</li>
+</ul>
+<h3 id="pr">PR</h3>
+<ul>
+<li>Strong tier-1 placement history: Forbes (June 2025), Good Housekeeping, Tatler, Vogue, GQ</li>
+<li>Trade: The Grocer (Bear Grylls partnership), Drug Store News, Fitt Insider (Vitamin Shoppe launch)</li>
+<li>BUT: PR feels event-led (US launch, BG partnership) rather than always-on. Spacegoods' agency JBH ran 92 reactive placements in six months — that's the cadence Dirtea isn't matching</li>
+</ul>
+<hr />
+<h2 id="3-the-five-biggest-practical-gaps">3. The five biggest practical gaps</h2>
+<h3 id="gap-1-reviews-are-nowhere-on-the-pdp">Gap 1 — Reviews are nowhere on the PDP</h3>
+<p><strong>Evidence:</strong> Dirtea has 3,079 Trustpilot reviews at 4.0 stars. The product pages display zero star rating, zero review count, zero customer quotes. The "Here's what our customers say" section on the coffee PDP contains recipe ideas, not reviews.</p>
+<p><strong>Fix:</strong> Implement Yotpo, Okendo or Reviews.io with verified-buyer reviews, photo reviews and star aggregation in the SERP via schema. Pull Trustpilot quotes into a curated PDP carousel. Add review-count next to the H1.</p>
+<p><strong>Likely impact:</strong> PDP conversion rate uplift of 15–25% is well-documented for adding reviews to a previously bare PDP in supplements (Baymard, Yotpo benchmarks). On a brand doing high-seven / low-eight figures DTC, this is the single highest-ROI fix on the list. Estimated annual revenue lift: £400k–£1m+ depending on current PDP CR.</p>
+<h3 id="gap-2-no-first-purchase-emailsms-capture-popup">Gap 2 — No first-purchase email/SMS capture popup</h3>
+<p><strong>Evidence:</strong> No exit-intent overlay, no on-load offer, no incentivised email capture. The newsletter signup is in the footer with no incentive. Spacegoods, Huel, London Nootropics all run "10% off your first order" first-touch popups.</p>
+<p><strong>Fix:</strong> Klaviyo (or current ESP) two-step popup: email first (10% off), SMS second (additional perk or early access). Trigger on 30s dwell or exit intent. Build the welcome flow: 5 emails over 7 days — founder story, science, ritual education, social proof, offer expiry. Wire abandoned-cart (3 emails / 2 SMS), browse abandon, post-purchase, win-back.</p>
+<p><strong>Likely impact:</strong> First-time visitor capture rate jumps from &lt;2% to 8–12% with a competitive offer. Recovered revenue from abandoned-cart alone typically equals 5–10% of DTC revenue when properly built. Easy £500k+ annualised on a brand of Dirtea's scale.</p>
+<h3 id="gap-3-youtube-is-functionally-dormant-despite-a-science-led-positioning-and-an-a-list-ambassador-roster">Gap 3 — YouTube is functionally dormant despite a science-led positioning and an A-list ambassador roster</h3>
+<p><strong>Evidence:</strong> 398 subscribers, 70 videos. Compare to Four Sigmatic (~50K), Huel (~200K). Dr Tara Swart has 60K+ Instagram followers and a TED talk. Bear Grylls has 4M+ YouTube subscribers. Neither is producing Dirtea-tagged YouTube content at scale.</p>
+<p><strong>Fix:</strong> Build a YouTube content pillar around three formats:
+1. <strong>"Dr Tara Swart explains…"</strong> — 6–10 min explainer videos on Lion's Mane / cortisol / stress / sleep, optimised for "mushroom coffee benefits", "lion's mane reviews" and similar high-intent queries
+2. <strong>Bear Grylls morning ritual / on-expedition footage</strong> — short-form repurposed across Shorts, Reels, TikTok
+3. <strong>Founder Q&amp;A and customer transformation stories</strong> — mid-form, builds the "movement" narrative they claim in the bio</p>
+<p><strong>Likely impact:</strong> YouTube is a compounding asset — it doesn't pay back in 30 days but in 12 months it's the difference between "brand visibility" and "category authority." Critical for the US push where Vitamin Shoppe shoppers Google before they buy.</p>
+<h3 id="gap-4-the-ambassador-roster-isnt-being-merchandised-as-a-community">Gap 4 — The ambassador roster isn't being merchandised as a community</h3>
+<p><strong>Evidence:</strong> Bear Grylls, Tara Swart, Roxie Nafousi are listed as ambassadors. The Bear Grylls reel got 108 likes from 386K followers — the asset isn't being amplified, segmented or recycled. There's no "meet the Dirtea collective" page, no hashtag campaign, no consistent creator-takeover series, no ambassador-coded SKUs ("Tara's Stack").</p>
+<p><strong>Fix:</strong>
+- Build a permanent ambassadors landing page with bios, signature stacks, signature codes
+- Run a quarterly "Dirtea Ritual" content series — each ambassador hosts one month: their morning, their stack, their rationale
+- Co-branded SKU drops or stacks tied to each ambassador, with ringfenced launch volume to drive urgency
+- Repurpose ambassador content into paid social creative — Bear Grylls UGC running as a Meta ad will outperform any studio shot</p>
+<p><strong>Likely impact:</strong> Improves paid CAC (creator-led ads outperform studio creative by 30–50% on Meta in wellness), lifts AOV (stacks &gt; singles), and converts ambassadors from logo wall to pipeline.</p>
+<h3 id="gap-5-paid-social-and-creator-ugc-are-missing-or-invisible-at-the-exact-moment-spacegoods-is-winning-share-of-search">Gap 5 — Paid social and creator UGC are missing or invisible at the exact moment Spacegoods is winning share of search</h3>
+<p><strong>Evidence:</strong> AdScan.ai shows 0 active Dirtea Meta ads. Spacegoods grew brand search +122% and Dirtea's share fell 35% in the same window (Mar–Sep 2025). TikTok content reads brand-led not creator-led. Affiliate program is open-application but lacks the structured "creator brief + asset pack + amplification budget" model that makes UGC scale.</p>
+<p><strong>Fix:</strong>
+1. Stand up an always-on Meta paid programme with a dedicated UGC brief: 6 creators / month, 3 deliverables each, brand pays for content + usage rights, top performers get amplified
+2. Mirror programme on TikTok with TikTok Shop integration (UK functional-drinks category is one of the highest-converting on TTS right now)
+3. Build a creator-tier ladder with clear progression: Affiliate → Ambassador → Hero — each with explicit perks and KPIs</p>
+<p><strong>Likely impact:</strong> This is the gap that directly addresses the Spacegoods threat. Recovering share of search to 60%+ is worth low seven figures in protected DTC revenue plus retail-velocity halo.</p>
+<hr />
+<h2 id="4-competitive-context">4. Competitive context</h2>
+<h3 id="spacegoods-uk-the-active-threat">Spacegoods (UK, the active threat)</h3>
+<p>What they do better:
+- <strong>Digital PR engine.</strong> JBH agency drove 92 placements / 75.7% organic traffic growth in six months. Reactive PR pace Dirtea isn't matching.
+- <strong>Creator-first TikTok.</strong> 42K followers but 632.8K total likes — content earns reach.
+- <strong>Hero SKU positioning.</strong> "Rainbow Dust" is a single instantly-Googleable product name; Dirtea's range is fragmented across coffee/matcha/cacao/chai/gummies/powders with no hero.
+- <strong>Founder cultural narrative.</strong> Matt Kelly's Amsterdam-psilocybin origin story is meme-able. Dirtea's "two brothers had burnout" is generic.</p>
+<h3 id="london-nootropics-uk-fading-first-mover">London Nootropics (UK, fading first-mover)</h3>
+<p>What they do better:
+- 8,000+ five-star reviews surfaced everywhere on-site (Dirtea has more reviews and shows fewer)
+- Dragon's Den exposure recycled as evergreen trust signal
+- Cleaner, faster PDPs</p>
+<p>What they do worse: declining momentum, lost share to both Dirtea and Spacegoods.</p>
+<h3 id="four-sigmatic-us-the-og">Four Sigmatic (US, the OG)</h3>
+<p>What they do better:
+- YouTube content engine — 50K+ subs, sustained explainer programme
+- Subscription-first design — entire UX optimised around the subscriber, not the one-off buyer
+- Recipe/lifestyle content — "mushroom coffee latte recipe" type SEO ownership</p>
+<h3 id="huel-uk-adjacency-benchmark">Huel (UK, adjacency benchmark)</h3>
+<p>What they do better:
+- Lifecycle email/SMS is best-in-class — 10+ flows, segmented by SKU and tenure
+- Quiz-led onboarding ("Find your formula")
+- Always-on Meta + YouTube paid programme with rotating UGC
+- Subscription mechanics: pause/skip/swap with zero friction (versus Dirtea's reported cancellation friction in Trustpilot 1-stars)</p>
+<p>Notably, Dirtea's first CEO hire was ex-Huel COO Grant Coetzee — and he was gone in five months. The Huel playbook clearly isn't fully implemented.</p>
+<hr />
+<h2 id="5-pitch-angle-one-paragraph">5. Pitch angle (one paragraph)</h2>
+<blockquote>
+<p>"Dirtea has built one of the most credible brands in UK wellness — Bear Grylls, Tara Swart, Vogue, Vitamin Shoppe. But between March and September 2025, Spacegoods' brand search grew 122% and Dirtea's fell 35%. The product isn't the problem. The execution gaps are: 3,000+ Trustpilot reviews invisible on your PDPs, no first-purchase email capture, a YouTube channel with 398 subscribers despite a Chief Science Officer who's a TED-talking neuroscientist, and zero active Meta ads while your nearest competitor floods the channel. Bear Witness exists to run the marketing you've already chosen — better, with measurable upside, starting with the gaps you'd close yourself if you had another senior operator on the team."</p>
+</blockquote>
+<hr />
+<h2 id="6-quick-win-first-30-days">6. Quick-win first 30 days</h2>
+<p>If Dirtea hires Bear Witness tomorrow, three things ship inside 30 days that produce visible, defensible results:</p>
+<h3 id="week-12-reviews-live-on-every-pdp">Week 1–2: Reviews live on every PDP</h3>
+<ul>
+<li>Migrate (or activate) Yotpo / Okendo / Reviews.io</li>
+<li>Backfill 3,079 Trustpilot reviews via API or import</li>
+<li>Schema + star rating in SERP within 14 days of indexation</li>
+<li><strong>Measured KPI:</strong> PDP conversion rate week-on-week. Expected lift 15–25%.</li>
+</ul>
+<h3 id="week-23-first-purchase-capture-and-abandoned-cart-flow-live">Week 2–3: First-purchase capture and abandoned-cart flow live</h3>
+<ul>
+<li>Klaviyo two-step popup (email → SMS, 10% off)</li>
+<li>5-email welcome flow with Tara Swart science block, Bear Grylls hero asset, founder story, ritual education, offer expiry</li>
+<li>Abandoned-cart sequence (3 emails / 2 SMS over 5 days)</li>
+<li><strong>Measured KPI:</strong> Email capture rate (&lt;2% → 8–12%), recovered cart revenue as % of DTC.</li>
+</ul>
+<h3 id="week-34-creator-ugc-pipeline-online-first-paid-test">Week 3–4: Creator UGC pipeline online + first paid test</h3>
+<ul>
+<li>6 mid-tier UK creators briefed and contracted (food/wellness/morning-routine niche)</li>
+<li>3 deliverables each, full usage rights</li>
+<li>Top 3 performers go into a Meta Advantage+ test campaign with a £15k learning budget</li>
+<li>TikTok Shop integration scoped (full launch month two)</li>
+<li><strong>Measured KPI:</strong> Cost per creator-led video, blended CAC vs prior 60-day benchmark, top-performing UGC view-through rate.</li>
+</ul>
+<p>These three are deliberately the lowest-risk, highest-visibility fixes. They also set up the 60–90 day work — YouTube programme, ambassador-coded SKUs, digital PR engine — without committing the founders to spend before they've seen Bear Witness execute.</p>
+<hr />
+<p><em>Compiled from public sources: dirteaworld.com, JBH Digital case study (Spacegoods), Companies House filings, Trustpilot, Forbes (June 2025), The Grocer, Fitt Insider, Soho House House Notes, AdScan.ai, public Instagram/TikTok/YouTube data. Subscription-only Klaviyo flows and Meta Ad Library account-level detail were not directly observable from public collateral and should be verified by Olly before the pitch (subscribe to the email list 7 days out; pull Meta Ad Library by exact page name).</em></p>
+  </div>
+</main>
+
+<footer>
+  Prepared by Ted for Olly · BGV · <a href="https://dnd5fj5gjy-bit.github.io/modern-savage-strategy/">Index</a>
+</footer>
+
+</body>
+</html>

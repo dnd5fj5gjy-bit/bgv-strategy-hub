@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Savage: Social Media Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true, theme:'neutral', themeVariables: {primaryColor: '#2C2C2C', primaryTextColor: '#fff', lineColor: '#8B7355', secondaryColor: '#F5F0EB'}});</script>
+<style>
+:root {
+  --bone: #F5F0EB;
+  --charcoal: #2C2C2C;
+  --earth: #8B7355;
+  --rust: #A0522D;
+  --sage: #6B7F5E;
+  --cream: #FAF7F2;
+  --sand: #D4C5B2;
+  --deep-earth: #5C4A32;
+  --blood: #8B2500;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--charcoal); background: var(--cream); line-height: 1.7; font-size: 16px; }
+.cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--charcoal); color: var(--bone); text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden; }
+.cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 50%, rgba(139,115,85,0.15) 0%, transparent 70%); }
+.cover-subtitle { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--earth); margin-bottom: 2rem; position: relative; }
+.cover-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 700; line-height: 1.05; margin-bottom: 0.5rem; position: relative; }
+.cover-title em { font-style: italic; color: var(--earth); }
+.cover-date { font-size: 0.9rem; color: var(--sand); margin-top: 2rem; position: relative; }
+.cover-footer { position: absolute; bottom: 3rem; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--earth); opacity: 0.7; }
+section { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
+.section-full { max-width: 100%; background: var(--bone); padding: 5rem 2rem; }
+.section-full .inner { max-width: 900px; margin: 0 auto; }
+.section-dark { background: var(--charcoal); color: var(--bone); max-width: 100%; padding: 5rem 2rem; }
+.section-dark .inner { max-width: 900px; margin: 0 auto; }
+h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; margin-bottom: 2rem; line-height: 1.15; color: var(--charcoal); }
+.section-dark h2 { color: var(--bone); }
+h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; margin-top: 3rem; margin-bottom: 1rem; color: var(--deep-earth); }
+.section-dark h3 { color: var(--sand); }
+h4 { font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--earth); margin-top: 2rem; margin-bottom: 0.75rem; }
+p { margin-bottom: 1.2rem; }
+.lead { font-size: 1.15rem; line-height: 1.8; color: var(--deep-earth); }
+.section-dark .lead { color: var(--sand); }
+blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; border-left: 3px solid var(--earth); padding: 1rem 0 1rem 2rem; margin: 2.5rem 0; color: var(--deep-earth); line-height: 1.5; }
+.section-dark blockquote { color: var(--sand); border-color: var(--earth); }
+.label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; background: var(--earth); color: var(--bone); padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 0.75rem; }
+.label-primary { background: var(--blood); }
+.label-secondary { background: var(--deep-earth); }
+.label-supporting { background: var(--sage); }
+.narrative-card { background: var(--cream); border: 1px solid var(--sand); padding: 2rem; margin: 2rem 0; border-radius: 4px; }
+.section-dark .narrative-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+.narrative-card h3 { margin-top: 0.5rem; font-size: 1.6rem; }
+.narrative-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+.narrative-meta div { font-size: 0.92rem; }
+.narrative-meta strong { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--earth); margin-bottom: 0.3rem; }
+.pillar-card { background: white; border-left: 4px solid var(--earth); padding: 2.5rem; margin: 2.5rem 0; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+.pillar-card.pillar-1 { border-color: var(--blood); }
+.pillar-card.pillar-2 { border-color: var(--earth); }
+.pillar-card.pillar-3 { border-color: var(--sage); }
+.pillar-card.pillar-4 { border-color: var(--deep-earth); }
+.pillar-card.pillar-5 { border-color: var(--rust); }
+.pillar-card h3 { margin-top: 0; }
+.theme-list { columns: 2; column-gap: 2rem; margin: 1rem 0; }
+.theme-list p { margin-bottom: 0.5rem; font-size: 0.95rem; break-inside: avoid; }
+.mermaid-container { background: white; padding: 2rem; margin: 2.5rem 0; border-radius: 4px; border: 1px solid var(--sand); overflow-x: auto; }
+.section-dark .mermaid-container { background: rgba(255,255,255,0.95); border: none; }
+.mermaid-container .mermaid { display: flex; justify-content: center; }
+.chart-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--earth); text-align: center; margin-bottom: 1rem; }
+.capture-block { background: var(--bone); padding: 2rem; margin: 2rem 0; border-radius: 4px; }
+.capture-block h4 { margin-top: 0; }
+.divider { width: 60px; height: 2px; background: var(--earth); margin: 3rem 0; }
+.tier { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2px; margin-left: 0.5rem; vertical-align: middle; }
+.tier-1 { background: var(--blood); color: white; }
+.tier-2 { background: var(--earth); color: white; }
+.tier-3 { background: var(--sand); color: var(--charcoal); }
+.assumptions { background: rgba(139,115,85,0.08); border: 1px dashed var(--earth); padding: 1.5rem 2rem; margin: 2rem 0; font-size: 0.9rem; border-radius: 4px; }
+.assumptions strong { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--earth); }
+.freq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.freq-item { background: white; padding: 1.5rem; border-radius: 4px; border: 1px solid var(--sand); }
+.freq-item h4 { margin-top: 0; font-size: 0.85rem; }
+.freq-number { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--earth); }
+@media print { .cover { min-height: auto; padding: 3rem 2rem; page-break-after: always; } section, .section-full, .section-dark { page-break-inside: avoid; } }
+@media (max-width: 600px) { .narrative-meta { grid-template-columns: 1fr; } .theme-list { columns: 1; } h2 { font-size: 2.2rem; } .cover-title { font-size: 3rem; } }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <div class="cover-subtitle">Social Media Strategy</div>
+  <h1 class="cover-title">Modern <em>Savage</em></h1>
+  <p class="cover-date">April 2026 · Pre-launch Strategy · UK + US</p>
+  <div class="cover-footer">Prepared by Bear Witness</div>
+</div>
+
+<!-- ==================== EXECUTIVE SUMMARY ==================== -->
+<section>
+  <h2>Executive Summary</h2>
+  <div class="divider"></div>
+
+  <p class="lead">Modern Savage is not a niche health brand for people who track macros. It is family nutrition done properly. Whole-animal organ blends in a single daily powder: everything your family needs in one scoop, with nothing your great-grandmother wouldn't recognise. This strategy builds the social presence to match that mission.</p>
+
+  <p>Every competitor in the organ nutrition space positions to the same audience: male, US, carnivore-adjacent. Modern Savage is the first brand in this category built deliberately for families. Not just a nod to a Kids SKU, but a whole-family mission from day one. That is the whitespace. That is how we win mainstream.</p>
+
+  <p>The strategy does not sell the product. It sells the problems the product solves. A parent frustrated with gummy vitamins enters through one door. A whole-food convert tired of managing eight different capsules enters through another. Both should feel like Modern Savage was built for them.</p>
+
+  <blockquote>"Everything we build is in service of giving the body what it was designed to run on."</blockquote>
+
+  <p>Seven mission narratives, distilled into five content pillars, deployed across a tiered platform ecosystem. The voice is warm but direct: it educates on what is missing from the modern diet and lets the product be the obvious solution. Bear Grylls is the proof, not the pitch.</p>
+
+  <h4>Strategic Principles</h4>
+  <p>Never sell the product; educate on the problems and let Modern Savage be the obvious answer. This is a family nutrition brand, not a biohacking brand, not a performance supplement, not a male health product. The audience is people who want to eat properly and have one simple way to do it. Bear is proof of concept, not a paid endorser. Every piece of content should pass one test: "Would someone thank us for this even if they never buy?"</p>
+
+  <div class="assumptions">
+    <strong>Working Assumptions</strong>
+    <p style="margin-top:0.5rem; margin-bottom:0;">This strategy assumes a clean-slate social launch (no existing accounts), Bear Grylls as primary on-camera talent with family/wellness UGC creators for audience breadth, and a lean-to-mid resource team at launch (~1-2 dedicated social operators plus freelance content creators). Adjust platform frequency and pillar weighting if resources change.</p>
+  </div>
+</section>
+
+<!-- ==================== MISSION NARRATIVES ==================== -->
+<div class="section-dark">
+  <div class="inner">
+    <h2>Mission Narratives</h2>
+    <div class="divider" style="background:var(--earth);"></div>
+
+    <p class="lead">Seven distinct narratives. Seven doors into the brand. Each represents a real problem that a real audience segment feels. Three are primary, two are strong secondary, two are supporting. The product sits at the centre, but no single narrative dominates. The power is in the breadth: the more narratives a person encounters, the more inevitable the product becomes.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Mission Narrative Map</div>
+      <div class="mermaid">
+graph TB
+  subgraph PRIMARY["PRIMARY NARRATIVES"]
+    N1["Family<br/>Nutrition"]
+    N2["Whole Food<br/>Simplicity"]
+    N3["Real Ingredients,<br/>Real Sources"]
+  end
+  subgraph SECONDARY["STRONG SECONDARY"]
+    N4["Gut and<br/>Long-Term Health"]
+    N5["Provide<br/>and Protect"]
+  end
+  subgraph SUPPORTING["SUPPORTING"]
+    N6["Family, Faith<br/>and Legacy"]
+    N7["Freedom from<br/>Broken Systems"]
+  end
+  N1 --> MS["MODERN SAVAGE"]
+  N2 --> MS
+  N3 --> MS
+  N4 --> MS
+  N5 --> MS
+  N6 --> MS
+  N7 --> MS
+  N1 -.-> N5
+  N2 -.-> N1
+  N3 -.-> N4
+  N5 -.-> N6
+  N7 -.-> N3
+
+  style PRIMARY fill:#8B2500,color:#fff,stroke:none
+  style SECONDARY fill:#5C4A32,color:#fff,stroke:none
+  style SUPPORTING fill:#6B7F5E,color:#fff,stroke:none
+  style MS fill:#2C2C2C,color:#fff,stroke:#8B7355,stroke-width:3px
+      </div>
+    </div>
+
+    <!-- NARRATIVE 1 -->
+    <div class="narrative-card">
+      <span class="label label-primary">Primary</span>
+      <h3>1. Family Nutrition</h3>
+      <p><strong style="color:var(--earth);">"The same nutrition, for every member of the family. One product that covers the whole household."</strong></p>
+      <p>This is the territory that separates Modern Savage from every competitor in the space. No other organ nutrition brand has built a product suite for the whole household: adult and child, one philosophy, one brand. Heart and Soil sells to men. Ancestral Supplements sells to individuals. Modern Savage feeds families. The Adult Blend and Kids Blend together make this the only brand a household needs, and that positioning is completely uncontested.</p>
+      <div class="narrative-meta">
+        <div><strong>Who Feels This</strong> Parents and couples (28-45, any gender) who want one clean nutrition solution for the household. The family that already puts effort into eating well but is managing a shelf of different supplements with no clear picture of what's working.</div>
+        <div><strong>Transformation</strong> From: "We have 8 different supplements and I'm not sure any of them are doing what they should."<br>To: "One brand, two products, the whole family covered."</div>
+        <div><strong>Emotional Intensity</strong> Relief and simplicity. This is the "finally" moment: the exhaustion of guessing replaced by the clarity of one answer.</div>
+        <div><strong>Weight</strong> Heaviest content volume. This is the brand's defining territory and the strategic moat against every competitor.</div>
+      </div>
+    </div>
+
+    <!-- NARRATIVE 2 -->
+    <div class="narrative-card">
+      <span class="label label-primary">Primary</span>
+      <h3>2. Whole Food Simplicity</h3>
+      <p><strong style="color:var(--earth);">"Stop guessing. One scoop replaces the shelf."</strong></p>
+      <p>The convenience angle is underrated. Most health-conscious families are managing six to ten different supplements with no clear picture of what they actually need. A collagen here, a multivitamin there, a greens powder, a probiotic, maybe a fish oil. None of them talk to each other. None of them cover the full picture. Modern Savage solves that: one daily powder, whole-food sourced, with the protein, organ nutrition, gut health stack, and antioxidants built into a single scoop. This is not dumbing things down. It is the honest case for simplicity.</p>
+      <div class="narrative-meta">
+        <div><strong>Who Feels This</strong> The family-first adult who is fed up with the synthetic supplement shelf. The whole-food convert who already eats clean but has gaps in micronutrients that frustrate them. Anyone who has looked at their supplement collection and thought: "There has to be a simpler way."</div>
+        <div><strong>Transformation</strong> From: "I'm spending money on supplements I'm not even sure I need."<br>To: "One scoop, every morning. Done."</div>
+        <div><strong>Emotional Intensity</strong> Relief. The release of complexity. People do not want to be their own nutritionist. They want a product they can trust and stop thinking about.</div>
+        <div><strong>Weight</strong> Primary. Drives conversion. This is the most compelling practical argument for the product and the strongest "why now" trigger.</div>
+      </div>
+    </div>
+
+    <!-- NARRATIVE 3 -->
+    <div class="narrative-card">
+      <span class="label label-primary">Primary</span>
+      <h3>3. Real Ingredients, Real Sources</h3>
+      <p><strong style="color:var(--earth);">"Your body was built to run on this. Modern food just forgot."</strong></p>
+      <p>The case for whole-animal nutrition. Organs were the centrepiece of human diets across every culture on earth for thousands of years. Liver, heart, spleen, kidney, lung: these are the most nutrient-dense foods that exist, and they have been almost entirely removed from the modern plate. Modern Savage puts them back. This territory is the scientific and historical foundation of the brand: evidence-led content on why whole-food nutrition outperforms synthetic supplements at the cellular level, presented in a way that is accessible, not exclusive.</p>
+      <div class="narrative-meta">
+        <div><strong>Who Feels This</strong> The whole-food convert who already reads labels and eats clean. The parent who has started questioning what is actually in the supplements their family takes. Anyone who has wondered why their multivitamin doesn't seem to make a difference.</div>
+        <div><strong>Transformation</strong> From: "I know synthetic supplements aren't great, but what's the alternative?"<br>To: "This is real food, in a format I can actually use. My body recognises every ingredient."</div>
+        <div><strong>Emotional Intensity</strong> Conviction and clarity. This narrative turns curiosity into belief. It is the intellectual backbone that gives every other narrative its credibility.</div>
+        <div><strong>Weight</strong> Primary. The brand's educational foundation. Every other narrative draws scientific credibility from this one.</div>
+      </div>
+    </div>
+
+    <!-- NARRATIVE 4 -->
+    <div class="narrative-card">
+      <span class="label label-secondary">Strong Secondary</span>
+      <h3>4. Gut and Long-Term Health</h3>
+      <p><strong style="color:var(--earth);">"Vitality is not a supplement category. It is what happens when you eat correctly."</strong></p>
+      <p>Millions of people have accepted fatigue, brain fog, poor sleep, dull skin, and declining energy as normal parts of modern life. They are not normal. They are the result of a diet stripped of the nutrients the human body requires. Organ meats contain CoQ10, B12, heme iron, retinol, and dozens of micronutrients in the forms the body evolved to absorb. The prebiotic and probiotic stack supports gut health, which underpins energy, immunity, and mental clarity. This territory takes the science seriously without being dry: accessible for a parent who is not a nutritionist but cares enough to learn.</p>
+      <div class="narrative-meta">
+        <div><strong>Who Feels This</strong> Anyone who suspects they could feel better but has given up looking. Parents running on empty who assume tiredness is inevitable. Women navigating energy, hormonal shifts, and skin health. Men who have written off declining energy as aging. The person who "feels fine" but knows fine is not the same as good.</div>
+        <div><strong>Transformation</strong> From: "I'm tired all the time but I think that's just how life is."<br>To: "I had no idea I could feel this different. This is how my body is supposed to work."</div>
+        <div><strong>Emotional Intensity</strong> Revelation. The most powerful version of this narrative is the testimonial: the person who did not know what they were missing until they found it.</div>
+        <div><strong>Weight</strong> Strong secondary. The broadest audience appeal. This is the entry point for people who do not care about ancestral health or whole-food philosophy but just want to feel better.</div>
+      </div>
+    </div>
+
+    <!-- NARRATIVE 5 -->
+    <div class="narrative-card">
+      <span class="label label-secondary">Strong Secondary</span>
+      <h3>5. Provide and Protect</h3>
+      <p><strong style="color:var(--earth);">"Feed your family the way you were supposed to."</strong></p>
+      <p>Parents care deeply about what their children eat but have been given terrible options. Gummy vitamins packed with sugar, synthetic dyes, and compounds with barely detectable bioavailability. The Kids Blend puts real organ nutrition, colostrum, and a prebiotic/probiotic stack into a single daily scoop. This is not a wellness trend for children. It is the same nutrition every well-fed child received before the modern food system decided organs were waste products.</p>
+      <div class="narrative-meta">
+        <div><strong>Who Feels This</strong> Parents (25-42) who read labels, who are frustrated with the children's supplement category, and who see family nutrition as a values statement. The parent who already puts effort into family meals and is ready for the next step.</div>
+        <div><strong>Transformation</strong> From: "I know gummy vitamins aren't good enough but I don't know what else to give them."<br>To: "My kids are getting the nutrition they were supposed to get from birth."</div>
+        <div><strong>Emotional Intensity</strong> High. Parental duty is one of the most powerful emotional drivers. This narrative creates urgency through responsibility, not fear.</div>
+        <div><strong>Weight</strong> Strong secondary. The Kids Blend is Modern Savage's positioning moat. This narrative is what makes the family mission tangible.</div>
+      </div>
+    </div>
+
+    <!-- NARRATIVE 6 -->
+    <div class="narrative-card">
+      <span class="label label-supporting">Supporting</span>
+      <h3>6. Family, Faith and Legacy</h3>
+      <p><strong style="color:var(--earth);">"What you feed your family is a statement about what you believe."</strong></p>
+      <p>For a values-driven audience, nutrition is not transactional. It is an expression of how you think the world should work. Feeding your family real food, rejecting synthetic shortcuts, building health across generations: this is legacy thinking. It connects with the faith-adjacent, family-first audience that follows Bear, who is openly Christian and known for his commitment to family above career.</p>
+      <div class="narrative-meta">
+        <div><strong>Who Feels This</strong> Faith-driven families. Values-led parents. People for whom "stewardship" means something. Audience segments that overlap with Bear's personal following.</div>
+        <div><strong>Transformation</strong> From: "I want to give my family something better but the options all feel shallow."<br>To: "This brand shares my values. I trust what they're building."</div>
+        <div><strong>Emotional Intensity</strong> Identity and belonging. Deep but slow-burn. This audience buys and never leaves.</div>
+        <div><strong>Weight</strong> Supporting. Opens the brand to a distinct audience entry point that competitors do not serve at all.</div>
+      </div>
+    </div>
+
+    <!-- NARRATIVE 7 -->
+    <div class="narrative-card">
+      <span class="label label-supporting">Supporting</span>
+      <h3>7. Freedom from Broken Systems</h3>
+      <p><strong style="color:var(--earth);">"The supplement industry is broken. This is the alternative."</strong></p>
+      <p>The supplement industry is a $180B machine built on synthetic ingredients, proprietary blends, filler, and marketing language designed to obscure what is actually in the bottle. People spend money on products that sound impressive but deliver compounds the body barely recognises. Modern Savage closes that gap by putting real food, not manufactured compounds, back into the equation. Every ingredient listed, every dose declared, every source traceable.</p>
+      <div class="narrative-meta">
+        <div><strong>Who Feels This</strong> Sceptics who have been burned by supplement marketing. Label readers. The whole-food convert who has tried and rejected most of the category. Anyone who has looked at a supplement label and thought: "What even is half of this?"</div>
+        <div><strong>Transformation</strong> From: "I don't trust any of these brands. They all make the same claims."<br>To: "Finally, a supplement that is what it says it is."</div>
+        <div><strong>Emotional Intensity</strong> Frustration turning to relief. The emotion is the release of finding something real after years of marketing noise.</div>
+        <div><strong>Weight</strong> Supporting. Drives conversion for high-intent buyers who have already been looking for something better.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== CONTENT PILLARS ==================== -->
+<section>
+  <h2>Content Pillars</h2>
+  <div class="divider"></div>
+
+  <p class="lead">Five narrative pillars, each built on a mission narrative, each targeting a different audience through a different emotional entry point. Every pillar stands alone as valuable content. Together, they create an inescapable gravity toward the product.</p>
+
+  <div class="mermaid-container">
+    <div class="chart-label">Pillar Interconnection Map</div>
+    <div class="mermaid">
+graph LR
+  P1["ONE FAMILY,<br/>ONE BRAND"] --> MS["MODERN<br/>SAVAGE"]
+  P2["REPLACE<br/>THE SHELF"] --> MS
+  P3["REAL FOOD,<br/>NOT LAB FOOD"] --> MS
+  P4["THE FAMILY<br/>TABLE"] --> MS
+  P5["PROOF, NOT<br/>PROMISES"] --> MS
+
+  P1 -.->|"family<br/>mission"| P4
+  P2 -.->|"simplicity<br/>argument"| P1
+  P3 -.->|"ingredient<br/>credibility"| P2
+  P4 -.->|"values<br/>connection"| P5
+  P3 -.->|"science<br/>foundation"| P4
+
+  style P1 fill:#8B2500,color:#fff,stroke:none
+  style P2 fill:#8B7355,color:#fff,stroke:none
+  style P3 fill:#6B7F5E,color:#fff,stroke:none
+  style P4 fill:#5C4A32,color:#fff,stroke:none
+  style P5 fill:#A0522D,color:#fff,stroke:none
+  style MS fill:#2C2C2C,color:#fff,stroke:#8B7355,stroke-width:3px
+    </div>
+  </div>
+
+  <!-- PILLAR 1 -->
+  <div class="pillar-card pillar-1">
+    <span class="label label-primary">Pillar 1</span>
+    <h3>One Family, One Brand</h3>
+    <p><em>Mission Narrative: Family Nutrition</em></p>
+
+    <h4>Narrative Theme</h4>
+    <p>Modern Savage is the first organ nutrition brand built for the whole household. Adult Blend and Kids Blend, one philosophy, one daily scoop each.</p>
+
+    <h4>Target Audience</h4>
+    <p>Parents and couples (28-45, any gender) who want one clean nutrition solution for the family. The household that is tired of managing multiple supplements and wants something that covers everyone under the same roof.</p>
+
+    <h4>Emotional Entry Point</h4>
+    <p>Relief. "Finally, one brand we can all use. One product for me, one for the kids, same ingredients, same trust."</p>
+
+    <h4>Problem Angle</h4>
+    <p>No organ nutrition brand has built for families. The category is fragmented: individual products, individual SKUs, individual marketing. A household ends up with a shelf of different brands, different philosophies, different ingredient standards. Modern Savage unifies family nutrition under one brand with a shared whole-food foundation.</p>
+
+    <h4>Content Themes</h4>
+    <div class="theme-list">
+      <p>The family morning routine: Adult Blend for the parents, Kids Blend for the children, one counter, done</p>
+      <p>Why no other brand in this category offers a genuine family product suite</p>
+      <p>The Grylls family's own nutrition: why Bear and Jesse built this for their household first</p>
+      <p>Household nutrition audits: what most families are taking vs what they actually need</p>
+      <p>The shared philosophy: same whole-food ingredients, same sourcing, same standards, adjusted for age</p>
+      <p>Family testimonials: real households that have switched to Modern Savage</p>
+    </div>
+
+    <h4>Bridge to Product</h4>
+    <p>Every piece of content in this pillar positions Modern Savage as the household standard. The bridge is the logic of "one brand, both products": if you trust the Adult Blend, the Kids Blend is the natural extension. The family mission makes the product feel like a commitment, not a purchase.</p>
+
+    <h4>Tone</h4>
+    <p>Warm, grounded, inclusive. This is the most approachable pillar. It should feel like a conversation between parents who care, not a lecture from a brand that thinks it knows better.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Pillar 1: Content to Conversion Flow</div>
+      <div class="mermaid">
+graph LR
+  A["Family nutrition<br/>education"] --> B["Audience feels:<br/>'My family<br/>deserves this'"]
+  B --> C["One brand for<br/>the whole household"]
+  C --> D["Modern Savage<br/>Adult + Kids"]
+  style A fill:#8B2500,color:#fff,stroke:none
+  style D fill:#2C2C2C,color:#fff,stroke:none
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 2 -->
+  <div class="pillar-card pillar-2">
+    <span class="label" style="background:var(--earth);">Pillar 2</span>
+    <h3>Replace the Shelf</h3>
+    <p><em>Mission Narrative: Whole Food Simplicity</em></p>
+
+    <h4>Narrative Theme</h4>
+    <p>One scoop replaces the supplement shelf. Protein, organ nutrition, gut health, antioxidants: everything in one daily powder, nothing synthetic, nothing redundant.</p>
+
+    <h4>Target Audience</h4>
+    <p>The family-first adult who is fed up with managing multiple supplements. The whole-food convert who wants one honest product that replaces the rest. Anyone who has looked at their supplement collection and felt overwhelmed, uncertain, or frustrated by the cost of products that may not even be working.</p>
+
+    <h4>Emotional Entry Point</h4>
+    <p>Simplicity and relief. "I've been overcomplicating this for years. One scoop, real food, done."</p>
+
+    <h4>Problem Angle</h4>
+    <p>Most health-conscious adults are managing six to ten different supplements with no clear picture of what they actually need. A collagen here, a probiotic there, a multivitamin, a greens powder, maybe a fish oil. None of them designed to work together. None covering the full picture. The cost adds up, the confusion compounds, and the results are unclear. Modern Savage's formula was designed to replace the shelf, not add to it.</p>
+
+    <h4>Content Themes</h4>
+    <div class="theme-list">
+      <p>"What's on your shelf?" series: real people show their supplement collections and we break down what's working, what's redundant, and what's missing</p>
+      <p>The cost comparison: what a typical supplement stack costs vs one bag of Modern Savage per month</p>
+      <p>One scoop, unpacked: exactly what is in each serving and what it replaces</p>
+      <p>The simplicity argument: why managing fewer products with better ingredients leads to better outcomes</p>
+      <p>Morning routine content: the ease of one scoop vs the complexity of 12 capsules</p>
+      <p>Ingredient overlap: how most supplement stacks duplicate some things and miss others entirely</p>
+    </div>
+
+    <h4>Bridge to Product</h4>
+    <p>This pillar makes the audience aware of the problem (complexity, cost, redundancy) and presents Modern Savage as the simplest possible solution. The bridge is practical logic: one product, everything covered, nothing wasted.</p>
+
+    <h4>Tone</h4>
+    <p>Direct, practical, slightly provocative. This pillar has an edge because it challenges the way people currently do things. But it is never condescending. The message is: you have been sold complexity. The real answer is simpler than you think.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Pillar 2: Content to Conversion Flow</div>
+      <div class="mermaid">
+graph LR
+  A["Expose supplement<br/>shelf complexity"] --> B["Audience feels:<br/>'I've been<br/>overcomplicating this'"]
+  B --> C["One scoop as<br/>the simpler answer"]
+  C --> D["Modern Savage<br/>replaces the shelf"]
+  style A fill:#8B7355,color:#fff,stroke:none
+  style D fill:#2C2C2C,color:#fff,stroke:none
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 3 -->
+  <div class="pillar-card pillar-3">
+    <span class="label" style="background:var(--sage);">Pillar 3</span>
+    <h3>Real Food, Not Lab Food</h3>
+    <p><em>Mission Narratives: Real Ingredients, Real Sources + Freedom from Broken Systems</em></p>
+
+    <h4>Narrative Theme</h4>
+    <p>Whole-animal organ nutrition is the most powerful form of supplementation on earth, and modern humans forgot it. Modern Savage puts the real food back.</p>
+
+    <h4>Target Audience</h4>
+    <p>The whole-food convert who already eats clean and wants a supplement that matches that philosophy. Label readers and ingredient sceptics. Parents questioning what is actually in the supplements their family takes. Anyone who has wondered why synthetic multivitamins never seem to make a noticeable difference.</p>
+
+    <h4>Emotional Entry Point</h4>
+    <p>Conviction and clarity. "I didn't know this existed, but now that I do, it makes complete sense. This is what my body was designed to eat."</p>
+
+    <h4>Problem Angle</h4>
+    <p>The supplement industry is built on synthetic compounds, proprietary blends, and marketing language designed to obscure what is actually in the bottle. Meanwhile, the most nutrient-dense food group on earth, organ meats, has been removed from the modern diet entirely. Liver, heart, spleen, kidney, lung: these are the foods every culture on earth prized for thousands of years. Modern Savage's formula is fully transparent, whole-food sourced, and built on ingredients the body recognises.</p>
+
+    <h4>Content Themes</h4>
+    <div class="theme-list">
+      <p>What each organ does: liver for retinol and B12, heart for CoQ10, kidney for selenium, spleen for immune peptides</p>
+      <p>Synthetic vs whole-food sourced: what the body actually absorbs and why the form matters</p>
+      <p>"What's actually in your [X]?" series: greens powders, gummy vitamins, collagen supplements, multivitamins</p>
+      <p>Ingredient sourcing: grass-fed, where the organs come from, the manufacturing process</p>
+      <p>The history: when and why humans stopped eating organs, and what the research says about that shift</p>
+      <p>Label transparency: how Modern Savage's open formula compares to proprietary blends</p>
+      <p>Bioavailability explained simply: why the source of a nutrient matters as much as the dose</p>
+      <p>Women and organ nutrition: how whole-food organ nutrition supports hormonal balance, skin health, and energy through life stages</p>
+    </div>
+
+    <h4>Bridge to Product</h4>
+    <p>This pillar builds the case for organ nutrition as a category, and for ingredient transparency as a standard. Modern Savage enters as the product that delivers both: real organs, real doses, everything on the label. The bridge is credibility through education.</p>
+
+    <h4>Tone</h4>
+    <p>Warm but authoritative. Evidence-led without being dry. Like a well-read friend who has done the research and is sharing what they found, in language a parent can follow without needing a science degree. Accessible, not exclusive. No gatekeeping.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Pillar 3: Content to Conversion Flow</div>
+      <div class="mermaid">
+graph LR
+  A["Whole-food<br/>nutrition education"] --> B["Audience feels:<br/>'Real food is<br/>the answer'"]
+  B --> C["Organ nutrition<br/>as the standard"]
+  C --> D["Modern Savage<br/>as the format"]
+  style A fill:#6B7F5E,color:#fff,stroke:none
+  style D fill:#2C2C2C,color:#fff,stroke:none
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 4 -->
+  <div class="pillar-card pillar-4">
+    <span class="label label-secondary">Pillar 4</span>
+    <h3>The Family Table</h3>
+    <p><em>Mission Narratives: Provide and Protect + Family, Faith and Legacy</em></p>
+
+    <h4>Narrative Theme</h4>
+    <p>Real nutrition starts young. The Kids Blend exists because no child should grow up on synthetic vitamins when whole-animal nutrition is available.</p>
+
+    <h4>Target Audience</h4>
+    <p>Parents (25-42) who see family nutrition as a values statement. Mothers and fathers equally. The parent who is frustrated with gummy vitamins, synthetic dyes, and sugar-loaded children's supplements, and who is ready for something genuinely clean.</p>
+
+    <h4>Emotional Entry Point</h4>
+    <p>Parental duty and the relief of finding a better option. "I knew gummy vitamins weren't good enough. I just didn't know what else existed."</p>
+
+    <h4>Problem Angle</h4>
+    <p>The children's supplement market is dominated by sugar-coated synthetic products disguised as health food. The Kids Blend offers whole-food, organ-based nutrition reformulated for children, with colostrum added for immune and gut development. Same philosophy as the Adult Blend, built for smaller bodies.</p>
+
+    <h4>Content Themes</h4>
+    <div class="theme-list">
+      <p>What is actually in gummy vitamins (sugar content, synthetic sources, bioavailability)</p>
+      <p>Colostrum: what it is, what the research shows, why it is in the Kids Blend</p>
+      <p>Family nutrition as a values statement: what you feed your family reflects what you believe</p>
+      <p>Bear and Jesse as parents: the Grylls family's approach to nutrition</p>
+      <p>Real parent stories: families who have shifted to whole-food supplementation</p>
+      <p>Allergen transparency: the milk/colostrum declaration, handled openly</p>
+      <p>Age-appropriate dosing: why the Kids Blend uses different amounts than the Adult Blend</p>
+      <p>Legacy thinking: building family health across generations, not just solving today's problem</p>
+    </div>
+
+    <h4>Bridge to Product</h4>
+    <p>Every piece of content builds the case that children deserve better nutrition than the supplement industry currently provides. The Kids Blend is the responsible parent's upgrade. The bridge is parental duty meeting a real solution.</p>
+
+    <h4>Tone</h4>
+    <p>Warm, grounded, conviction-led without guilt-tripping. Speaks to parents as equals who care. Never preach. Never shame. Present the facts, share the option, and trust parents to make the decision.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Pillar 4: Content to Conversion Flow</div>
+      <div class="mermaid">
+graph LR
+  A["Children's nutrition<br/>education"] --> B["Parent feels:<br/>'My kids<br/>deserve better'"]
+  B --> C["Whole-food<br/>alternatives exist"]
+  C --> D["Kids Blend<br/>as the answer"]
+  style A fill:#5C4A32,color:#fff,stroke:none
+  style D fill:#2C2C2C,color:#fff,stroke:none
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 5 -->
+  <div class="pillar-card pillar-5">
+    <span class="label" style="background:var(--rust);">Pillar 5</span>
+    <h3>Proof, Not Promises</h3>
+    <p><em>Mission Narrative: Bear's Credibility + Gut and Long-Term Health (testimonials)</em></p>
+
+    <h4>Narrative Theme</h4>
+    <p>This is not a celebrity licensing deal. Bear Grylls has been eating like this for 30 years. The product exists because the family uses it. The proof is the life, not the label.</p>
+
+    <h4>Target Audience</h4>
+    <p>Bear's existing audience across all demographics. The trust-seeking buyer who needs social proof before purchasing. Families who want to see real results from real people before committing.</p>
+
+    <h4>Emotional Entry Point</h4>
+    <p>Trust and authenticity. "This is different from every other celebrity brand I've seen."</p>
+
+    <h4>Problem Angle</h4>
+    <p>The supplement industry is full of celebrities who lend their name to products they do not use. Modern Savage is 100% family-owned, built by Bear and Jesse Grylls, and formulated around the nutrition Bear has relied on in the field for three decades. This pillar leads with transparency: the formulation story, the family's personal use, and real customer stories that validate the product independent of any name.</p>
+
+    <h4>Content Themes</h4>
+    <div class="theme-list">
+      <p>Bear's personal nutrition story: 30 years of field nutrition, what he eats and why</p>
+      <p>Behind the formulation: how and why each ingredient was chosen</p>
+      <p>Jesse Grylls and the family's involvement: the personal stake, the ownership story</p>
+      <p>Customer testimonials and transformations: real families, real results, told in their own words</p>
+      <p>Product transparency: sourcing stories, batch testing, ingredient traceability</p>
+      <p>Bear in the field: genuine footage of Bear using the product in context, not staged supplement ads</p>
+    </div>
+
+    <h4>Bridge to Product</h4>
+    <p>This pillar does not sell. It proves. Every piece of content builds trust by showing rather than telling. The bridge is accumulated credibility: by the time someone has seen the formulation story, the family's personal use, and a handful of customer testimonials, the product sells itself.</p>
+
+    <h4>Tone</h4>
+    <p>Honest, understated, documentary-style. This is the quietest pillar. Let the footage speak. Let the stories speak. No hype, no urgency, no call to action. Just proof.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Pillar 5: Content to Conversion Flow</div>
+      <div class="mermaid">
+graph LR
+  A["Founder story<br/>and transparency"] --> B["Audience feels:<br/>'This one is real'"]
+  B --> C["Customer proof<br/>validates"]
+  C --> D["Trust converts<br/>to purchase"]
+  style A fill:#A0522D,color:#fff,stroke:none
+  style D fill:#2C2C2C,color:#fff,stroke:none
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PLATFORM STRATEGY ==================== -->
+<div class="section-full">
+  <div class="inner">
+    <h2>Platform Strategy</h2>
+    <div class="divider"></div>
+
+    <p class="lead">Not every platform serves the same purpose. The strategy assigns each platform a specific role: discovery, education, community, or conversion. Content is platform-native, never cross-posted identically. The influencer seeding list should be anchored by family and wellness creators, with ancestral health creators as a secondary tier.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Platform Ecosystem Map</div>
+      <div class="mermaid">
+graph TB
+  subgraph TIER1["TIER 1: LAUNCH PLATFORMS"]
+    IG["Instagram<br/>Brand World + Education"]
+    TK["TikTok<br/>Discovery Engine"]
+    YT["YouTube<br/>Deep Authority"]
+  end
+  subgraph TIER2["TIER 2: ADD WHEN STABLE"]
+    XP["X / Twitter<br/>Voice + Commentary"]
+    SS["Substack<br/>Owned Audience"]
+  end
+  subgraph TIER3["TIER 3: ASPIRATIONAL"]
+    TH["Threads<br/>Community"]
+    LI["LinkedIn<br/>B2B / Retail"]
+  end
+
+  IG --> CONV["CONVERSION:<br/>DTC Website"]
+  TK --> CONV
+  YT --> CONV
+  XP --> CONV
+  SS --> CONV
+
+  TK -.->|"clips repurposed"| IG
+  YT -.->|"shorts from<br/>long-form"| TK
+  IG -.->|"community<br/>crossover"| TH
+  SS -.->|"deepest<br/>narrative"| YT
+
+  style TIER1 fill:#8B2500,color:#fff,stroke:none
+  style TIER2 fill:#5C4A32,color:#fff,stroke:none
+  style TIER3 fill:#6B7F5E,color:#fff,stroke:none
+  style CONV fill:#2C2C2C,color:#fff,stroke:#8B7355,stroke-width:3px
+      </div>
+    </div>
+
+    <h3>Tier 1: Launch Platforms <span class="tier tier-1">Start Here</span></h3>
+
+    <h4>Instagram</h4>
+    <p><strong>Role:</strong> Brand world-building, education, community, and primary visual identity. Bear's personal account (8.3M followers) amplifies; the brand account builds its own following independently.</p>
+    <p><strong>Key formats:</strong> Reels are the primary growth driver (family routines, ingredient education, Bear clips, "replace the shelf" content). Carousels are the authority builder (pillar-based educational breakdowns, "what's in your supplement" comparisons, one-scoop-vs-shelf visuals). Stories for daily connection and behind-the-scenes. Static posts anchor the grid with brand statements.</p>
+    <p><strong>Frequency:</strong> 4-5 Reels per week, 2 carousels per week, daily Stories, 1-2 static anchor posts per week.</p>
+    <p><strong>Critical note:</strong> Instagram SEO matters. Optimise captions and text overlays for search terms the audience uses: "whole food supplement," "kids nutrition without sugar," "natural family supplement," "organ nutrition," "replace supplement shelf." Instagram is now a search engine; treat it like one. Content should reflect the warmly grounded voice: inclusive, accessible, not niche-coded.</p>
+
+    <h4>TikTok</h4>
+    <p><strong>Role:</strong> Discovery. Reaching new audiences at scale, especially the family and clean-eating audience (25-40).</p>
+    <p><strong>Key formats:</strong> Short, raw, hook-driven clips (15-60 seconds). "What's on your shelf?" comparisons. Family morning routines. "Did you know" education from Pillars 2 and 3. Bear in the field. Customer reactions. UGC from family and wellness creators.</p>
+    <p><strong>Frequency:</strong> 1-2 posts per day. Consistency matters more than production quality.</p>
+    <p><strong>Critical note:</strong> TikTok rewards rawness. Nothing should look like an ad. The best content will feel like a friend telling you something they just discovered about their family's nutrition. Native captions, trending sounds with original angles. Family content and "replace the shelf" comparisons will be the strongest performers.</p>
+
+    <h4>YouTube</h4>
+    <p><strong>Role:</strong> Deep authority. The evergreen library. Where people go when they want to understand, not just see.</p>
+    <p><strong>Key formats:</strong> Long-form (8-20 min): "The Complete Guide to Family Organ Nutrition," "What's Actually in Your Kids' Vitamins," "Why We Built Modern Savage," "One Scoop: What's In It and What It Replaces." Shorts: repurposed TikTok/Reels clips.</p>
+    <p><strong>Frequency:</strong> 1 long-form per fortnight (minimum), 3-5 Shorts per week.</p>
+    <p><strong>Critical note:</strong> YouTube is a search engine. Title and thumbnail are everything. Build playlists around each pillar. Optimise descriptions with keywords: "best family supplement 2026," "are gummy vitamins good for kids," "whole food supplement vs multivitamin." Long-form builds the deepest trust and converts the highest-value customers.</p>
+
+    <h3>Tier 2: Add When Stable <span class="tier tier-2">Layer In</span></h3>
+
+    <h4>X / Twitter</h4>
+    <p><strong>Role:</strong> Brand voice, real-time commentary, industry opinion.</p>
+    <p><strong>Key formats:</strong> Single-line conviction statements. Short threads on ingredient science. Quote tweets with a Modern Savage angle on family health topics.</p>
+    <p><strong>Frequency:</strong> 1-3 posts per day once launched.</p>
+
+    <h4>Substack</h4>
+    <p><strong>Role:</strong> Deepest narrative platform. Owned audience. Email list building. Where the mission lives in its fullest form.</p>
+    <p><strong>Key formats:</strong> Weekly long-form essays rooted in each pillar. Deep-dives on organ nutrition science. Guest pieces from practitioners. Community discussion.</p>
+    <p><strong>Frequency:</strong> 1 main post per week.</p>
+    <p><strong>Critical note:</strong> Substack subscribers are the most valuable segment. The email list built through Substack is an owned asset that no algorithm can take away. This is the long-term moat.</p>
+
+    <h3>Tier 3: Aspirational <span class="tier tier-3">When Resourced</span></h3>
+
+    <h4>Threads</h4>
+    <p><strong>Role:</strong> Casual community building. Cross-pollination with Instagram audience. 1-2 posts per day.</p>
+
+    <h4>LinkedIn</h4>
+    <p><strong>Role:</strong> B2B credibility. Retail buyer conversations. Only relevant once DTC is established. 2-3 posts per week when activated.</p>
+
+    <h3>Posting Frequency Overview</h3>
+    <div class="freq-grid">
+      <div class="freq-item"><h4>Instagram</h4><div class="freq-number">8-10</div><p style="margin:0;font-size:0.85rem;">posts per week (Reels + carousels + statics + daily Stories)</p></div>
+      <div class="freq-item"><h4>TikTok</h4><div class="freq-number">7-14</div><p style="margin:0;font-size:0.85rem;">posts per week (1-2 per day, raw and high-volume)</p></div>
+      <div class="freq-item"><h4>YouTube</h4><div class="freq-number">4-6</div><p style="margin:0;font-size:0.85rem;">posts per week (1 long-form per fortnight + 3-5 Shorts)</p></div>
+      <div class="freq-item"><h4>X / Twitter</h4><div class="freq-number">7-21</div><p style="margin:0;font-size:0.85rem;">posts per week (1-3 per day, when Tier 2 activates)</p></div>
+      <div class="freq-item"><h4>Substack</h4><div class="freq-number">1</div><p style="margin:0;font-size:0.85rem;">main essay per week + community engagement</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONTENT CAPTURE OUTLINES ==================== -->
+<section>
+  <h2>Content Capture Outlines</h2>
+  <div class="divider"></div>
+  <p class="lead">What to capture, not how to film it. These outlines give the team a clear picture of the footage, talking points, and material needed to feed each pillar. Capture more than you think you need. Real environments, real families, real use.</p>
+
+  <div class="mermaid-container">
+    <div class="chart-label">Content Workflow</div>
+    <div class="mermaid">
+graph LR
+  A["Capture<br/>Idea"] --> B["Gather<br/>Material"]
+  B --> C["Edit for<br/>Platform"]
+  C --> D["Schedule<br/>+ Post"]
+  D --> E["Engage<br/>+ Reply"]
+  E --> F["Measure<br/>+ Learn"]
+  F --> A
+  style A fill:#8B2500,color:#fff,stroke:none
+  style F fill:#8B2500,color:#fff,stroke:none
+    </div>
+  </div>
+
+  <div class="capture-block">
+    <h4>Pillar 1: One Family, One Brand</h4>
+    <p><strong>Scenes to capture:</strong> Family morning routines: parent making their scoop, child having theirs. Kitchen countertop with both products side by side. Real families talking about switching from multiple products to Modern Savage. The Grylls family at home (if Bear/Jesse are willing). Multi-generational moments: grandparents, parents, children.</p>
+    <p><strong>Talking points:</strong> Why they built a product for the whole family, not just adults. What it means to have one brand, one philosophy for the household. How the Adult and Kids Blends share the same sourcing and standards. Why the family angle is unique in this category.</p>
+    <p><strong>B-roll checklist:</strong> Both products on a kitchen counter. Family breakfast scenes. Children helping prepare their scoop. Warm, natural home environments. Product packaging close-ups showing the shared design language.</p>
+    <p><strong>Photo needs:</strong> Family lifestyle photography (diverse families, warm tones). Both products in home context. Side-by-side product shots. Carousel templates showing "one family, one brand" concept.</p>
+    <p><strong>Written content seeds:</strong> "Why we built a kids' product first, not last" (brand story). "What's on your family's supplement shelf? Here's what you can replace." (audit piece). "One counter, two scoops, the whole family covered" (simplicity story).</p>
+  </div>
+
+  <div class="capture-block">
+    <h4>Pillar 2: Replace the Shelf</h4>
+    <p><strong>Scenes to capture:</strong> A cluttered supplement shelf being cleared and replaced with one bag of Modern Savage. Side-by-side cost comparisons. Morning routines: one scoop vs the complexity of multiple capsules and powders. Real people explaining what they used to take and why they switched.</p>
+    <p><strong>Talking points:</strong> What a typical supplement stack costs per month. What most people are taking that they do not need. How one scoop covers protein, organ nutrition, gut health, and antioxidants. Why simplicity leads to better compliance and better results.</p>
+    <p><strong>B-roll checklist:</strong> Supplement shelves and medicine cabinets (the "before"). Modern Savage as the clean "after." Product mixing in a glass (slow-motion). Kitchen countertop transformations. Receipt/cost comparison visuals.</p>
+    <p><strong>Photo needs:</strong> "Before and after" shelf comparison carousels. Ingredient breakdown infographics. "One scoop contains" visual templates. Morning routine lifestyle shots.</p>
+    <p><strong>Written content seeds:</strong> "I replaced my entire supplement shelf with one scoop" (conversion story). "The real cost of your supplement stack" (cost breakdown). "What's in one scoop of Modern Savage, and what it replaces" (education piece).</p>
+  </div>
+
+  <div class="capture-block">
+    <h4>Pillar 3: Real Food, Not Lab Food</h4>
+    <p><strong>Scenes to capture:</strong> Close-ups of the product (powder texture, scoop, mixing). Grass-fed cattle on pasture (sourcing story). Side-by-side product comparisons: Modern Savage vs common supplements. Walking through a supplement aisle pointing out issues. The full ingredient list, unpacked and explained on camera.</p>
+    <p><strong>Talking points:</strong> What each organ does for the body. Why ancestral cultures prized organ meats. The difference between synthetic and whole-food supplementation. How bioavailability works in language anyone can follow. How organ nutrition supports women through different life stages.</p>
+    <p><strong>B-roll checklist:</strong> Product pouring into a glass. Nature and pastoral footage. Supplement labels (competitors, anonymised). The Modern Savage label in detail. Infographics overlaid on footage showing nutrient density.</p>
+    <p><strong>Photo needs:</strong> Ingredient spotlight graphics. "What's actually in your [X]" comparison carousels. Product flat-lays on natural surfaces. Lifestyle shots of diverse adults using the product.</p>
+    <p><strong>Written content seeds:</strong> "The organ your body misses most" (liver nutrition deep-dive). "Synthetic vs whole-food: what the science actually says" (comparison article). "Why organ nutrition is a women's health conversation" (female-focused piece). "Your great-grandparents didn't need a supplement shelf" (ancestral history).</p>
+  </div>
+
+  <div class="capture-block">
+    <h4>Pillar 4: The Family Table</h4>
+    <p><strong>Scenes to capture:</strong> Families preparing the Kids Blend together. Children's morning routines. Parents explaining why they switched from gummy vitamins. The Grylls family's own nutrition routine. Side-by-side of gummy vitamins vs Kids Blend ingredients.</p>
+    <p><strong>Talking points:</strong> Why gummy vitamins are not real nutrition. What colostrum does for children's immune development. The allergen declaration handled with transparency. Why the Kids Blend uses half the organ dose. The values dimension: feeding your family is a statement about what you believe.</p>
+    <p><strong>B-roll checklist:</strong> Children eating breakfast (lifestyle). Family outdoor activities. The Kids Blend in family kitchen settings. Children's vitamin aisle footage.</p>
+    <p><strong>Photo needs:</strong> Family lifestyle shots (diverse families). Kids Blend product photography in warm home contexts. Comparison carousels: gummy vitamins vs Kids Blend.</p>
+    <p><strong>Written content seeds:</strong> "What's actually in your child's gummy vitamin" (audit piece). "Colostrum: what every parent should know" (science deep-dive). "The case for organ nutrition from childhood" (long-form Substack).</p>
+  </div>
+
+  <div class="capture-block">
+    <h4>Pillar 5: Proof, Not Promises</h4>
+    <p><strong>Scenes to capture:</strong> Bear using the product in real settings (expedition, home, travel). Jesse discussing the brand's origin and family ownership. The formulation story. Factory and sourcing footage. Unscripted customer and family testimonials.</p>
+    <p><strong>Talking points:</strong> Why this is not a licensing deal. Bear's 30-year nutrition story. The decision to build a family-owned brand. How the formula was developed over time. Real customer stories.</p>
+    <p><strong>B-roll checklist:</strong> Bear in the field. The Grylls family at home. ACF Pharma facility. Sourcing farms. Customer unboxing and reaction footage.</p>
+    <p><strong>Photo needs:</strong> Behind-the-scenes brand photography. Founder portraits. Customer photo submissions. Product in expedition/adventure contexts.</p>
+    <p><strong>Written content seeds:</strong> "Why we didn't license the name" (founder story). "30 years of field nutrition" (Bear's personal story). "Meet the families" (testimonial series). "From formula to shelf: how Modern Savage is made" (transparency piece).</p>
+  </div>
+
+  <h3>General Capture Guidance</h3>
+  <p>Prioritise authenticity over production value. Real environments, real families, real use. The audience this brand is built for can spot a staged photo instantly. Capture more than you think you need: one filming day should produce weeks of content if planned correctly. Always get vertical video for social (9:16) and horizontal for YouTube long-form (16:9). When possible, capture both simultaneously. UGC from family/wellness creators and early customers will be the most powerful content in the first 90 days. Make it easy for them: send product, send a brief, and let them create in their own style. Influencer seeding should lead with family and clean-eating creators, with ancestral health names as a secondary tier.</p>
+</section>
+
+<!-- ==================== NARRATIVE WEB ==================== -->
+<div class="section-dark">
+  <div class="inner">
+    <h2>The Narrative Web</h2>
+    <div class="divider" style="background:var(--earth);"></div>
+
+    <p class="lead">This is how everything connects. Seven mission narratives feed five content pillars, deployed across a tiered platform ecosystem, all converging on a single product. The power is in the web: the more touchpoints a person encounters, the more the brand feels like it was built specifically for them.</p>
+
+    <div class="mermaid-container">
+      <div class="chart-label">Master Narrative Web</div>
+      <div class="mermaid">
+graph TB
+  subgraph NARRATIVES["MISSION NARRATIVES"]
+    MN1["Family<br/>Nutrition"]
+    MN2["Whole Food<br/>Simplicity"]
+    MN3["Real Ingredients,<br/>Real Sources"]
+    MN4["Gut and<br/>Long-Term Health"]
+    MN5["Provide<br/>and Protect"]
+    MN6["Family, Faith<br/>and Legacy"]
+    MN7["Freedom from<br/>Broken Systems"]
+  end
+
+  subgraph PILLARS["CONTENT PILLARS"]
+    P1["One Family,<br/>One Brand"]
+    P2["Replace<br/>the Shelf"]
+    P3["Real Food,<br/>Not Lab Food"]
+    P4["The Family<br/>Table"]
+    P5["Proof, Not<br/>Promises"]
+  end
+
+  subgraph PLATFORMS["PLATFORM ECOSYSTEM"]
+    IG["Instagram"]
+    TK["TikTok"]
+    YT["YouTube"]
+    XP["X"]
+    SS["Substack"]
+  end
+
+  MN1 --> P1
+  MN2 --> P2
+  MN3 --> P3
+  MN7 --> P3
+  MN4 --> P2
+  MN4 --> P5
+  MN5 --> P4
+  MN6 --> P4
+
+  P1 --> IG
+  P1 --> TK
+  P1 --> YT
+  P2 --> IG
+  P2 --> TK
+  P2 --> XP
+  P3 --> IG
+  P3 --> TK
+  P3 --> YT
+  P3 --> SS
+  P4 --> IG
+  P4 --> YT
+  P5 --> IG
+  P5 --> YT
+  P5 --> SS
+
+  IG --> MS["MODERN<br/>SAVAGE"]
+  TK --> MS
+  YT --> MS
+  XP --> MS
+  SS --> MS
+
+  style NARRATIVES fill:#8B2500,color:#fff,stroke:none
+  style PILLARS fill:#5C4A32,color:#fff,stroke:none
+  style PLATFORMS fill:#6B7F5E,color:#fff,stroke:none
+  style MS fill:#2C2C2C,color:#fff,stroke:#8B7355,stroke-width:3px
+      </div>
+    </div>
+
+    <p>Each narrative is an entry point. Each pillar is a content lane. Each platform is a distribution channel. The real strategy is the compound effect: someone who encounters "Replace the Shelf" on TikTok, then sees a "Real Food, Not Lab Food" carousel on Instagram, then watches a "Proof, Not Promises" long-form on YouTube does not just know about Modern Savage. They believe in it. That compounding of independent narratives into unified brand conviction is what makes this approach different from a content calendar with product posts.</p>
+
+    <blockquote>"Everything we build is in service of giving the body what it was designed to run on."</blockquote>
+
+    <p>That is the thread. Every narrative connects back to it. Every pillar serves it. Every piece of content, on every platform, should pass that test. If it does not connect back to whole-food nutrition and what the body genuinely needs, it does not belong in the brand.</p>
+
+    <div class="divider" style="background:var(--earth); margin-top:4rem;"></div>
+    <p style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--earth); margin-top:2rem;">Modern Savage · Social Media Strategy · April 2026 · Prepared by Bear Witness</p>
+    <p style="font-size:0.8rem; color:var(--sand);">Confidential. For BGV internal use.</p>
+  </div>
+</div>
+
+</body>
+</html>

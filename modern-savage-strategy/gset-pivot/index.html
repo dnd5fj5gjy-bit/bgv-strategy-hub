@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSET — Format Pivot, Next Steps · 12 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.15; }
+  p { margin-bottom: 0.9em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(40px, 6vw, 64px); color: var(--cream); margin-bottom: 18px; }
+  .hero p { color: rgba(245, 239, 226, 0.75); font-size: 18px; max-width: 640px; }
+  .hero .meta { margin-top: 28px; font-size: 13px; color: rgba(245, 239, 226, 0.55); letter-spacing: 0.06em; }
+
+  section { padding: 60px 24px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+
+  h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 18px; color: var(--evergreen-deep); }
+  h3 { font-size: 22px; margin: 32px 0 12px; color: var(--evergreen-deep); }
+  h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin: 24px 0 8px; }
+
+  .summary {
+    background: var(--cream-warm);
+    border-left: 3px solid var(--gold);
+    padding: 22px 26px;
+    border-radius: 4px;
+    margin: 24px 0 34px;
+  }
+  .summary p { margin-bottom: 0.5em; }
+  .summary p:last-child { margin-bottom: 0; }
+
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--evergreen);
+    color: var(--cream);
+    margin-right: 8px;
+  }
+  .pill.warn { background: var(--rust); }
+  .pill.gold { background: var(--gold); color: var(--ink); }
+
+  .callout {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--rust);
+    padding: 28px;
+    border-radius: 4px;
+    margin: 28px 0 36px;
+  }
+  .callout h3 { margin-top: 0; color: var(--rust); }
+
+  table.options {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 8px;
+    font-size: 14.5px;
+  }
+  table.options th, table.options td {
+    text-align: left;
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.options th {
+    background: var(--cream-warm);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  table.options td:first-child { font-weight: 600; color: var(--evergreen-deep); width: 22%; }
+  .recommend {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding: 22px 0 22px 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  ol.steps > li:last-child { border-bottom: none; }
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 22px;
+    width: 42px; height: 42px;
+    background: var(--evergreen);
+    color: var(--cream);
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  ol.steps > li strong.step-title {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 19px;
+    color: var(--evergreen-deep);
+    margin-bottom: 6px;
+  }
+  ol.steps > li em.who {
+    color: var(--slate);
+    font-size: 13.5px;
+    display: block;
+    margin-top: 6px;
+  }
+
+  .decide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .decide-grid .card {
+    background: white;
+    border: 1px solid var(--line);
+    padding: 18px;
+    border-radius: 4px;
+  }
+  .decide-grid .card strong { color: var(--evergreen-deep); display: block; margin-bottom: 6px; }
+  .decide-grid .card span { font-size: 14px; color: var(--slate); }
+
+  ul.checklist { list-style: none; padding: 0; }
+  ul.checklist li { padding: 8px 0 8px 28px; position: relative; border-bottom: 1px dashed var(--line); }
+  ul.checklist li:last-child { border-bottom: none; }
+  ul.checklist li::before {
+    content: "?"; position: absolute; left: 0; top: 8px;
+    width: 18px; height: 18px;
+    background: var(--gold-soft); color: var(--ink);
+    border-radius: 50%; font-weight: 700; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  footer {
+    padding: 40px 24px 60px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--slate);
+    font-size: 13px;
+  }
+  footer a { color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 60px 20px 70px; }
+    section { padding: 44px 20px; }
+    ol.steps > li { padding-left: 56px; }
+    ol.steps > li::before { width: 36px; height: 36px; font-size: 18px; }
+    table.options { font-size: 13px; }
+    table.options th, table.options td { padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">GSET · Format Pivot</div>
+    <h1>Immersive audiobook takes — the simple next steps.</h1>
+    <p>Out: dramatised readings. In: 20 episodes of ~8-min immersive audiobook content, one professional reader, no new Bear footage. Here's what to actually do.</p>
+    <div class="meta">Prepared by Ted · 12 May 2026 · For Olly</div>
+  </div>
+</div>
+
+<section>
+  <div class="inner">
+    <h2>The pivot, on one page</h2>
+    <div class="summary">
+      <p><strong>20 episodes</strong> total — one per chapter of the audiobook.</p>
+      <p><strong>~160 mins of new filming</strong>, ~8 mins of usable footage per episode (8 min is the YouTube floor for mid-roll ads; aim 8:30–10:30).</p>
+      <p><strong>One professional reader/performer</strong> across all 20 — single visual anchor for the series.</p>
+      <p><strong>No new Bear footage</strong> — pre-recorded / archive only. Locked.</p>
+      <p>Everything else in the operator playbook (channel, Substack, calendar anchors, Give One Away) still stands. This doc only covers what changes because of the format pivot.</p>
+    </div>
+
+    <div class="callout">
+      <span class="pill warn">Decision needed first</span>
+      <h3>What is the visual layer?</h3>
+      <p>The audiobook audio carries narration (and possibly ambient/foley) for the full 8 minutes. So what is the camera actually capturing? Three plausible models — one of them needs picking on the next Bear call before any shoot is briefed.</p>
+
+      <table class="options">
+        <thead>
+          <tr><th>Model</th><th>What you film</th><th>Pros</th><th>Cons</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A — Reader on-camera</td>
+            <td>The performer silently / quietly performing each chapter to camera; audiobook plays over the top.</td>
+            <td>Single visual anchor. Cheap. Recognisable face across the series.</td>
+            <td>Reader has to be very good. Risk of feeling like a podcast-with-pictures.</td>
+          </tr>
+          <tr>
+            <td>B — Atmospheric / B-roll</td>
+            <td>Visual representations of the chapter — landscapes, hands, candles, scripture text — no central performer.</td>
+            <td>Genuinely immersive. Cinematic. Leans into the "footsteps in the audiobook" sound design.</td>
+            <td>No human anchor. Edit-heavy. Higher cost.</td>
+          </tr>
+          <tr>
+            <td>C — Hybrid<span class="recommend">Ted's pick</span></td>
+            <td>Reader as the spine (A) + atmospheric B-roll cutaways (B) for ~30–40% of each episode.</td>
+            <td>Anchor + immersion. YouTube-friendly. Best of both.</td>
+            <td>Most expensive. Most editing.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 14px; font-size: 14px; color: var(--slate);">Until this is answered, every other step downstream is guesswork. Worth 5 minutes of the next Bear call.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="inner">
+    <h2>The 10 moves — what unblocks what</h2>
+    <ol class="steps">
+
+      <li>
+        <strong class="step-title">Lock the visual treatment with Bear (A / B / C).</strong>
+        <p>One decision, on the next call. Until this is answered nothing downstream can be briefed accurately.</p>
+        <em class="who">Olly · next Bear call · 5 min of the agenda</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Confirm audiobook-clip rights with Hodder.</strong>
+        <p>Reuse the Andy Lyon email already drafted (operator playbook Step 1). Explicitly ask for: (a) 20-chapter audiobook audio for series use, (b) editorial rights to cut into 8-min episodes, (c) permission for YouTube monetisation.</p>
+        <em class="who">Olly · today · 10 min</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Pin down the chapter list.</strong>
+        <p>Confirm the audiobook divides into 20 episode-length sections. One half-page table: ep # → chapter title → approximate audiobook timestamp range → working episode title.</p>
+        <em class="who">Olly + Ted (if you share the audiobook contents) · by Fri 16 May</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Cast the reader.</strong>
+        <p>One person, 20 episodes. Should be (a) someone whose face you can stand looking at for hours of footage, (b) physically credible for the scriptural / story material, (c) available for 2–3 batch shoot days. Longlist 5–6, narrow.</p>
+        <em class="who">Olly to longlist by Wed 21 May · decision by Fri 30 May</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Batch the shoot into 2–3 days, not 20 one-offs.</strong>
+        <p>160 minutes of usable footage at one studio location = 4–7 days <em>if</em> shot one at a time, only 2–3 if batched (set up lighting once, run all chapters back-to-back). Cheaper, faster, look stays consistent.</p>
+        <em class="who">Olly · production schedule drafted once treatment + reader are locked</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Hire the editor before the shoot, not after.</strong>
+        <p>Already in operator playbook Step 5. New format raises the bar: must be confident layering audiobook audio with picture, syncing to chapter beats, cutting for the 8-min sweet spot.</p>
+        <em class="who">Olly · post freelance brief by Fri 22 May · hire by Fri 30 May</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Get YouTube monetisation prerequisites in motion now.</strong>
+        <p>1,000 subs + 4,000 watch hours in the prior 12 months. The clip engine already in the operator playbook is what gets the channel over that line before episode 1 drops.</p>
+        <em class="who">Olly · track weekly</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Set a release cadence and write it down.</strong>
+        <p>Recommended: <strong>1 episode every 2 weeks</strong> → 40-week run. Anchors: anniversary 19 Jun (ep 1 drop) → Advent → Easter 2027.</p>
+        <em class="who">Olly · lock the calendar by Fri 23 May</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Trailer first.</strong>
+        <p>Before episode 1, cut a 90-second sizzle reel: audiobook intro + tease of the visual treatment + Bear archive sting at the end. Doubles as a Hodder asset, BGV cross-promo, and press piece.</p>
+        <em class="who">Editor's first deliverable after the shoot · drops with channel launch</em>
+      </li>
+
+      <li>
+        <strong class="step-title">Skip Pentecost, anniversary 19 Jun becomes day one.</strong>
+        <p>With the pivot, Pentecost is too soon for new format content. Channel launch + trailer + Substack post 1 all land on the 19 Jun anniversary. That becomes the actual day-one moment.</p>
+        <em class="who">Olly · decide this week</em>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>What changes vs. the existing playbook</h2>
+    <ul style="list-style: disc; padding-left: 22px;">
+      <li><strong>On-camera cast collapses</strong> from five actors-as-disciples to <em>one</em> professional reader. Jesse's "five voices, one per disciple" line is overridden by the pivot.</li>
+      <li><strong>Step 7 (clip factory) gets richer source material</strong> — every shoot day yields more footage than the episode uses; rest is clip fodder.</li>
+      <li><strong>Q3 "first actor reading"</strong> milestone is replaced by <strong>first audiobook-take episode = 19 Jun anniversary drop</strong>.</li>
+      <li><strong>Production model</strong> shifts from drama (casting director, multiple performers, costumes, scenes) to single-day(s) studio shoots with one reader. Significantly cheaper, significantly faster.</li>
+    </ul>
+  </div>
+</section>
+
+<section style="background: var(--cream-warm);">
+  <div class="inner">
+    <h2>This week's decisions for Olly</h2>
+    <div class="decide-grid">
+      <div class="card">
+        <strong>1. Visual treatment A / B / C</strong>
+        <span>Needs Bear on the next call. Step 1 above.</span>
+      </div>
+      <div class="card">
+        <strong>2. Pentecost light or skip</strong>
+        <span>Recommendation: skip. Anniversary 19 Jun becomes day one.</span>
+      </div>
+      <div class="card">
+        <strong>3. Studio location</strong>
+        <span>For the batch shoot. London likely — but where?</span>
+      </div>
+      <div class="card">
+        <strong>4. Reader brief + budget</strong>
+        <span>Editor retainer £1.5–2k/mo · reader fee likely £2–5k for 2–3 days + buyout.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>Open questions for the Bear call</h2>
+    <ul class="checklist">
+      <li>Is the audiobook's existing audio rich enough on its own (foley, ambient), or do we need to add sound design in post to match the "immersive" framing?</li>
+      <li>Does Bear have a preferred reader / has someone already been promised the role?</li>
+      <li>Is the 20-chapter split locked, or is there flexibility to re-cut (e.g. 24 × 7-min episodes if chapter lengths don't divide cleanly into 8-min units)?</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Related: <code>gset-operator-playbook.md</code> · <code>gset-action-steps-may-2026.md</code> · <code>gset-self-execution-plan.md</code></p>
+  <p style="margin-top: 8px;">Prepared by Ted · 12 May 2026 · For Olly</p>
+</footer>
+
+</body>
+</html>

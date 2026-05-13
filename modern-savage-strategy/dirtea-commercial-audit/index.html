@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIRTEA — Commercial Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; }
+  p { margin-bottom: 0.95em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; word-break: break-word; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(36px, 5.5vw, 58px); color: var(--cream); margin-bottom: 18px; }
+  .hero p { color: rgba(245, 239, 226, 0.78); font-size: 18px; max-width: 680px; }
+  .hero .meta { margin-top: 28px; font-size: 13px; color: rgba(245, 239, 226, 0.55); letter-spacing: 0.06em; }
+
+  main { padding: 56px 24px 40px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+
+  main h1 { font-size: clamp(30px, 4.2vw, 40px); margin: 36px 0 18px; color: var(--evergreen-deep); }
+  main h2 { font-size: clamp(24px, 3.4vw, 32px); margin: 40px 0 14px; color: var(--evergreen-deep); padding-top: 12px; border-top: 1px solid var(--line); }
+  main h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  main h3 { font-size: 20px; margin: 28px 0 10px; color: var(--evergreen-deep); }
+  main h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin: 22px 0 8px; }
+
+  ul, ol { margin: 0.4em 0 1.1em 1.5em; }
+  li { margin-bottom: 0.45em; }
+
+  blockquote {
+    border-left: 3px solid var(--gold);
+    background: var(--cream-warm);
+    padding: 14px 20px;
+    margin: 18px 0;
+    border-radius: 0 4px 4px 0;
+    color: var(--charcoal);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  code {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.88em;
+    background: rgba(21, 24, 28, 0.06);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  pre {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 14px 0 20px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  pre code { background: transparent; padding: 0; color: var(--cream); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 22px;
+    font-size: 14.5px;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table th {
+    background: var(--cream-warm);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 36px 0;
+  }
+
+  footer {
+    padding: 36px 24px 56px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--slate);
+    font-size: 13px;
+    background: var(--cream);
+  }
+  footer a { color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 20px 60px; }
+    main { padding: 40px 20px 28px; }
+    table { font-size: 13px; }
+    table th, table td { padding: 9px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">DIRTEA · Commercial &amp; Editorial Audit</div>
+    <h1>Press, retail, funding, founders, partnerships, product.</h1>
+    <p>Where DIRTEA sits commercially right now — and the under-told stories worth surfacing.</p>
+    <div class="meta">Prepared by Ted · April 2026 · For Olly / BGV pitch</div>
+  </div>
+</div>
+
+<main>
+  <div class="inner">
+<p>Prepared for BGV marketing pitch. All claims sourced with URLs.</p>
+<hr />
+<h2 id="1-press-coverage-last-12-months">1. PRESS COVERAGE (Last 12 Months)</h2>
+<h3 id="tier-1-national-trade-press">Tier 1 — National &amp; Trade Press</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Publication</th>
+<th>Headline / Angle</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apr 2, 2026</td>
+<td>The Grocer</td>
+<td>"Functional fungi innovator Dirtea tops Fast 50 list of food and drink brands" — Named #1 on Alantra Fast 50 with 230% CAGR</td>
+<td>https://www.thegrocer.co.uk/news/functional-fungi-innovator-dirtea-tops-fast-50-list-of-food-and-drink-brands/717062.article</td>
+</tr>
+<tr>
+<td>Apr 13, 2026</td>
+<td>BeverageDaily / NutraIngredients</td>
+<td>"Wellness brands dominate Alantra fast-growth poll as Dirtea takes gold" — All-functional top five, brand built through wellness activations and Bear Grylls stunts</td>
+<td>https://www.nutraingredients.com/Article/2026/04/13/wellness-brands-dominate-alantra-fast-growth-poll-as-dirtea-takes-gold/</td>
+</tr>
+<tr>
+<td>Jan 26, 2026</td>
+<td>The Grocer</td>
+<td>"Tesco backs functional challengers Dirtea and Mission in hot beverages shake-up" — Three Super Blends listed in 250 Tesco stores</td>
+<td>https://www.thegrocer.co.uk/hot-beverages/95.subject (paywall)</td>
+</tr>
+<tr>
+<td>Jan 21, 2026</td>
+<td>Retail Times</td>
+<td>"DIRTEA launches nationwide in selected Tesco stores" — Mainstream grocery milestone</td>
+<td>https://retailtimes.co.uk/?news_id=8686</td>
+</tr>
+<tr>
+<td>Mar 4, 2026</td>
+<td>NutraIngredients</td>
+<td>"Dirtea re-imagined: Pure Essentials cue new focus on clean cognitive care" — Brand evolution beyond mushrooms into creatine &amp; collagen</td>
+<td>https://www.nutraingredients.com/Article/2026/03/04/dirtea-re-imagined-pure-essentials-cue-new-focus-on-clean-cognitive-care/</td>
+</tr>
+<tr>
+<td>Feb 18, 2026</td>
+<td>Retail Times</td>
+<td>"DIRTEA launches Creatine &amp; Collagen with Pure Essentials Range"</td>
+<td>https://retailtimes.co.uk/dirtea-launches-creatine-collagen-with-pure-essentials-range/</td>
+</tr>
+<tr>
+<td>Sep 2, 2025</td>
+<td>NewsByWire</td>
+<td>"DIRTEA Takes America: Functional Mushroom Pioneer Launches Nationwide in The Vitamin Shoppe"</td>
+<td>https://newsbywire.com/dirtea-takes-america-functional-mushroom-pioneer-launches-nationwide-in-the-vitamin-shoppe/</td>
+</tr>
+<tr>
+<td>Jun 10, 2025</td>
+<td>Forbes</td>
+<td>"Meet Dirtea And The Brothers Brewing The Functional Mushroom Revolution" — Full feature on US expansion via Vitamin Shoppe</td>
+<td>https://www.forbes.com/sites/pamdanziger/2025/06/10/meet-dirtea-and-the-brothers-brewing-the-functional-mushroom-revolution/</td>
+</tr>
+<tr>
+<td>May 5, 2025</td>
+<td>Retail Times</td>
+<td>"DIRTEA announces a series of major retail partnerships" — Holland &amp; Barrett, John Lewis, Oliver Bonas expansions</td>
+<td>https://retailtimes.co.uk/dirtea-the-uks-leading-functional-mushroom-brand-announces-a-series-of-major-retail-partnerships/</td>
+</tr>
+<tr>
+<td>May 28, 2025</td>
+<td>The Sun</td>
+<td>"DIRTEA review: can mushroom powder replace morning coffee?" — Consumer product review</td>
+<td>https://www.thesun.co.uk/shopping/26206564/dirtea-review/</td>
+</tr>
+<tr>
+<td>Apr 15, 2025</td>
+<td>Daily Express</td>
+<td>"Coffee drinkers find new product that can enhance focus without caffeine spikes"</td>
+<td>https://www.express.co.uk/life-style/health/2041388/dirtea-coffee-morning-drink-health</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tier-2-wellness-lifestyle-press">Tier 2 — Wellness &amp; Lifestyle Press</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Publication</th>
+<th>Headline / Angle</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan 9, 2026</td>
+<td>Good Housekeeping</td>
+<td>"9 best mushroom coffees" — DIRTEA featured, brand holds Good Housekeeping Award for Best Taste</td>
+<td>https://www.goodhousekeeping.com/uk/product-reviews/health-leisure/g61887441/best-mushroom-coffees/</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>olive magazine</td>
+<td>"Best mushroom supplements tried and tested 2026" — DIRTEA featured</td>
+<td>https://www.olivemagazine.com/reviews/best-mushroom-supplements/</td>
+</tr>
+<tr>
+<td>Sep 23, 2025</td>
+<td>The Independent</td>
+<td>"Best mushroom supplements in 2025" — DIRTEA Focus Powder named Best Overall</td>
+<td>https://www.independent.co.uk/extras/indybest/food-drink/best-mushroom-supplements-b2831804.html</td>
+</tr>
+<tr>
+<td>Mar 27, 2025</td>
+<td>Evening Standard</td>
+<td>"Best mushroom coffees 2025 reviewed" — DIRTEA featured</td>
+<td>https://www.standard.co.uk/shopping/esbest/food-drink/best-mushroom-coffee-why-everyone-s-drinking-it-b1064402.html</td>
+</tr>
+<tr>
+<td>Apr 23, 2025</td>
+<td>Tyla</td>
+<td>"People swap morning coffee for legal mushroom drink"</td>
+<td>https://www.tyla.com/life/food-and-drink-/dirtea-mushroom-blend-coffee-health-benefits-661192-20250423</td>
+</tr>
+<tr>
+<td>Feb 25, 2024</td>
+<td>Marie Claire</td>
+<td>"Dirtea Cacao Review: After 12 Months Of Testing, I'm A Fan"</td>
+<td>https://www.marieclaire.co.uk/life/health-fitness/dirtea-cacao-review</td>
+</tr>
+<tr>
+<td>Apr 7, 2025</td>
+<td>ReadThis.uk</td>
+<td>"A Personal Dive into DIRTEA's Mushroom Coffee and Gummies"</td>
+<td>https://readthis.uk/2025/04/a-personal-dive-into-dirteas-mushroom-coffee-and-gummies/</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recurring-narrative-threads">Recurring Narrative Threads</h3>
+<ol>
+<li><strong>Burnout-to-brand origin story</strong> — consistently told across all founder coverage</li>
+<li><strong>Mainstream credibility</strong> — Tesco listing treated as the "mushrooms go mainstream" milestone</li>
+<li><strong>Category creation</strong> — press consistently positions DIRTEA as the pioneer/leader of UK functional mushrooms</li>
+<li><strong>Science-backed wellness</strong> — Dr. Tara Swart appointment elevated credibility narrative</li>
+<li><strong>Rapid growth</strong> — 230% CAGR / #1 Fast 50 now the dominant business angle</li>
+</ol>
+<hr />
+<h2 id="2-retail-distribution">2. RETAIL &amp; DISTRIBUTION</h2>
+<h3 id="uk-stockists-confirmed">UK Stockists (Confirmed)</h3>
+<table>
+<thead>
+<tr>
+<th>Retailer</th>
+<th>Status</th>
+<th>Notes</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tesco</strong></td>
+<td>Live (Jan 2026)</td>
+<td>3 Super Blends in 250 stores. Part of Tesco Accelerator Programme</td>
+<td>https://retailtimes.co.uk/?news_id=8686</td>
+</tr>
+<tr>
+<td><strong>Selfridges</strong></td>
+<td>Live</td>
+<td>Full range across London, Manchester (Trafford &amp; Exchange), Birmingham</td>
+<td>https://retailtimes.co.uk/dirtea-expands-partnership-with-selfridges-launching-full-range-in-manchester-trafford-manchester-exchange-and-birmingham/</td>
+</tr>
+<tr>
+<td><strong>Boots</strong></td>
+<td>Live</td>
+<td>Extended range incl. sachets (Matcha, Coffee, Cacao) in 102 stores</td>
+<td>https://retailtimes.co.uk/dirtea-the-uks-leading-functional-mushroom-brand-announces-a-series-of-major-retail-partnerships/</td>
+</tr>
+<tr>
+<td><strong>Holland &amp; Barrett</strong></td>
+<td>Live</td>
+<td>Listed stockist</td>
+<td>https://www.thesun.co.uk/shopping/26206564/dirtea-review/</td>
+</tr>
+<tr>
+<td><strong>John Lewis</strong></td>
+<td>Live</td>
+<td>Confirmed May 2025</td>
+<td>https://retailtimes.co.uk/dirtea-the-uks-leading-functional-mushroom-brand-announces-a-series-of-major-retail-partnerships/</td>
+</tr>
+<tr>
+<td><strong>Ocado</strong></td>
+<td>Live (Oct 2023)</td>
+<td>Online grocery listing</td>
+<td>https://retailtimes.co.uk/dirtea-secures-listing-functional-mushroom-products-in-ocado/</td>
+</tr>
+<tr>
+<td><strong>Planet Organic</strong></td>
+<td>Live</td>
+<td>Listed stockist</td>
+<td>Retail Times May 2025</td>
+</tr>
+<tr>
+<td><strong>Oliver Bonas</strong></td>
+<td>Live</td>
+<td>Confirmed May 2025</td>
+<td>Retail Times May 2025</td>
+</tr>
+<tr>
+<td><strong>LOOKFANTASTIC</strong></td>
+<td>Live</td>
+<td>Online beauty retailer</td>
+<td>Retail Times May 2025</td>
+</tr>
+<tr>
+<td><strong>Healf</strong></td>
+<td>Live</td>
+<td>Specialist wellness retailer</td>
+<td>https://healf.com/collections/dirtea</td>
+</tr>
+<tr>
+<td><strong>Daylesford Farm</strong></td>
+<td>Live</td>
+<td>Premium organic retail</td>
+<td>Retail Times May 2025</td>
+</tr>
+<tr>
+<td><strong>Victoria Health</strong></td>
+<td>Live</td>
+<td>Online wellness</td>
+<td>Retail Times May 2025</td>
+</tr>
+<tr>
+<td><strong>KX Members Club</strong></td>
+<td>Live</td>
+<td>Premium gym/wellness</td>
+<td>Retail Times May 2025</td>
+</tr>
+<tr>
+<td><strong>Amazon UK</strong></td>
+<td>Live</td>
+<td>Multiple SKUs</td>
+<td>https://www.amazon.co.uk/DIRTEA-Organic-Tremella-Ceremonial-Mushrooms/dp/B0DK276HK5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="us-stockists">US Stockists</h3>
+<table>
+<thead>
+<tr>
+<th>Retailer</th>
+<th>Status</th>
+<th>Notes</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The Vitamin Shoppe</strong></td>
+<td>Live (Sep 2025)</td>
+<td>Nationwide rollout, first major US retail partner</td>
+<td>https://newsbywire.com/dirtea-takes-america-functional-mushroom-pioneer-launches-nationwide-in-the-vitamin-shoppe/</td>
+</tr>
+</tbody>
+</table>
+<h3 id="international-presence">International Presence</h3>
+<ul>
+<li><strong>UAE / Middle East</strong> — DIRTEA operates ae.dirteaworld.com (UAE store) and sa.dirteaworld.com (Saudi Arabia store). Confirmed active regional e-commerce.</li>
+<li><strong>Europe</strong> — eu-eur.dirteaworld.com (EU/EUR store) active.</li>
+<li><strong>US</strong> — us.dirteaworld.com + Vitamin Shoppe brick-and-mortar.</li>
+</ul>
+<h3 id="recent-retail-expansion-timeline">Recent Retail Expansion Timeline</h3>
+<ul>
+<li><strong>Jan 2026</strong> — Tesco (250 stores) + Tesco Accelerator Programme</li>
+<li><strong>Sep 2025</strong> — The Vitamin Shoppe (US nationwide)</li>
+<li><strong>May 2025</strong> — John Lewis, Oliver Bonas, expanded Boots (102 stores)</li>
+<li><strong>Apr 2024</strong> — Selfridges multi-site expansion (Manchester, Birmingham)</li>
+<li><strong>Nov 2023</strong> — Boots initial launch</li>
+<li><strong>Oct 2023</strong> — Ocado</li>
+</ul>
+<hr />
+<h2 id="3-funding-business-news">3. FUNDING &amp; BUSINESS NEWS</h2>
+<h3 id="funding">Funding</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Detail</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total raised</td>
+<td>$1.98M (per PitchBook)</td>
+<td>https://pitchbook.com/profiles/company/558756-55</td>
+</tr>
+<tr>
+<td>Investment type</td>
+<td>Appears primarily angel/seed — Bear Grylls and Roxie Nafousi confirmed as investor-ambassadors</td>
+<td>Various</td>
+</tr>
+<tr>
+<td>Valuation</td>
+<td>Not publicly disclosed</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> PitchBook lists $1.98M total raised. No large institutional VC round has been publicly announced. The business appears to have grown primarily through revenue and strategic angel investment rather than large fundraises.</p>
+<h3 id="revenue-growth-indicators">Revenue &amp; Growth Indicators</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Detail</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CAGR</td>
+<td>230% compound annual sales growth (2-year)</td>
+<td>https://www.thegrocer.co.uk/news/functional-fungi-innovator-dirtea-tops-fast-50-list-of-food-and-drink-brands/717062.article</td>
+</tr>
+<tr>
+<td>Revenue threshold</td>
+<td>Exceeded £3M in annual sales (Alantra Fast 50 eligibility requirement)</td>
+<td>https://www.beveragedaily.com/Article/2026/04/13/wellness-brands-dominate-alantra-fast-growth-poll-as-dirtea-takes-gold/</td>
+</tr>
+<tr>
+<td>Customers</td>
+<td>200,000+ (claimed in marketing materials, Aug 2025)</td>
+<td>https://www.facebook.com/reel/1468996390710114/</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>#1 UK fastest-growing food &amp; drink brand (Alantra Fast 50, Apr 2026)</td>
+<td>The Grocer, Apr 2026</td>
+</tr>
+<tr>
+<td>Trustpilot</td>
+<td>~2,900 reviews, "Excellent" rating</td>
+<td>https://www.trustpilot.com/review/dirteaworld.com</td>
+</tr>
+</tbody>
+</table>
+<h3 id="companies-house">Companies House</h3>
+<ul>
+<li><strong>Company:</strong> DIRTEA LTD (12172107)</li>
+<li><strong>Status:</strong> Active</li>
+<li><strong>Registered address:</strong> 14 Broadley Street, London, NW8 8AE</li>
+<li><strong>CEO / Director:</strong> Jessica Salmanpour (appointed Mar 2024)</li>
+<li><strong>Filing link:</strong> https://find-and-update.company-information.service.gov.uk/company/12172107</li>
+</ul>
+<p><strong>Note:</strong> Full accounts not freely accessible via Companies House public search (likely filing micro/small entity abbreviated accounts). 230% CAGR on &gt;£3M base suggests current annual revenue likely in the £10-20M+ range — but this is extrapolation, not confirmed.</p>
+<h3 id="key-business-milestones">Key Business Milestones</h3>
+<ul>
+<li>Selected for <strong>Tesco Accelerator Programme</strong> (2025 cohort)</li>
+<li>Named <strong>UK's #1 fastest-growing food &amp; drink brand</strong> (Apr 2026)</li>
+<li>US nationwide launch via Vitamin Shoppe (Sep 2025)</li>
+<li>Professional CEO (Jessica Salmanpour) appointed Mar 2024 — signals scaling/institutionalisation</li>
+</ul>
+<hr />
+<h2 id="4-founder-interviews">4. FOUNDER INTERVIEWS</h2>
+<h3 id="interview-1-forbes-jun-2025">Interview 1: Forbes (Jun 2025)</h3>
+<ul>
+<li><strong>Source:</strong> Forbes — "Meet Dirtea And The Brothers Brewing The Functional Mushroom Revolution"</li>
+<li><strong>Date:</strong> June 10, 2025</li>
+<li><strong>Link:</strong> https://www.forbes.com/sites/pamdanziger/2025/06/10/meet-dirtea-and-the-brothers-brewing-the-functional-mushroom-revolution/</li>
+<li><strong>Key points:</strong></li>
+<li>Burnout narrative: both brothers suffered burnout from running previous business (Salter Brothers Entertainment)</li>
+<li>Discovered functional mushrooms through ancestral/traditional medicine exploration</li>
+<li>UK success story expanding to US via Vitamin Shoppe partnership</li>
+<li>Previously named in Forbes "30 Under 30" (Europe, Media &amp; Marketing, 2020) for Feeling Nuts campaign</li>
+</ul>
+<h3 id="interview-2-the-retail-bulletin-sep-2024">Interview 2: The Retail Bulletin (Sep 2024)</h3>
+<ul>
+<li><strong>Source:</strong> The Retail Bulletin — "Interview: DIRTEA Co-Founder Simon Salter on the Power of Functional Mushrooms"</li>
+<li><strong>Date:</strong> September 25, 2024</li>
+<li><strong>Link:</strong> https://www.theretailbulletin.com/food-and-drink/interview-dirtea-co-founder-simon-salter-on-the-power-of-functional-mushrooms-25-09-2024/</li>
+<li><strong>Key points:</strong></li>
+<li>Discussion of Selfridges collaboration as validation moment</li>
+<li>Simon's personal wellness journey</li>
+<li>Retail strategy — making mushrooms accessible, not niche</li>
+</ul>
+<h3 id="interview-3-open-up-with-amira-podcast-nov-2022">Interview 3: "Open Up with Amira" Podcast (Nov 2022)</h3>
+<ul>
+<li><strong>Source:</strong> YouTube / Amazon Music — "From burnout to co-founder of DIRTEA: The magic of mushrooms"</li>
+<li><strong>Date:</strong> November 24, 2022</li>
+<li><strong>Link:</strong> https://www.youtube.com/watch?v=HCbgR1lry80</li>
+<li><strong>Key points:</strong></li>
+<li>Deep-dive on burnout: running entertainment company, health collapsed</li>
+<li>Discovered mushrooms through "integrated medicines and ancestral practices"</li>
+<li>"Nothing else solved the burnout" — direct quote from LinkedIn</li>
+<li>Life purpose shift from entertainment to wellness</li>
+</ul>
+<h3 id="interview-4-adhd-womens-wellbeing-podcast-feb-2023">Interview 4: ADHD Women's Wellbeing Podcast (Feb 2023)</h3>
+<ul>
+<li><strong>Source:</strong> ADHD Women's Wellbeing Podcast, Ep 51</li>
+<li><strong>Date:</strong> February 9, 2023</li>
+<li><strong>Link:</strong> https://www.adhdwomenswellbeing.co.uk/adhd-podcast/ep51-simon-andrew-salter</li>
+<li><strong>Key points:</strong></li>
+<li>Burnout led to exploration of "specifically ancestral practices that involved medicinal mushrooms (not magic!)"</li>
+<li>"Completely shifted their bodies, career and life purpose"</li>
+<li>Both brothers tell the story together — rare joint interview</li>
+</ul>
+<h3 id="interview-5-wpp-elevate-undated">Interview 5: WPP Elevate (undated)</h3>
+<ul>
+<li><strong>Source:</strong> WPP Elevate — "DIRTEA: Minds Think Alike"</li>
+<li><strong>Link:</strong> https://www.wppelevate.com/issue-6/feature/dirtea-minds-thinks-alike-andrew-and-simon-salter-on-co-founding-dirtea-and-their-journey</li>
+<li><strong>Key points:</strong></li>
+<li>Full journey from Feeling Nuts to DIRTEA</li>
+<li>Brothers dynamic — complementary skills (Andrew = CMO/CEO, Simon = community/brand)</li>
+<li>Origin of brand from entertainment/campaign background</li>
+</ul>
+<h3 id="how-they-tell-the-origin-story">How They Tell the Origin Story</h3>
+<p>The burnout narrative is remarkably consistent across all interviews:
+1. Ran Salter Brothers Entertainment (including Feeling Nuts campaign)
+2. Both suffered burnout / health collapse
+3. Explored traditional/ancestral medicine
+4. Discovered functional mushrooms as the solution
+5. Decided to make them accessible to everyone</p>
+<p><strong>Under-used element:</strong> Their pre-DIRTEA credentials (Forbes 30 Under 30, Channel 4 prime-time show, viral health campaign reaching millions) are barely mentioned on DIRTEA's owned channels. This is a significant credibility asset being left on the table.</p>
+<hr />
+<h2 id="5-dr-tara-swart-involvement">5. DR. TARA SWART INVOLVEMENT</h2>
+<h3 id="role-at-dirtea">Role at DIRTEA</h3>
+<ul>
+<li><strong>Title:</strong> Chief Science Officer (appointed October 2024)</li>
+<li><strong>First science board member</strong> — she inaugurated DIRTEA's science board</li>
+<li><strong>Source:</strong> https://www.dirteaworld.com/blogs/news/meet-dr-tara-swart-dirtea-s-new-chief-science-officer</li>
+</ul>
+<h3 id="her-public-profile">Her Public Profile</h3>
+<table>
+<thead>
+<tr>
+<th>Credential</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Academic role</td>
+<td>Senior Lecturer / Senior Advisor, MIT Sloan School of Management</td>
+</tr>
+<tr>
+<td>Medical training</td>
+<td>Oxford University trained medical doctor</td>
+</tr>
+<tr>
+<td>PhD</td>
+<td>Neuropharmacology</td>
+</tr>
+<tr>
+<td>Books</td>
+<td><em>The Source</em> (bestseller), <em>The Signs</em> (NY Times &amp; Sunday Times bestseller, 2024)</td>
+</tr>
+<tr>
+<td>Podcast</td>
+<td>"Reinvent Yourself with Dr Tara"</td>
+</tr>
+<tr>
+<td>Major appearances</td>
+<td>Diary of a CEO with Steven Bartlett (Aug 2025 — episode on communicating after death); Jay Shetty "On Purpose" (Jan 2025)</td>
+</tr>
+<tr>
+<td>Other roles</td>
+<td>Mind Ambassador at Healf.com; Trustee of Lady Garden Foundation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recent-high-profile-activity-2024-2025">Recent High-Profile Activity (2024-2025)</h3>
+<ul>
+<li><strong>Aug 2025</strong> — Diary of a CEO episode (Steven Bartlett) — massive reach</li>
+<li><strong>Jan 2025</strong> — Jay Shetty "On Purpose" podcast — manifestation &amp; brain hacks</li>
+<li><strong>Oct 2025</strong> — YouTube feature on grief and neuroscience (signs from the dead)</li>
+<li><strong>2024</strong> — Published <em>The Signs</em> — instant NY Times &amp; Sunday Times bestseller</li>
+</ul>
+<h3 id="content-produced-for-dirtea">Content Produced for DIRTEA</h3>
+<ul>
+<li>Blog post / announcement on dirteaworld.com (Oct 2024)</li>
+<li>Referenced as CSO across brand materials and product pages</li>
+<li>Cited in press coverage as credibility signal</li>
+</ul>
+<h3 id="leverage-opportunity">Leverage Opportunity</h3>
+<p>Dr. Swart's profile has grown significantly since appointment. Her Diary of a CEO episode (Aug 2025) likely reached millions. Her expertise in neuroplasticity, stress, and brain health directly aligns with DIRTEA's Lion's Mane / cognitive focus positioning. Currently under-leveraged — she could be doing:
+- Co-authored "brain health" content series
+- Science-backed educational campaigns
+- Joint podcast appearances with founders
+- Clinical-style endorsement content</p>
+<hr />
+<h2 id="6-bear-grylls-partnerships">6. BEAR GRYLLS / PARTNERSHIPS</h2>
+<h3 id="bear-grylls">Bear Grylls</h3>
+<table>
+<thead>
+<tr>
+<th>Detail</th>
+<th>Confirmation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Role</td>
+<td><strong>Investor AND Global Ambassador</strong></td>
+</tr>
+<tr>
+<td>Announced</td>
+<td>June 14, 2024</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>https://smebusinessnews.co.uk/2024/06/14/dirtea-announces-global-partnership-with-bear-grylls-or-bear-grylls-invests-in-dirtea-leading-functional-mushroom-brand/</td>
+</tr>
+<tr>
+<td>Activity</td>
+<td>"Jumping out of a helicopter with brand investor and ambassador Bear Grylls" — used for content/activations</td>
+</tr>
+<tr>
+<td>Website listing</td>
+<td>Confirmed on us.dirteaworld.com navigation: "Bear Grylls, Investor &amp; Global Ambassador"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="roxie-nafousi">Roxie Nafousi</h3>
+<table>
+<thead>
+<tr>
+<th>Detail</th>
+<th>Confirmation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Role</td>
+<td><strong>Investor AND Ambassador</strong></td>
+</tr>
+<tr>
+<td>Profile</td>
+<td>Bestselling author, self-development coach, "queen of manifestation"</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>https://ae.dirteaworld.com/collections/roxie-nafousi</td>
+</tr>
+<tr>
+<td>Activity</td>
+<td>Has curated product pages on DIRTEA site, appears in wellness events</td>
+</tr>
+</tbody>
+</table>
+<h3 id="celebrity-fans-users-confirmed-via-press">Celebrity Fans / Users (Confirmed via press)</h3>
+<ul>
+<li>Rita Ora</li>
+<li>Fearne Cotton</li>
+<li>Charlotte Tilbury</li>
+<li>David Gandy</li>
+<li>Benedict Cumberbatch</li>
+<li>Davinia Taylor</li>
+<li>Millie Mackintosh</li>
+<li>Idris Elba</li>
+</ul>
+<p><strong>Source:</strong> https://retailtimes.co.uk/dirtea-the-uks-leading-functional-mushroom-brand-announces-a-series-of-major-retail-partnerships/</p>
+<h3 id="brand-collaborations">Brand Collaborations</h3>
+<ul>
+<li><strong>Stella McCartney</strong> — Co-hosted wellness masterclass/event (Milan + London) on functional mushrooms. Simon &amp; Andrew hosted.</li>
+<li>Source: https://www.linkedin.com/posts/simonbsalter_last-week-we-kicked-off-our-dirtea-x-stella-activity-6929367441265336320-f3_r</li>
+<li><strong>Soho House</strong> — Official partnership; featured as member-founded wellness brand</li>
+<li>Source: https://www.sohohouse.com/zh/house-notes/issue-006/soho-health-club/six-member-founded-brands-to-see-you-through-the-january-slump</li>
+<li><strong>Selfridges</strong> — Pop-up cafe &amp; shop (2022), ongoing full-range stocking</li>
+<li>Source: https://www.theretailbulletin.com/health-and-beauty/dirtea-launches-functional-mushroom-pop-up-cafe-and-shop-at-selfridges-12-04-2022/</li>
+</ul>
+<hr />
+<h2 id="7-product-range">7. PRODUCT RANGE</h2>
+<h3 id="current-skus-pricing">Current SKUs &amp; Pricing</h3>
+<p><strong>Powders / Blends (30 servings per pouch)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>One-time Price</th>
+<th>Subscription Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lion's Mane Powder</td>
+<td>£38</td>
+<td>£30</td>
+<td>Focus &amp; energy, flagship product</td>
+</tr>
+<tr>
+<td>Reishi Powder</td>
+<td>£38</td>
+<td>£30</td>
+<td>Calm &amp; sleep</td>
+</tr>
+<tr>
+<td>Cordyceps Powder</td>
+<td>£38</td>
+<td>£30</td>
+<td>Energy &amp; performance</td>
+</tr>
+<tr>
+<td>Chaga Powder</td>
+<td>£38</td>
+<td>£30</td>
+<td>Immunity</td>
+</tr>
+<tr>
+<td>Tremella Powder</td>
+<td>£38</td>
+<td>£30</td>
+<td>Skin &amp; beauty</td>
+</tr>
+<tr>
+<td>Super Blend (Coffee)</td>
+<td>£38</td>
+<td>£26 (with Welcome Kit)</td>
+<td>Lion's Mane + Arabica coffee, 80% less caffeine</td>
+</tr>
+<tr>
+<td>Matcha Super Blend</td>
+<td>£38</td>
+<td>~£26</td>
+<td>Lion's Mane + Tremella + ceremonial matcha</td>
+</tr>
+<tr>
+<td>Cacao Super Blend</td>
+<td>£38</td>
+<td>~£30</td>
+<td>Evening ritual blend</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gummies (60 per pack, 1 month supply)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lion's Mane Gummies</td>
+<td>~£30-38</td>
+<td>With Vitamin B12 &amp; B5, mixed berry flavour</td>
+</tr>
+<tr>
+<td>Cordyceps Gummies</td>
+<td>~£30-38</td>
+<td>Energy &amp; performance, 3,000mg per serving</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sachets (convenient format)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matcha Sachets</td>
+<td>~£13-15 for 7 pack</td>
+<td>7 x 6g individual sachets</td>
+</tr>
+<tr>
+<td>Coffee Sachets</td>
+<td>Similar</td>
+<td>Available in Boots</td>
+</tr>
+<tr>
+<td>Cacao Sachets</td>
+<td>Similar</td>
+<td>Available in Boots</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NEW: Pure Essentials Range (Feb 2026)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DIRTEA Pure Essentials Collagen</td>
+<td>TBC</td>
+<td>Peptan-sourced, clinically researched</td>
+</tr>
+<tr>
+<td>DIRTEA Pure Essentials Creatine</td>
+<td>TBC</td>
+<td>100% micronised creatine monohydrate</td>
+</tr>
+<tr>
+<td>The Essential Set (both)</td>
+<td>TBC</td>
+<td>Subscription discount available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Source:</strong> https://www.thesun.co.uk/shopping/26206564/dirtea-review/ ; https://insider.fitt.co/press-release/dirtea-launches-creatine-collagen-with-pure-essentials-range/</p>
+<h3 id="subscription-vs-one-time">Subscription vs One-Time</h3>
+<ul>
+<li>Subscription saves ~20-30% on individual products</li>
+<li>New subscribers receive "Welcome Kit" worth ~£34 (mug, storage jar, measuring spoon, milk frother)</li>
+<li>Monthly, quarterly, and annual subscription options available</li>
+<li>Subscription management via customer portal</li>
+</ul>
+<h3 id="new-product-launches-last-6-months">New Product Launches (Last 6 Months)</h3>
+<ol>
+<li><strong>DIRTEA Pure Essentials Creatine</strong> — Feb 2026 (brand extension beyond mushrooms)</li>
+<li><strong>DIRTEA Pure Essentials Collagen</strong> — Feb 2026 (Peptan-sourced)</li>
+<li><strong>Matcha Sachets</strong> — Available in Boots (convenience format for retail)</li>
+<li><strong>Tesco Super Blends</strong> — Jan 2026 (3 blends formatted for grocery retail)</li>
+</ol>
+<h3 id="positioning">Positioning</h3>
+<ul>
+<li>Premium pricing (£38 per 30 servings = ~£1.27/day)</li>
+<li>Dual extraction process (water + alcohol soluble compounds)</li>
+<li>Certified organic</li>
+<li>Third-party tested</li>
+<li>Vegan, gluten-free</li>
+</ul>
+<hr />
+<h2 id="8-under-told-stories">8. UNDER-TOLD STORIES</h2>
+<p>Based on this research, the following represent strong credentials that DIRTEA is NOT currently amplifying sufficiently on owned channels:</p>
+<h3 id="1-the-feeling-nuts-legacy-pre-dirtea-social-impact">1. The Feeling Nuts Legacy (Pre-DIRTEA Social Impact)</h3>
+<p>Simon and Andrew created the <strong>Feeling Nuts Movement</strong> — a testicular cancer awareness campaign that became a <strong>prime-time Channel 4 show</strong> reaching almost 1 million live viewers, went globally viral, and led to their Forbes 30 Under 30 listing (2020). This demonstrates:
+- Proven ability to create cultural movements (not just products)
+- Health communication credentials before DIRTEA
+- Track record of making taboo health topics mainstream</p>
+<p><strong>Why it matters for ads:</strong> Positions founders as serial health communicators, not just supplement entrepreneurs. Almost entirely absent from current DIRTEA marketing.</p>
+<p>Source: https://www.iangambier.com/feelingnuts ; https://wiki-gateway.eudic.net/wikipedia_en/The_Feeling_Nuts_Comedy_Night.html</p>
+<h3 id="2-dr-tara-swarts-post-appointment-profile-explosion">2. Dr. Tara Swart's Post-Appointment Profile Explosion</h3>
+<p>Since joining as CSO (Oct 2024), Dr. Swart has appeared on <strong>Diary of a CEO</strong> (Aug 2025 — one of the UK's biggest podcasts), Jay Shetty, and published a NY Times/Sunday Times bestseller. Her public profile has grown enormously AFTER joining DIRTEA, but this credibility is barely being leveraged in brand content. She's one of the UK's most visible neuroscientists and is literally their CSO.</p>
+<p><strong>Why it matters for ads:</strong> "Our Chief Science Officer is a bestselling neuroscientist, MIT lecturer, and Diary of a CEO guest" is an extraordinarily strong proof point that's currently under-deployed.</p>
+<h3 id="3-the-bootstrap-growth-story-revenue-funded-not-vc-backed">3. The Bootstrap Growth Story (Revenue-Funded, Not VC-Backed)</h3>
+<p>DIRTEA has raised only ~$2M in funding yet achieved 230% CAGR and the #1 spot on UK's fastest-growing food &amp; drink brands. In an era of VC-bloated DTC brands that collapse, DIRTEA appears to be genuinely profitable and revenue-funded. This is remarkable and differentiated.</p>
+<p><strong>Why it matters for ads:</strong> Authenticity signal. "We grew because people kept buying, not because investors kept funding" is a powerful counter-narrative to wellness brand scepticism.</p>
+<h3 id="4-the-celebrity-ecosystem-organic-not-paid">4. The Celebrity Ecosystem (Organic, Not Paid)</h3>
+<p>The brand has an unusually long list of high-profile organic users (Rita Ora, Benedict Cumberbatch, Charlotte Tilbury, Idris Elba, Fearne Cotton, etc.) plus strategic investor-ambassadors (Bear Grylls, Roxie Nafousi). Most wellness brands either have celebrities OR science — DIRTEA has both, plus genuine cultural partnerships (Stella McCartney, Soho House).</p>
+<p><strong>Why it matters for ads:</strong> Social proof density is exceptional but fragmented across press mentions. Could be consolidated into a powerful "who trusts us" narrative.</p>
+<h3 id="5-professional-ceo-appointment-institutional-maturity-signal">5. Professional CEO Appointment (Institutional Maturity Signal)</h3>
+<p>Jessica Salmanpour was appointed CEO/Director in March 2024, with founders stepping into CCO (Simon) and CMO (Andrew) roles. This signals a business maturing beyond founder-led chaos into scaled operations — rare for a brand at this stage to publicly acknowledge.</p>
+<p><strong>Why it matters for ads:</strong> For B2B/retail pitches and investor credibility, this shows the business is run professionally, not just by charismatic founders. Under-communicated externally.</p>
+<hr />
+<h2 id="verification-notes">VERIFICATION NOTES</h2>
+<ul>
+<li>All URLs were live at time of research (April 2026)</li>
+<li>The Grocer articles are paywalled; headline and summary confirmed via search</li>
+<li>Revenue figures are extrapolated from Alantra Fast 50 eligibility (&gt;£3M) and 230% CAGR — exact revenue not publicly disclosed</li>
+<li>PitchBook funding figure ($1.98M) may not capture all angel/private investment</li>
+<li>International e-commerce stores (UAE, Saudi, EU) confirmed via subdomain existence but local retail partnerships unconfirmed</li>
+<li>Celebrity "fans" list comes from DIRTEA's own PR (Retail Times) — level of relationship (paid, gifted, organic) not independently verified for all names</li>
+</ul>
+  </div>
+</main>
+
+<footer>
+  Prepared by Ted for Olly · BGV · <a href="https://dnd5fj5gjy-bit.github.io/modern-savage-strategy/">Index</a>
+</footer>
+
+</body>
+</html>

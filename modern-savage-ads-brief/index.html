@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Savage: Meta Ad Campaign Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bone: #F5F0EB;
+  --charcoal: #2C2C2C;
+  --earth: #8B7355;
+  --rust: #A0522D;
+  --sage: #6B7F5E;
+  --cream: #FAF7F2;
+  --sand: #D4C5B2;
+  --deep-earth: #5C4A32;
+  --blood: #8B2500;
+  --vo: #1a3a5c;
+  --stock: #2d6a4f;
+  --product: #8B2500;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--charcoal); background: var(--cream); line-height: 1.7; font-size: 16px; }
+.cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--charcoal); color: var(--bone); text-align: center; padding: 4rem 2rem; position: relative; }
+.cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 70% 40%, rgba(139,115,85,0.12) 0%, transparent 60%); }
+.cover-subtitle { font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--earth); margin-bottom: 1.5rem; position: relative; }
+.cover-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.1; position: relative; }
+.cover-title em { font-style: italic; color: var(--earth); }
+.cover-desc { font-size: 1rem; color: var(--sand); margin-top: 1.5rem; max-width: 520px; position: relative; line-height: 1.6; }
+.cover-footer { position: absolute; bottom: 2.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--earth); opacity: 0.6; }
+section { max-width: 880px; margin: 0 auto; padding: 4.5rem 2rem; }
+.section-dark { background: var(--charcoal); color: var(--bone); max-width: 100%; padding: 4.5rem 2rem; }
+.section-dark .inner { max-width: 880px; margin: 0 auto; }
+.section-alt { background: var(--bone); max-width: 100%; padding: 4.5rem 2rem; }
+.section-alt .inner { max-width: 880px; margin: 0 auto; }
+h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.15; }
+.section-dark h2 { color: var(--bone); }
+h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.8rem; color: var(--deep-earth); }
+.section-dark h3 { color: var(--sand); }
+h4 { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--earth); margin-top: 1.8rem; margin-bottom: 0.5rem; }
+p { margin-bottom: 1.1rem; }
+.lead { font-size: 1.1rem; line-height: 1.8; color: var(--deep-earth); }
+.section-dark .lead { color: var(--sand); }
+.divider { width: 50px; height: 2px; background: var(--earth); margin: 2.5rem 0; }
+
+.ad-card { background: white; border-radius: 6px; padding: 2.5rem; margin: 2.5rem 0; box-shadow: 0 2px 16px rgba(0,0,0,0.05); border-top: 4px solid var(--earth); }
+.ad-card.tof { border-top-color: var(--sage); }
+.ad-card.mof { border-top-color: var(--earth); }
+.ad-card.bof { border-top-color: var(--blood); }
+.ad-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.ad-header h3 { margin: 0; font-size: 1.5rem; }
+.ad-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 2px; }
+.badge-tof { background: var(--sage); color: white; }
+.badge-mof { background: var(--earth); color: white; }
+.badge-bof { background: var(--blood); color: white; }
+.badge-format { background: var(--sand); color: var(--charcoal); }
+.badge-duration { background: var(--charcoal); color: white; }
+.badge-pillar { background: rgba(139,115,85,0.15); color: var(--deep-earth); }
+
+.script-block { border-left: 3px solid var(--sand); padding: 1rem 0 1rem 1.5rem; margin: 1rem 0; position: relative; font-size: 0.95rem; }
+.script-block::before { content: attr(data-label); position: absolute; top: -0.6rem; left: 1.5rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 2px; }
+.script-block.hook { border-color: var(--blood); }
+.script-block.hook::before { background: var(--blood); color: white; }
+.script-block.vo { border-color: var(--vo); }
+.script-block.vo::before { background: var(--vo); color: white; }
+.script-block.stock { border-color: var(--stock); }
+.script-block.stock::before { background: var(--stock); color: white; }
+.script-block.product { border-color: var(--product); }
+.script-block.product::before { background: var(--product); color: white; }
+.script-block.cta { border-color: var(--charcoal); }
+.script-block.cta::before { background: var(--charcoal); color: white; }
+.script-block.text-overlay { border-color: var(--earth); }
+.script-block.text-overlay::before { background: var(--earth); color: white; }
+
+.vo-line { font-style: italic; color: var(--vo); font-size: 1.05rem; line-height: 1.6; margin-bottom: 0.3rem; }
+.direction { color: #666; font-size: 0.88rem; }
+.stock-search { background: rgba(45,106,79,0.08); border-radius: 3px; padding: 0.4rem 0.7rem; font-size: 0.82rem; color: var(--stock); display: inline-block; margin: 0.3rem 0.3rem 0.3rem 0; font-weight: 600; }
+.text-on-screen { font-weight: 700; color: var(--charcoal); font-size: 1.05rem; }
+
+.key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.key-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; }
+.key-swatch { width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0; }
+
+.structure-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+.structure-card { background: white; padding: 1.5rem; border-radius: 4px; border-top: 3px solid var(--sage); }
+.structure-card.mid { border-top-color: var(--earth); }
+.structure-card.bot { border-top-color: var(--blood); }
+.structure-card h4 { margin-top: 0; }
+
+.adset-box { background: rgba(139,115,85,0.06); border: 1px solid var(--sand); border-radius: 4px; padding: 1.5rem 2rem; margin: 1.5rem 0; }
+.adset-box h4 { margin-top: 0; }
+
+.tips-box { background: var(--charcoal); color: var(--bone); padding: 2rem; border-radius: 6px; margin: 2rem 0; }
+.tips-box h4 { color: var(--earth); margin-top: 0; }
+.tips-box + .tips-box { margin-top: 1rem; }
+
+@media (max-width: 700px) { .structure-grid { grid-template-columns: 1fr; } .ad-header { flex-direction: column; } h2 { font-size: 2rem; } }
+@media print { .cover { min-height: auto; page-break-after: always; } .ad-card { page-break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-subtitle">Meta Ad Campaign Brief</div>
+  <h1 class="cover-title">Modern <em>Savage</em></h1>
+  <p class="cover-desc">Pre-launch and launch ad scripts.<br>Your VO + stock footage + product cutaways.<br>Ready for production.</p>
+  <div class="cover-footer">Prepared by Bear Witness · April 2026</div>
+</div>
+
+<!-- ==================== CAMPAIGN OVERVIEW ==================== -->
+<section>
+  <h2>Campaign Architecture</h2>
+  <div class="divider"></div>
+
+  <p class="lead">Every ad in this campaign is built from three layers: your voiceover narrating over stock footage and b-roll, with product shots of Modern Savage cut in at the bridge moments. No face-to-camera. No AI-generated clips. Just your voice, real footage, and the product.</p>
+
+  <div class="structure-grid">
+    <div class="structure-card">
+      <h4>Top of Funnel</h4>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:700; color:var(--sage); margin:0.5rem 0;">Problem Aware</p>
+      <p style="font-size:0.9rem;">Make the audience feel the gap. Minimal or no product shown. Educate on the problems: supplement shelf chaos, synthetic ingredients, the gummy vitamin con. Pulls from Pillars 2, 3, and 4.</p>
+      <p style="font-size:0.8rem; color:var(--earth); margin:0;"><strong>Objective:</strong> Video views / reach<br><strong>Audience:</strong> Broad interests (health, family, clean eating, parenting)</p>
+    </div>
+    <div class="structure-card mid">
+      <h4>Mid Funnel</h4>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:700; color:var(--earth); margin:0.5rem 0;">Solution Aware</p>
+      <p style="font-size:0.9rem;">Introduce Modern Savage directly. The product, the family mission, the simplicity pitch. Product footage is prominent. Pulls from Pillars 1 and 2.</p>
+      <p style="font-size:0.8rem; color:var(--earth); margin:0;"><strong>Objective:</strong> Traffic / engagement<br><strong>Audience:</strong> Retarget TOF viewers + lookalikes</p>
+    </div>
+    <div class="structure-card bot">
+      <h4>Bottom of Funnel</h4>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:700; color:var(--blood); margin:0.5rem 0;">Trust + Convert</p>
+      <p style="font-size:0.9rem;">Bear's credibility, ingredient transparency, the formulation story. Permission to buy. Pulls from Pillar 5.</p>
+      <p style="font-size:0.8rem; color:var(--earth); margin:0;"><strong>Objective:</strong> Conversions<br><strong>Audience:</strong> Retarget MOF engagers + site visitors</p>
+    </div>
+  </div>
+
+  <h3>How to Read the Scripts</h3>
+  <div class="key-grid">
+    <div class="key-item"><div class="key-swatch" style="background:var(--blood);"></div> <strong>HOOK</strong> First 1-3 seconds. Bold text on screen + a scroll-stopping visual. No VO yet.</div>
+    <div class="key-item"><div class="key-swatch" style="background:var(--vo);"></div> <strong>YOUR VO</strong> What you record. Italic text = exact script. Grey text = delivery direction.</div>
+    <div class="key-item"><div class="key-swatch" style="background:var(--stock);"></div> <strong>STOCK / B-ROLL</strong> Footage to source from stock libraries. Search terms included in green tags.</div>
+    <div class="key-item"><div class="key-swatch" style="background:var(--product);"></div> <strong>PRODUCT</strong> Modern Savage product footage you shoot yourself. Cut in where marked.</div>
+    <div class="key-item"><div class="key-swatch" style="background:var(--earth);"></div> <strong>TEXT OVERLAY</strong> On-screen text. Animated or static depending on the moment.</div>
+    <div class="key-item"><div class="key-swatch" style="background:var(--charcoal);"></div> <strong>CTA</strong> Closing frame with branding and call to action.</div>
+  </div>
+
+  <div class="tips-box">
+    <h4>VO Recording Notes</h4>
+    <p style="margin-bottom:0;">Record in a quiet room. Phone voice memo works for testing; use a decent mic for finals. Natural conversational pace, not presenter-voice. Like explaining something to a friend over coffee. Warm, direct, grounded. Leave 1-2 second pauses between sections for clean edit points. Record each ad as one continuous take, then record each section individually as backup coverage.</p>
+  </div>
+
+  <div class="tips-box">
+    <h4>Stock Footage Notes</h4>
+    <p style="margin-bottom:0;">Each ad includes green search-term tags for stock libraries (Pexels, Artgrid, Storyblocks, Envato Elements). Look for footage with natural light, warm tones, and a documentary feel. Avoid anything that looks like a pharmaceutical ad or a fitness commercial. Kitchen scenes, family mornings, natural environments, and close-ups of hands and objects will do most of the heavy lifting. Vertical (9:16) is ideal for Reels/Stories; source horizontal and crop if needed.</p>
+  </div>
+
+  <div class="tips-box">
+    <h4>Product Footage You Need to Shoot</h4>
+    <p style="margin-bottom:0;">You can cover every ad in this brief with one product shoot. Here is the full shot list: the Modern Savage bag (Adult Blend) on a clean counter in natural light; the Kids Blend bag beside it; a scoop going into the powder; the powder being tipped into a glass; water being poured in and stirred; the mixed drink in a glass on a counter; both bags side by side; a close-up of the ingredient label; a close-up of the back-of-pack nutrition panel; the bag in a kitchen setting next to everyday items (kettle, fruit bowl, school bag). Shoot in natural morning light. Phone camera is fine if the light is good. Get both vertical and horizontal angles for every shot.</p>
+  </div>
+</section>
+
+<!-- ==================== TOP OF FUNNEL ==================== -->
+<div class="section-dark">
+  <div class="inner">
+    <h2>Top of Funnel: Problem Aware</h2>
+    <div class="divider" style="background:var(--earth);"></div>
+    <p class="lead">These ads make the audience feel the problem before they see the product. Minimal or no Modern Savage branding until the final frame. The goal is to educate and earn a long enough view to retarget.</p>
+
+    <!-- TOF AD 1 -->
+    <div class="ad-card tof">
+      <div class="ad-header">
+        <h3>Ad 1: The Supplement Shelf</h3>
+        <div class="ad-meta">
+          <span class="badge badge-tof">Top of Funnel</span>
+          <span class="badge badge-format">Reel / Story</span>
+          <span class="badge badge-duration">30-40s</span>
+          <span class="badge badge-pillar">Pillar 2: Replace the Shelf</span>
+        </div>
+      </div>
+
+      <div class="script-block hook" data-label="Hook (1-3s)">
+        <p class="text-on-screen">"You have 8 supplements on your counter. Here's how many are actually working."</p>
+        <p class="direction">Visual: Stock close-up of a cluttered supplement shelf or medicine cabinet. Text animates on bold. The number "8" appears large, holds for a beat, then scratches down to "maybe 2."</p>
+        <p><span class="stock-search">supplement bottles shelf</span> <span class="stock-search">medicine cabinet cluttered</span> <span class="stock-search">vitamin bottles kitchen counter</span></p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Cut through 3-4 quick stock clips: hands picking up supplement bottles and putting them back. A kitchen counter covered in different products. Close-up of a supplement label with tiny unreadable text. A hand opening a capsule bottle and tipping out pills. All close-ups, all hands and objects.</p>
+        <p><span class="stock-search">reading supplement label</span> <span class="stock-search">pills capsules pouring hand</span> <span class="stock-search">kitchen supplements overhead</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"Most families are spending over a hundred quid a month on supplements they picked based on packaging. A collagen here. A multivitamin there. A probiotic. A greens powder. Maybe a fish oil."</p>
+        <p class="direction">Steady, factual. Not judging. Listing. Each product name lands as a separate beat.</p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"None of them were designed to work together. Half of them overlap. And the ones that don't? They're full of synthetic compounds your body barely recognises."</p>
+        <p class="direction">Still calm, but an edge creeps in. "Barely recognises" should land with quiet weight.</p>
+      </div>
+
+      <div class="script-block text-overlay" data-label="Text Overlay">
+        <p class="text-on-screen">"What if you could replace all of them with one scoop?"</p>
+        <p class="direction">Clean frame. Dark or neutral background. The question sits on screen for 2 seconds. No product shown. Let the thought land.</p>
+      </div>
+
+      <div class="script-block cta" data-label="CTA">
+        <p class="text-on-screen">Modern Savage. Coming July 2026.</p>
+        <p class="direction">Minimal end card. Logo + date. This is pure awareness. The job is done if they watched past the hook.</p>
+      </div>
+    </div>
+
+    <!-- TOF AD 2 -->
+    <div class="ad-card tof">
+      <div class="ad-header">
+        <h3>Ad 2: Read the Label</h3>
+        <div class="ad-meta">
+          <span class="badge badge-tof">Top of Funnel</span>
+          <span class="badge badge-format">Reel / Story</span>
+          <span class="badge badge-duration">25-35s</span>
+          <span class="badge badge-pillar">Pillar 3: Real Food, Not Lab Food</span>
+        </div>
+      </div>
+
+      <div class="script-block hook" data-label="Hook (1-3s)">
+        <p class="text-on-screen">"Read the back of your multivitamin. I'll wait."</p>
+        <p class="direction">Visual: Stock close-up of a supplement label, text tiny and unreadable. Camera slowly pushes in. Hook text appears bold over the top.</p>
+        <p><span class="stock-search">supplement label close up</span> <span class="stock-search">vitamin bottle ingredients list</span></p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Hands turning a supplement bottle to read the back. Close-up of the ingredient list: long chemical names in small print. Cut to: a different bottle, same unreadable label. Cut to: a slow pan across several bottles lined up, all with dense ingredient panels.</p>
+        <p><span class="stock-search">reading nutrition label</span> <span class="stock-search">ingredients list small print</span> <span class="stock-search">supplement bottles row</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"Pyridoxine hydrochloride. Cyanocobalamin. Cholecalciferol. That's what's in most multivitamins. Synthetic versions of nutrients your body was designed to get from food."</p>
+        <p class="direction">Read the chemical names clearly but without drama. Let the absurdity of the words do the work. Pause briefly after each name.</p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Shift in visual tone. Cut to: natural whole-food imagery. Close-up of raw meat on a chopping board. Fresh vegetables. A family kitchen with real food being prepared. Warm light, organic textures. The contrast with the synthetic label world should be immediate.</p>
+        <p><span class="stock-search">whole food preparation kitchen</span> <span class="stock-search">raw meat chopping board</span> <span class="stock-search">family cooking natural light</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"Your great-grandparents didn't have a supplement shelf. They had a whole animal. Liver. Heart. Kidney. That's where the nutrition was. And your body still knows the difference."</p>
+        <p class="direction">Warmer now. The shift from problem to possibility. Not selling yet. Planting the thought. "Your body still knows the difference" is the line that should stay with them.</p>
+      </div>
+
+      <div class="script-block text-overlay" data-label="Text Overlay">
+        <p class="text-on-screen">"Real food. Not lab food."</p>
+      </div>
+
+      <div class="script-block cta" data-label="CTA">
+        <p class="text-on-screen">Modern Savage. Coming July 2026.</p>
+      </div>
+    </div>
+
+    <!-- TOF AD 3 -->
+    <div class="ad-card tof">
+      <div class="ad-header">
+        <h3>Ad 3: The Gummy Vitamin Truth</h3>
+        <div class="ad-meta">
+          <span class="badge badge-tof">Top of Funnel</span>
+          <span class="badge badge-format">Reel / Story</span>
+          <span class="badge badge-duration">25-35s</span>
+          <span class="badge badge-pillar">Pillar 4: The Family Table</span>
+        </div>
+      </div>
+
+      <div class="script-block hook" data-label="Hook (1-3s)">
+        <p class="text-on-screen">"Your kids' gummy vitamins have more sugar than nutrition."</p>
+        <p class="direction">Visual: Stock close-up of bright coloured gummy vitamins spilling out of a bottle onto a white surface. They look like sweets. Bold text hits hard over the top. The visual contrast between "health product" and "confectionery" is immediate.</p>
+        <p><span class="stock-search">gummy vitamins colourful</span> <span class="stock-search">children vitamins bottle</span> <span class="stock-search">gummy bears candy close up</span></p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Close-up of a hand tipping gummy vitamins out of a bottle. Cut to: a close-up of the back label showing sugar content and synthetic ingredients. Cut to: a stock overhead shot of a child's breakfast table. Keep it hands and objects only.</p>
+        <p><span class="stock-search">children breakfast table overhead</span> <span class="stock-search">reading vitamin label kitchen</span> <span class="stock-search">pouring vitamins from bottle</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"Three grams of sugar per serving. Synthetic dyes. Citric acid. And the actual vitamins? Synthetic forms with bioavailability so low your child's body barely registers them."</p>
+        <p class="direction">Factual, not angry. Let the data do the work. You are informing, not preaching.</p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"You put effort into everything they eat. Why would their supplement be any different?"</p>
+        <p class="direction">Warmer. Speaking directly to the parent. A gentle question, not a challenge.</p>
+      </div>
+
+      <div class="script-block text-overlay" data-label="Text Overlay">
+        <p class="text-on-screen">"There is a better option."</p>
+        <p class="direction">Clean frame. No product. Just the promise. 2-second hold.</p>
+      </div>
+
+      <div class="script-block cta" data-label="CTA">
+        <p class="text-on-screen">Modern Savage. Coming July 2026.</p>
+      </div>
+    </div>
+
+    <!-- TOF AD 4 -->
+    <div class="ad-card tof">
+      <div class="ad-header">
+        <h3>Ad 4: Running at 70%</h3>
+        <div class="ad-meta">
+          <span class="badge badge-tof">Top of Funnel</span>
+          <span class="badge badge-format">Reel / Story</span>
+          <span class="badge badge-duration">30-40s</span>
+          <span class="badge badge-pillar">Pillar 3: Real Food, Not Lab Food</span>
+        </div>
+      </div>
+
+      <div class="script-block hook" data-label="Hook (1-3s)">
+        <p class="text-on-screen">"You eat well. You sleep 7 hours. You still feel tired. Here's why."</p>
+        <p class="direction">Visual: Stock shot of an alarm clock going off in morning light. Or: a slow pan across a neatly made bed, sunrise through a window. Text lands bold. The visual is calm and relatable, not dramatic.</p>
+        <p><span class="stock-search">alarm clock morning light</span> <span class="stock-search">sunrise bedroom window</span> <span class="stock-search">morning routine waking up</span></p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Slow montage of "doing everything right" scenes: hands chopping vegetables, water being poured into a glass, a healthy meal on a plate, hands opening a supplement bottle. Everything looks good on paper. The footage should feel slightly flat, slightly going-through-the-motions. Natural light, muted tones.</p>
+        <p><span class="stock-search">healthy meal preparation</span> <span class="stock-search">chopping vegetables kitchen</span> <span class="stock-search">glass of water natural light</span> <span class="stock-search">supplement bottle kitchen morning</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"You're doing everything right. Good food. Enough sleep. Maybe even a multivitamin. But you still feel like you're running at 70%."</p>
+        <p class="direction">Empathetic. You are describing their life. They should feel seen, not judged.</p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Visual shift: cut to nature and ancestral-feeling footage. Grass-fed cattle on pasture. A wide landscape shot. Close-up of raw organ meat on a wooden board (brief, clean, factual). The visual world changes from sterile kitchen to natural, grounded, primal.</p>
+        <p><span class="stock-search">grass fed cattle pasture</span> <span class="stock-search">countryside landscape morning</span> <span class="stock-search">organ meat raw preparation</span> <span class="stock-search">butcher whole animal</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"That's because the modern diet is missing the most nutrient-dense food group humans ever ate. Organ meats. Liver alone has more bioavailable B12, retinol, and iron than anything else on the planet. And most people haven't eaten it in decades."</p>
+        <p class="direction">Shift to education. Still conversational. "Most people haven't eaten it in decades" should land with surprise, not judgment.</p>
+      </div>
+
+      <div class="script-block text-overlay" data-label="Text Overlay">
+        <p class="text-on-screen">"The nutrition your body was built for."</p>
+      </div>
+
+      <div class="script-block cta" data-label="CTA">
+        <p class="text-on-screen">Modern Savage. Coming July 2026.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== MID FUNNEL ==================== -->
+<div class="section-alt">
+  <div class="inner">
+    <h2>Mid Funnel: Solution Aware</h2>
+    <div class="divider"></div>
+    <p class="lead">The audience has seen a TOF ad or been reached through interest targeting. Now they see the product. Product footage is prominent. Your VO introduces Modern Savage directly.</p>
+
+    <!-- MOF AD 1 -->
+    <div class="ad-card mof">
+      <div class="ad-header">
+        <h3>Ad 5: One Scoop</h3>
+        <div class="ad-meta">
+          <span class="badge badge-mof">Mid Funnel</span>
+          <span class="badge badge-format">Reel / In-Feed</span>
+          <span class="badge badge-duration">35-45s</span>
+          <span class="badge badge-pillar">Pillar 2: Replace the Shelf</span>
+        </div>
+      </div>
+
+      <div class="script-block hook" data-label="Hook (1-3s)">
+        <p class="text-on-screen">"Everything your family needs. One scoop."</p>
+        <p class="direction">Visual: Your product footage. Close-up of a scoop of Modern Savage powder being levelled off. Clean, satisfying. The product is shown for the first time in the campaign. Bold text over the top.</p>
+      </div>
+
+      <div class="script-block product" data-label="Product Footage">
+        <p class="direction">Close-up of the Modern Savage bag. The scoop going into the powder. Powder tipping into a glass. Water poured in. Stirring. The colour, the texture. Kitchen counter, morning light. This is the hero product sequence: shoot it cleanly and it will be reused across multiple ads.</p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"This is Modern Savage. One daily scoop with 10 grams of grass-fed protein, a six-organ blend, a prebiotic and probiotic stack, and a superfood antioxidant complex. No synthetics. No fillers. Nothing invented in a lab."</p>
+        <p class="direction">Clear, steady, factual. Walk through the formula. Let the ingredient list do the impressing. Do not oversell. State it and move on.</p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Quick stock montage while the next VO plays: a cluttered supplement shelf (callback to TOF), hands clearing bottles off a counter, an empty clean counter in morning light. The visual story is: clutter to clarity.</p>
+        <p><span class="stock-search">clearing kitchen counter</span> <span class="stock-search">clean kitchen counter morning</span> <span class="stock-search">supplement bottles being removed</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"Most families are managing six to ten different supplements. This replaces the shelf. One product. Everything covered."</p>
+        <p class="direction">The simplicity payoff. Let it land cleanly and simply.</p>
+      </div>
+
+      <div class="script-block product" data-label="Product Footage">
+        <p class="direction">The bag on a clean counter. Nothing else around it. One product, plenty of space. Hold for 2 seconds. The visual metaphor: where there used to be clutter, there is now one bag.</p>
+      </div>
+
+      <div class="script-block cta" data-label="CTA">
+        <p class="text-on-screen">Modern Savage. One scoop. The whole family. modernsavage.com</p>
+        <p class="direction">End card with product shot, logo, URL.</p>
+      </div>
+    </div>
+
+    <!-- MOF AD 2 -->
+    <div class="ad-card mof">
+      <div class="ad-header">
+        <h3>Ad 6: The Family Mission</h3>
+        <div class="ad-meta">
+          <span class="badge badge-mof">Mid Funnel</span>
+          <span class="badge badge-format">Reel / In-Feed</span>
+          <span class="badge badge-duration">40-50s</span>
+          <span class="badge badge-pillar">Pillar 1: One Family, One Brand</span>
+        </div>
+      </div>
+
+      <div class="script-block hook" data-label="Hook (1-3s)">
+        <p class="text-on-screen">"We built this for our family. Now it's for yours."</p>
+        <p class="direction">Visual: Stock warm family-kitchen scene. Over-the-shoulder or hands shot: an adult and child's hands at a counter together. Or: a wide shot of a family kitchen in morning light, figures seen from behind. Bold text over the top.</p>
+        <p><span class="stock-search">family kitchen morning light</span> <span class="stock-search">parent child cooking together</span> <span class="stock-search">family breakfast preparation</span></p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Warm family b-roll montage: a family kitchen from behind, hands preparing breakfast, a child's hand reaching for a cup, a wide shot of a breakfast table being set. Natural light, warm tones. Documentary feel, not commercial.</p>
+        <p><span class="stock-search">family morning routine behind</span> <span class="stock-search">child hand reaching cup breakfast</span> <span class="stock-search">setting breakfast table family</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"Modern Savage was built by the Grylls family for the Grylls family. 100% family-owned. Not a licensing deal. Not a celebrity endorsement. Bear has been eating like this for 30 years. Jesse helped build the formula. This is what they actually give their kids."</p>
+        <p class="direction">Warm, personal, grounded. The origin story told simply. "What they actually give their kids" is the line that should resonate with every parent watching.</p>
+      </div>
+
+      <div class="script-block product" data-label="Product Footage">
+        <p class="direction">Both products side by side: Adult Blend and Kids Blend. Same design language, same counter, same kitchen setting. Hold for 3 seconds. Then: close-up of the Kids Blend label showing the ingredient list.</p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"Adult Blend for the parents. Kids Blend for the children. Same whole-food ingredients. Same standards. Same philosophy. One family, one brand."</p>
+        <p class="direction">Confident, clear. "One family, one brand" should feel like a natural conclusion, not a forced tagline.</p>
+      </div>
+
+      <div class="script-block cta" data-label="CTA">
+        <p class="text-on-screen">Modern Savage. Whole-family nutrition. modernsavage.com</p>
+      </div>
+    </div>
+
+    <!-- MOF AD 3 -->
+    <div class="ad-card mof">
+      <div class="ad-header">
+        <h3>Ad 7: For the Kids</h3>
+        <div class="ad-meta">
+          <span class="badge badge-mof">Mid Funnel</span>
+          <span class="badge badge-format">Reel / Story</span>
+          <span class="badge badge-duration">30-40s</span>
+          <span class="badge badge-pillar">Pillar 4: The Family Table</span>
+        </div>
+      </div>
+
+      <div class="script-block hook" data-label="Hook (1-3s)">
+        <p class="text-on-screen">"This is what's in your child's gummy vitamin. This is what's in ours."</p>
+        <p class="direction">Visual: Split screen. Left: stock close-up of gummy vitamins (bright, sweet-like). Right: your product footage of the Kids Blend powder in a scoop. The contrast is instant and powerful. Bold text over top.</p>
+        <p><span class="stock-search">gummy vitamins close up bright</span></p>
+      </div>
+
+      <div class="script-block product" data-label="Product Footage">
+        <p class="direction">Kids Blend bag. Scoop of the powder. Mixing into a child-friendly cup or glass. Clean, warm kitchen setting. Natural light.</p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"The Modern Savage Kids Blend. Organ nutrition, colostrum, a prebiotic and probiotic stack, and a superfood antioxidant complex. No sugar. No synthetic dyes. No gimmicks. Just the nutrition kids were supposed to get from day one."</p>
+        <p class="direction">Warm and direct. Speaking to a parent who cares. Presenting the product with conviction, not lecturing.</p>
+      </div>
+
+      <div class="script-block stock" data-label="Stock / B-Roll">
+        <p class="direction">Stock family footage: over-the-shoulder of a child at a breakfast table, hands around a cup. A wide shot of a family kitchen from behind in morning light. The visual should feel like everyday life, not a health commercial.</p>
+        <p><span class="stock-search">child breakfast table hands</span> <span class="stock-search">family kitchen wide shot morning</span></p>
+      </div>
+
+      <div class="script-block vo" data-label="Your VO">
+        <p class="vo-line">"You put effort into everything they eat. Their supplement should be no different."</p>
+        <p class="direction">Quiet close. Let it sit for a beat.</p>
+      </div>
+
+      <div class="script-block cta" data-label="CTA">
+        <p class="text-on-screen">Modern Savage Kids Blend. modernsavage.com</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== BOTTOM FUNNEL ==================== -->
+<section>
+  <h2>Bottom of Funnel: Trust + Convert</h2>
+  <div class="divider"></div>
+  <p class="lead">The audience has seen the problem and seen the product. Now they need trust. Bear's credibility, the formulation story, and the simplicity argument close the loop. These run to retargeted audiences and site visitors. Direct CTAs to purchase.</p>
+
+  <!-- BOF AD 1 -->
+  <div class="ad-card bof">
+    <div class="ad-header">
+      <h3>Ad 8: Bear's Word</h3>
+      <div class="ad-meta">
+        <span class="badge badge-bof">Bottom of Funnel</span>
+        <span class="badge badge-format">Reel / In-Feed</span>
+        <span class="badge badge-duration">35-45s</span>
+        <span class="badge badge-pillar">Pillar 5: Proof, Not Promises</span>
+      </div>
+    </div>
+
+    <div class="script-block hook" data-label="Hook (1-3s)">
+      <p class="text-on-screen">"Bear Grylls has been eating like this for 30 years. This is why."</p>
+      <p class="direction">Visual: Stock/archive expedition or wilderness footage. Mountains, rivers, rugged terrain. If you have any real Bear footage, use it here. If not, dramatic natural landscape footage carries the hook alongside the bold text.</p>
+      <p><span class="stock-search">mountain expedition wilderness</span> <span class="stock-search">adventure landscape dramatic</span> <span class="stock-search">wilderness survival rugged terrain</span></p>
+    </div>
+
+    <div class="script-block stock" data-label="Stock / B-Roll">
+      <p class="direction">Outdoor and expedition b-roll: wide landscape shots, campfire, hands preparing food in an outdoor setting, a field kitchen, boots on trail. The visual world is "real life in the wild," not a supplement ad. If you have any Bear archive footage or stills, layer them in here.</p>
+      <p><span class="stock-search">campfire cooking outdoor</span> <span class="stock-search">hiking boots trail</span> <span class="stock-search">outdoor cooking adventure</span> <span class="stock-search">wilderness camp morning</span></p>
+    </div>
+
+    <div class="script-block vo" data-label="Your VO">
+      <p class="vo-line">"Most celebrity supplement brands are licensing deals. Someone writes a cheque. A face goes on the label. The founder never opens the product."</p>
+      <p class="direction">Direct. Setting up the contrast. You are naming the industry norm before flipping it.</p>
+    </div>
+
+    <div class="script-block vo" data-label="Your VO">
+      <p class="vo-line">"Modern Savage is different. 100% owned by the Grylls family. Bear and Jesse built this because they use it. Every day. For themselves and for their kids. This is not a deal. It is a family business."</p>
+      <p class="direction">Warmer now. "A family business" should land simply and honestly. No drama.</p>
+    </div>
+
+    <div class="script-block product" data-label="Product Footage">
+      <p class="direction">Product on a surface that feels real: a wooden table, a kitchen counter with family clutter around it. Not sterile. Then: close-up of the bag, the label, the ingredient list. Transparency made visual.</p>
+    </div>
+
+    <div class="script-block vo" data-label="Your VO">
+      <p class="vo-line">"Whole-animal organ nutrition. One scoop. No synthetics. The supplement Bear Grylls actually uses."</p>
+      <p class="direction">Clean close. The "actually uses" distinction is the conversion line.</p>
+    </div>
+
+    <div class="script-block cta" data-label="CTA">
+      <p class="text-on-screen">Shop now at modernsavage.com</p>
+      <p class="direction">Direct CTA. This is bottom of funnel. They have seen the problem, seen the product, and now they need the link.</p>
+    </div>
+  </div>
+
+  <!-- BOF AD 2 -->
+  <div class="ad-card bof">
+    <div class="ad-header">
+      <h3>Ad 9: What's in the Scoop</h3>
+      <div class="ad-meta">
+        <span class="badge badge-bof">Bottom of Funnel</span>
+        <span class="badge badge-format">Carousel</span>
+        <span class="badge badge-duration">Static 5-6 slides</span>
+        <span class="badge badge-pillar">Pillar 3 + 5</span>
+      </div>
+    </div>
+
+    <p>This is a static carousel ad. No VO, no video. Design-led. Product photography + clean typography. Each slide spotlights one part of the formula.</p>
+
+    <div class="script-block hook" data-label="Slide 1 (Hook)">
+      <p class="text-on-screen">"Everything in one scoop. Nothing you can't pronounce."</p>
+      <p class="direction">Product shot: scoop of powder, close up, clean background. Bold text.</p>
+    </div>
+
+    <div class="script-block product" data-label="Slide 2">
+      <p class="text-on-screen">Primal Organ Blend: 2,500mg<br>Grass-fed liver, heart, spleen, kidney, lung + bison liver.</p>
+      <p class="direction">Clean ingredient spotlight. Typography over product photography.</p>
+    </div>
+
+    <div class="script-block product" data-label="Slide 3">
+      <p class="text-on-screen">Primal Protein Blend: 10,000mg<br>Grass-fed bovine collagen peptides + beef protein isolate.</p>
+    </div>
+
+    <div class="script-block product" data-label="Slide 4">
+      <p class="text-on-screen">Gut Health: 3,500mg<br>Prebiotic + probiotic blend. 2 billion CFU.</p>
+    </div>
+
+    <div class="script-block product" data-label="Slide 5">
+      <p class="text-on-screen">Plus: superfruit antioxidant blend, essential nutrient superfood blend.<br>No synthetics. No fillers. Every ingredient on the label.</p>
+    </div>
+
+    <div class="script-block cta" data-label="Slide 6 (CTA)">
+      <p class="text-on-screen">Modern Savage. One scoop. The whole family. Shop now.</p>
+      <p class="direction">Both products shown. Logo. URL.</p>
+    </div>
+  </div>
+
+  <!-- BOF AD 3 -->
+  <div class="ad-card bof">
+    <div class="ad-header">
+      <h3>Ad 10: The Switch</h3>
+      <div class="ad-meta">
+        <span class="badge badge-bof">Bottom of Funnel</span>
+        <span class="badge badge-format">Reel / In-Feed</span>
+        <span class="badge badge-duration">25-35s</span>
+        <span class="badge badge-pillar">Pillar 2 + 5</span>
+      </div>
+    </div>
+
+    <div class="script-block hook" data-label="Hook (1-3s)">
+      <p class="text-on-screen">"I replaced my entire supplement shelf with this."</p>
+      <p class="direction">Visual: Stock footage of a hand sweeping supplement bottles off a counter or shelf in one satisfying motion. Bottles tumble. Then: your product footage of a single Modern Savage bag on a clean surface. Bold text lands. This is the most visually dramatic hook in the campaign.</p>
+      <p><span class="stock-search">clearing shelf sweep</span> <span class="stock-search">bottles falling off shelf</span> <span class="stock-search">decluttering counter</span></p>
+    </div>
+
+    <div class="script-block stock" data-label="Stock / B-Roll">
+      <p class="direction">Stock shots: an overfull medicine cabinet being opened. Hands pulling bottles out. A counter covered in supplements. Then the visual flip: a clean, empty counter in warm morning light. The before/after contrast should feel like a weight being lifted.</p>
+      <p><span class="stock-search">medicine cabinet full bottles</span> <span class="stock-search">clean kitchen counter empty</span> <span class="stock-search">minimalist kitchen morning</span></p>
+    </div>
+
+    <div class="script-block vo" data-label="Your VO">
+      <p class="vo-line">"I was spending over a hundred pounds a month on supplements I wasn't even sure were working. Collagen, multivitamin, probiotic, greens powder, fish oil. Five different brands. No idea if any of them were doing what they claimed."</p>
+      <p class="direction">Personal, relatable. First person. Let it feel honest, like you are telling a friend what happened.</p>
+    </div>
+
+    <div class="script-block product" data-label="Product Footage">
+      <p class="direction">Close-up of the Modern Savage bag. Scoop. Powder into glass. Water. Stir. The simplicity of one product, one ritual. Morning light.</p>
+    </div>
+
+    <div class="script-block vo" data-label="Your VO">
+      <p class="vo-line">"One scoop of Modern Savage. Protein, organ nutrition, gut health, antioxidants. Everything in one place. Nothing synthetic. Done."</p>
+      <p class="direction">"Done" should feel final and satisfying. Like closing a book.</p>
+    </div>
+
+    <div class="script-block cta" data-label="CTA">
+      <p class="text-on-screen">Replace the shelf. modernsavage.com</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CAMPAIGN STRUCTURE ==================== -->
+<div class="section-alt">
+  <div class="inner">
+    <h2>Meta Campaign Structure</h2>
+    <div class="divider"></div>
+    <p class="lead">How to organise these ads inside Meta Ads Manager. Three campaigns, mapped to funnel stage, with audiences and objectives.</p>
+
+    <div class="adset-box">
+      <h4>Campaign 1: Awareness (Top of Funnel)</h4>
+      <p><strong>Objective:</strong> Video views (ThruPlay) or Reach</p>
+      <p><strong>Ads:</strong> Ad 1 (Supplement Shelf), Ad 2 (Read the Label), Ad 3 (Gummy Vitamin Truth), Ad 4 (Running at 70%)</p>
+      <p><strong>Ad Set A:</strong> Broad targeting. UK + US. Ages 25-45. Interests: clean eating, organic food, family health, parenting, whole foods, natural supplements, real food.</p>
+      <p><strong>Ad Set B:</strong> Lookalike audience (once you have site traffic or email list). 1-3% lookalike from purchasers or email subscribers.</p>
+      <p><strong>Budget split:</strong> 40-50% of total ad spend at launch. The job is to fill the retargeting pool. Test all four creatives; kill underperformers after 3-5 days based on ThruPlay rate and cost per ThruPlay.</p>
+    </div>
+
+    <div class="adset-box">
+      <h4>Campaign 2: Consideration (Mid Funnel)</h4>
+      <p><strong>Objective:</strong> Traffic (landing page views) or Engagement</p>
+      <p><strong>Ads:</strong> Ad 5 (One Scoop), Ad 6 (Family Mission), Ad 7 (For the Kids)</p>
+      <p><strong>Ad Set A:</strong> Retarget: people who watched 50%+ of any TOF ad in the last 14 days.</p>
+      <p><strong>Ad Set B:</strong> Retarget: people who engaged with the Modern Savage IG or FB page in the last 30 days.</p>
+      <p><strong>Budget split:</strong> 25-35% of total spend. Measure on cost per landing page view and link CTR.</p>
+    </div>
+
+    <div class="adset-box">
+      <h4>Campaign 3: Conversion (Bottom of Funnel)</h4>
+      <p><strong>Objective:</strong> Conversions (purchase or add to cart)</p>
+      <p><strong>Ads:</strong> Ad 8 (Bear's Word), Ad 9 (What's in the Scoop carousel), Ad 10 (The Switch)</p>
+      <p><strong>Ad Set A:</strong> Retarget: site visitors in the last 7 days who did not purchase.</p>
+      <p><strong>Ad Set B:</strong> Retarget: people who watched 75%+ of any MOF ad.</p>
+      <p><strong>Ad Set C:</strong> Retarget: add-to-cart abandoners (once pixel data allows).</p>
+      <p><strong>Budget split:</strong> 20-30% of total spend. Measure on cost per purchase and ROAS. The carousel (Ad 9) will likely be your most efficient converter; the video ads (Ad 8, Ad 10) build trust that makes the carousel convert.</p>
+    </div>
+
+    <h3>Testing and Iteration</h3>
+    <p>Launch with all 10 creatives across the three campaigns. Let Meta's Advantage+ creative optimisation distribute spend toward the best performers. Review after 5-7 days. Kill any ad with a cost per ThruPlay (TOF) or cost per landing page view (MOF) more than 2x the campaign average. For BOF, give ads 7-10 days; conversion data needs time to attribute.</p>
+    <p>For the strongest-performing TOF ads, create 2-3 hook variations: different first 3 seconds, same body. The hook is the single biggest lever on Meta. Small changes in the opening frame can shift performance dramatically. You do not need to re-record the VO for these; just swap the opening stock clip and text overlay.</p>
+    <p>Once you have 50+ conversions, build a 1% lookalike from purchasers and layer it into Campaign 1 as a new ad set. This is how the funnel becomes self-feeding.</p>
+
+    <h3>Priority Order (If Starting Lean)</h3>
+    <p>If you want to launch with the minimum viable campaign and scale from there, start with these four ads. They cover the full funnel with the least production work:</p>
+    <p><strong>TOF:</strong> Ad 1 (Supplement Shelf) + Ad 3 (Gummy Vitamin Truth). One targets the family-first adult, one targets the parent. Between them they cover the two biggest audience segments.</p>
+    <p><strong>MOF:</strong> Ad 5 (One Scoop). The clearest product introduction. Uses the "replace the shelf" argument which is the strongest practical conversion driver.</p>
+    <p><strong>BOF:</strong> Ad 9 (What's in the Scoop carousel). Cheapest to produce (static images), highest information density, and carousels consistently outperform video on cost per conversion at the bottom of funnel.</p>
+
+    <div class="divider" style="margin-top:3rem;"></div>
+    <p style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--earth); margin-top:2rem;">Modern Savage · Meta Ad Campaign Brief · April 2026 · Prepared by Bear Witness</p>
+    <p style="font-size:0.8rem; color:var(--sand);">Confidential. For BGV internal use.</p>
+  </div>
+</div>
+
+</body>
+</html>

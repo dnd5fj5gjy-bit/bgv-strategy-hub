@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modern Savage — 70 Scripts: Complete Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0E0C0A;
+  --surface: #181512;
+  --surface-2: #1F1B17;
+  --border: #2A2520;
+  --text: #E8E0D6;
+  --text-muted: #8A7E72;
+  --accent: #C4633A;
+  --accent-warm: #D4894A;
+  --green: #6B7F5E;
+  --tag-bg: rgba(196,99,58,0.12);
+  --tag-text: #D4894A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.header { padding: 60px 40px 40px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+.header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+.brand-mark { font-family: 'DM Serif Display', serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
+.header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 400; line-height: 1.15; margin-top: 30px; }
+.header h1 em { font-style: italic; color: var(--accent-warm); }
+.header-meta { font-size: 13px; color: var(--text-muted); margin-top: 16px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+
+.stats-bar { max-width: 1100px; margin: 0 auto; padding: 28px 40px; display: flex; gap: 40px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+.stat { display: flex; flex-direction: column; }
+.stat-number { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--accent-warm); }
+.stat-label { font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; margin-top: 2px; }
+
+.filter-bar { max-width: 1100px; margin: 0 auto; padding: 20px 40px; position: sticky; top: 0; background: var(--bg); z-index: 100; border-bottom: 1px solid var(--border); }
+.filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center; }
+.filter-row:last-child { margin-bottom: 0; }
+.filter-label { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-right: 8px; min-width: 60px; }
+.filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 6px 16px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+.filter-btn:hover { border-color: var(--accent); color: var(--text); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.count-display { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); margin-left: auto; }
+
+.batch-divider { max-width: 1100px; margin: 0 auto; padding: 40px 40px 0; }
+.batch-heading { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--text); margin-bottom: 4px; }
+.batch-desc { font-size: 14px; color: var(--text-muted); max-width: 700px; line-height: 1.6; margin-bottom: 24px; }
+.batch-line { height: 1px; background: var(--border); }
+
+.scripts-container { max-width: 1100px; margin: 0 auto; padding: 24px 40px 80px; display: flex; flex-direction: column; gap: 24px; }
+
+.script-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.3s; }
+.script-card:hover { border-color: var(--accent); }
+.card-header { padding: 24px 28px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.card-number { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); background: var(--tag-bg); padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
+.card-tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 12px; white-space: nowrap; }
+.tag-pillar { background: rgba(107,127,94,0.15); color: #93AA82; }
+.tag-narrative { background: rgba(196,99,58,0.1); color: var(--tag-text); }
+.tag-tone { background: rgba(212,137,74,0.1); color: #C9A66B; }
+.tag-family { background: rgba(107,127,94,0.15); color: #93AA82; }
+.tag-community { background: rgba(212,137,74,0.1); color: #C9A66B; }
+
+.card-title { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; padding: 16px 28px 0; line-height: 1.3; }
+.card-direction { padding: 8px 28px 0; font-size: 13px; color: var(--text-muted); font-style: italic; }
+.card-body { padding: 16px 28px 28px; }
+.script-text { font-size: 15px; line-height: 1.75; color: var(--text); white-space: pre-line; }
+.script-text .action { color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 12px; display: block; margin: 8px 0; }
+.card-footer { padding: 0 28px 20px; display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+.footer-note { max-width: 1100px; margin: 0 auto; padding: 40px; text-align: center; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border); }
+
+@media (max-width: 600px) {
+  .header, .filter-bar, .scripts-container, .batch-divider, .stats-bar { padding-left: 20px; padding-right: 20px; }
+  .card-header { flex-direction: column; }
+  .card-tags { justify-content: flex-start; }
+  .card-title { font-size: 19px; }
+  .stats-bar { gap: 24px; }
+  .filter-label { min-width: auto; width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="header-top">
+<div class="brand-mark">Modern Savage</div>
+<div class="header-meta">Confidential / BGV Internal</div>
+</div>
+<h1>70 Founder-Led <em>Scripts</em></h1>
+<div class="header-meta">Bear Grylls to camera — April 2026 — Complete collection across three batches</div>
+</div>
+<div class="stats-bar">
+<div class="stat"><span class="stat-number">70</span><span class="stat-label">Total scripts</span></div>
+<div class="stat"><span class="stat-number">30</span><span class="stat-label">Ad scripts</span></div>
+<div class="stat"><span class="stat-number">30</span><span class="stat-label">Conversational</span></div>
+<div class="stat"><span class="stat-number">10</span><span class="stat-label">Family-to-family</span></div>
+</div>
+<div class="filter-bar">
+<div class="filter-row">
+<span class="filter-label">Batch</span>
+<button class="filter-btn active" onclick="filterBatch('all')">All 70</button>
+<button class="filter-btn" onclick="filterBatch('ad')">Ad Scripts (1-30)</button>
+<button class="filter-btn" onclick="filterBatch('conv')">Conversational (31-60)</button>
+<button class="filter-btn" onclick="filterBatch('family')">Family-to-Family (61-70)</button>
+<span class="count-display" id="count-display">Showing 70 scripts</span>
+</div>
+<div class="filter-row">
+<span class="filter-label">Topic</span>
+<button class="filter-btn" onclick="filterTopic('family')">Family</button>
+<button class="filter-btn" onclick="filterTopic('kids')">Kids</button>
+<button class="filter-btn" onclick="filterTopic('trust')">Trust</button>
+<button class="filter-btn" onclick="filterTopic('education')">Education</button>
+<button class="filter-btn" onclick="filterTopic('shelf')">Replace the Shelf</button>
+<button class="filter-btn" onclick="filterTopic('real-food')">Real Food</button>
+<button class="filter-btn" onclick="filterTopic('gut')">Gut Health</button>
+<button class="filter-btn" onclick="filterTopic('founder')">Founder</button>
+<button class="filter-btn" onclick="filterTopic('personal')">Personal</button>
+<button class="filter-btn" onclick="filterTopic('honesty')">Honest Talk</button>
+<button class="filter-btn" onclick="filterTopic('faith')">Faith</button>
+</div>
+</div>
+<!-- BATCH 1 DIVIDER -->
+<div class="batch-divider" id="batch-ad">
+<h2 class="batch-heading">Batch 1: Ad Scripts</h2>
+<div class="batch-desc">Structured for paid media. Hook, problem, turn, proof, close. These have visible ad architecture underneath but should still feel like Bear talking, not performing.</div>
+<div class="batch-line"></div>
+</div>
+<div class="scripts-container" id="scripts-container">
+<div class="script-card" data-batch="ad" data-tags="trust shelf">
+<div class="card-header">
+<span class="card-number">01 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-narrative">Replace the Shelf</span>
+</div>
+</div>
+<div class="card-title">The Shelf Clear-Out</div>
+<div class="card-direction">Bear stands in front of a kitchen counter covered in supplement bottles. Casual, direct.</div>
+<div class="card-body">
+<div class="script-text">Right. Look at this.
+
+This is what my supplement shelf used to look like. Collagen over here. Probiotic there. Greens powder. Multivitamin. Fish oil. A protein powder that tasted like cardboard.
+
+Eight products. None of them designed to work together. No idea if half of them were actually doing anything.
+
+So me and my son Jesse sat down and asked a simple question: what if we just built the one thing that replaces all of this?
+
+That's Modern Savage. One scoop. Real food. Organs, protein, gut health, antioxidants. Everything your body actually recognises.
+
+<span class="action">[Sweeps bottles aside. Leaves a gap for Modern Savage placement edited in.]</span>
+
+One bag. Done. No guesswork. No shelf full of maybes.
+
+This is ours. Not a partnership. Not an endorsement. Built by our family, for yours.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~35 sec</span>
+<span>Hook: visual shelf clutter</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust">
+<div class="card-header">
+<span class="card-number">02 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-tone">Founder story</span>
+</div>
+</div>
+<div class="card-title">This Isn't a Collab</div>
+<div class="card-direction">Bear to camera. Kitchen or home office. Relaxed, eye-level.</div>
+<div class="card-body">
+<div class="script-text">I've done partnerships. I've put my name on things other people have made. And some of those have been great.
+
+But I always had this itch. This feeling of: what would I actually build if I could make the one product I wanted for my own family?
+
+So I stepped away from all supplement partnerships. Every single one.
+
+And me and Jesse built Modern Savage from scratch. Our formula. Our team of nutritionists. Our call on every ingredient.
+
+No one telling us to cut corners. No one asking us to make it cheaper. No compromises.
+
+Modern by design. Savage by nature.
+
+This is the product I actually use. Every single day. That's the whole pitch.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: ownership authenticity</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food">
+<div class="card-header">
+<span class="card-number">03 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-narrative">Ancestral</span>
+</div>
+</div>
+<div class="card-title">What Your Great-Grandmother Knew</div>
+<div class="card-direction">Bear outdoors or in a rustic kitchen. Warm, conversational.</div>
+<div class="card-body">
+<div class="script-text">Your great-grandmother didn't have a supplement shelf. She didn't need one.
+
+She ate the whole animal. Liver for iron and B12. Heart for CoQ10. Kidney for selenium. That was just dinner.
+
+Somewhere along the way, we stopped eating like that. We replaced real food with synthetic tablets made in a lab and hoped our bodies wouldn't notice.
+
+They noticed.
+
+Modern Savage puts that nutrition back. Six organs, grass-fed, in a single daily scoop. Your body recognises every ingredient because it was designed to run on this stuff.
+
+We didn't invent anything. We just remembered what works.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: ancestral wisdom</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="kids family">
+<div class="card-header">
+<span class="card-number">04 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">The Family Table</span>
+<span class="tag tag-narrative">Provide and Protect</span>
+</div>
+</div>
+<div class="card-title">The Gummy Vitamin Truth</div>
+<div class="card-direction">Bear at a kitchen table. Holds up a gummy vitamin bottle, reads the back.</div>
+<div class="card-body">
+<div class="script-text">Can I be honest about something?
+
+I used to give my kids gummy vitamins. I thought I was doing the right thing. Then I actually read the back of the bottle.
+
+Sugar. Glucose syrup. Synthetic colours. And the actual vitamins? Synthetic forms the body barely absorbs.
+
+That's not nutrition. That's sweets in a health-food wrapper.
+
+So when we built Modern Savage, the Kids Blend was non-negotiable. Real organ nutrition, colostrum for gut and immune health, a prebiotic and probiotic stack. One scoop. Nothing synthetic.
+
+Same philosophy as the adult product. Just built for smaller bodies.
+
+Because our kids deserve the real thing too.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~35 sec</span>
+<span>Hook: parental guilt turned to action</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="gut">
+<div class="card-header">
+<span class="card-number">05 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Replace the Shelf</span>
+<span class="tag tag-narrative">Gut Health</span>
+</div>
+</div>
+<div class="card-title">The "I'm Fine" Lie</div>
+<div class="card-direction">Bear walking outdoors. Casual, no set-up. Phone-style footage.</div>
+<div class="card-body">
+<div class="script-text">You know what I hear more than anything? "I'm fine."
+
+Fine is not a standard. Fine is what we say when we've forgotten what good actually feels like.
+
+The tiredness. The brain fog. The energy that disappears at 2pm every day. We've accepted that as normal.
+
+It's not normal. It's a sign your body is running on the wrong fuel.
+
+Modern Savage has a full gut health stack built in. Prebiotics, probiotics, two billion CFU. Alongside the organ blend that gives your body the micronutrients it's been missing.
+
+Most people who try it say the same thing: "I didn't know I could feel this different."<div>
+ <span style="background-color: rgb(24, 21, 18);">That's not marketing. That's real food doing what real food does.</span> </div><div>
+modernsavage.co</div></div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: challenging "fine" as a standard</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="shelf">
+<div class="card-header">
+<span class="card-number">06 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Replace the Shelf</span>
+<span class="tag tag-tone">Practical / cost</span>
+</div>
+</div>
+<div class="card-title">The Maths</div>
+<div class="card-direction">Bear at a table with a notepad. Simple, direct, no frills.</div>
+<div class="card-body">
+<div class="script-text">Let me do some quick maths for you.
+
+A decent protein powder: thirty quid a month. Collagen: another twenty-five. A good probiotic: twenty. Greens powder: thirty-five. Multivitamin: fifteen. Maybe a fish oil on top.
+
+That's over a hundred a month. Six different products. Six different brands. No idea if any of them are working together.
+
+Modern Savage: one bag. One scoop. Protein, organs, gut health, antioxidants, superfoods. Everything in one place.
+
+And it costs less than what most people are already spending on the stuff that isn't working.
+
+Sometimes the simplest answer is actually the best one.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: cost comparison logic</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food trust">
+<div class="card-header">
+<span class="card-number">07 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-narrative">Freedom from Broken Systems</span>
+</div>
+</div>
+<div class="card-title">Read the Label</div>
+<div class="card-direction">Bear holding two supplement bottles. One Modern Savage, one generic.</div>
+<div class="card-body">
+<div class="script-text">Flip over any supplement bottle and you'll see two things that should worry you.
+
+"Proprietary blend." That means they won't tell you how much of each ingredient is in it.
+
+And a list of compounds your body has never seen in nature. Synthesised in a lab, compressed into a tablet, sold as health.
+
+Now look at ours.
+
+<span class="action">[Space for modern savage product placement]</span>
+
+Every ingredient listed. Every dose declared. Grass-fed bovine liver, heart, spleen, kidney, lung, bison liver. Collagen peptides. Organic baobab. Acerola cherry.
+
+You can read every word and know exactly what it is. Because it's food. Real food.
+
+That's the standard we set. Full transparency. No hiding.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~35 sec</span>
+<span>Hook: label comparison</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="family trust">
+<div class="card-header">
+<span class="card-number">08 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">One Family, One Brand</span>
+<span class="tag tag-tone">Warm / personal</span>
+</div>
+</div>
+<div class="card-title">The Morning Routine</div>
+<div class="card-direction">Bear in his kitchen, morning light. Making two scoops. Warm, unhurried.</div>
+<div class="card-body">
+<div class="script-text">This is what our morning looks like.
+
+One scoop of the Adult Blend for me. One scoop of the Kids Blend for the little ones. Same counter. Same philosophy. Same trust in what's inside.
+
+That was the whole point when we built this. One brand for the whole family. One set of ingredients you can believe in. One routine that takes about thirty seconds.
+
+We didn't want to be the brand that sells to one person in the house. We wanted to be the brand the whole family reaches for.
+
+Because health isn't an individual thing. It's a family thing.
+
+Modern Savage. One family. One brand.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: family morning ritual</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food">
+<div class="card-header">
+<span class="card-number">09 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-tone">Educational</span>
+</div>
+</div>
+<div class="card-title">The Organ Lesson</div>
+<div class="card-direction">Bear to camera, close-up. Teaching mode but casual.</div>
+<div class="card-body">
+<div class="script-text">Quick lesson.
+
+Liver is the single most nutrient-dense food on the planet. Retinol, B12, iron, folate. Nothing else comes close.
+
+Heart is loaded with CoQ10, which your cells need for energy production.
+
+Kidney gives you selenium and B12 in forms your body actually absorbs.
+
+Spleen supports your immune system with peptides you can't get anywhere else.
+
+Every culture on earth knew this. Every hunter, every tribe, every family that lived off the land: they ate the organs first. The muscle meat was secondary.
+
+Modern Savage puts all six organs into one scoop. Grass-fed. Whole-food sourced. Your body knows exactly what to do with it.
+
+We didn't reinvent nutrition. We just stopped ignoring what already worked.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~35 sec</span>
+<span>Hook: rapid-fire organ education</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust">
+<div class="card-header">
+<span class="card-number">10 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-tone">Raw / honest</span>
+</div>
+</div>
+<div class="card-title">30 Years of Field Nutrition</div>
+<div class="card-direction">Bear outdoors. Adventure setting if possible. Quiet, reflective.</div>
+<div class="card-body">
+<div class="script-text">I've been eating like this for thirty years.
+
+Not because it was trendy. Not because someone wrote a book about it. Because when you're in the field, you eat what the land gives you. And what the land gives you is the whole animal.
+
+Organs. Marrow. The bits most people throw away. Those are the bits that keep you going.
+
+I didn't build Modern Savage because I saw a gap in the market. I built it because I'd been living this way for three decades and I wanted my family to have the same nutrition without having to eat raw liver in the jungle.
+
+<span class="action">[Slight smile.]</span>
+
+One scoop. Everything I've learnt about nutrition in thirty years of doing this for real.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: field credibility</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="kids family">
+<div class="card-header">
+<span class="card-number">11 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">The Family Table</span>
+<span class="tag tag-narrative">Provide and Protect</span>
+</div>
+</div>
+<div class="card-title">For the Kids First</div>
+<div class="card-direction">Bear seated, conversational. Talking about his family.</div>
+<div class="card-body">
+<div class="script-text">People assume we built the adult product first and then added a kids' version.
+
+We didn't.
+
+The Kids Blend was the reason this whole thing started. Because I looked at what was available for children and it was rubbish. Sugar-coated synthetics. Bright colours. Barely any actual nutrition.
+
+My kids eat well. But even with good meals, there are gaps. And no parent should have to give their child something they don't fully trust.
+
+So we built the Kids Blend with the same organ nutrition as the adult version, just at half the dose. Added colostrum for immune and gut development. Prebiotics and probiotics.
+
+Real nutrition from day one. That's the standard.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: kids came first</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="shelf gut">
+<div class="card-header">
+<span class="card-number">12 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Replace the Shelf</span>
+<span class="tag tag-narrative">Simplicity</span>
+</div>
+</div>
+<div class="card-title">One Scoop, Done</div>
+<div class="card-direction">Bear in kitchen. Quick, punchy. Mixing the product live on camera.</div>
+<div class="card-body">
+<div class="script-text">Watch this.
+
+<span class="action">[Scoops powder into a glass. Stirs. Holds it up.]</span>
+
+That is ten grams of protein. Two and a half grams of organ nutrition from six different organs. Three and a half grams of prebiotic and probiotic blend. A full superfood antioxidant stack. Collagen. Marine algae. Organic honey.
+
+One scoop. Thirty seconds. Done.
+
+No twelve-capsule morning routine. No five different powders. No confusion.
+
+This is what I have every single morning. This is what my family has. And honestly, it's the simplest health decision I've ever made.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~20 sec</span>
+<span>Hook: live demo simplicity</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food">
+<div class="card-header">
+<span class="card-number">13 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-tone">Provocative</span>
+</div>
+</div>
+<div class="card-title">The Supplement Industry Is Lying to You</div>
+<div class="card-direction">Bear to camera, direct. No smile. Straight talk.</div>
+<div class="card-body">
+<div class="script-text">The supplement industry is a hundred and eighty billion dollar machine. And most of it is built on ingredients your body doesn't recognise, in doses that don't do what the label claims, hidden behind the words "proprietary blend."
+
+That's not health. That's marketing.
+
+I got tired of it. So we built something different.
+
+Modern Savage. Every ingredient from a whole-food source. Every dose on the label. No proprietary blends. No synthetic fillers. No hiding.
+
+Grass-fed organs. Real protein. A gut health stack that actually works.
+
+You deserve to know exactly what you're putting in your body. And your body deserves food it was built to run on.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: industry exposé</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust family">
+<div class="card-header">
+<span class="card-number">14 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-narrative">Family Nutrition</span>
+</div>
+</div>
+<div class="card-title">Me and Jesse</div>
+<div class="card-direction">Bear and Jesse together if possible. Otherwise Bear talking about building with his son.</div>
+<div class="card-body">
+<div class="script-text">This brand was built by me and my son Jesse. Nobody else.
+
+Every decision. Every ingredient. Every conversation with our nutritionists. We were both in the room.
+
+Jesse runs the business side. I bring thirty years of field nutrition. Between us, we built the product we both wanted for our families.
+
+And that's the thing: this isn't a celebrity brand with my face on it. This is a family business. We own 100% of it. Every call is ours.
+
+When you buy Modern Savage, you're buying from a family that uses it every morning. That's not a tagline. That's the truth.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: father-son founder story</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="gut shelf">
+<div class="card-header">
+<span class="card-number">15 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Replace the Shelf</span>
+<span class="tag tag-narrative">Gut Health</span>
+</div>
+</div>
+<div class="card-title">Your Gut Is Running the Show</div>
+<div class="card-direction">Bear walking. Casual, educational. Think voice note energy.</div>
+<div class="card-body">
+<div class="script-text">Your gut is connected to everything. Energy, sleep, mood, immunity, skin. If your gut isn't working, nothing is working properly.
+
+And most people's guts are in trouble. Processed food. Stress. Antibiotics. Years of synthetic supplements that the body treats as foreign objects.
+
+That's why we built a full gut health stack into Modern Savage. Agave inulin as a prebiotic. Organic baobab. Two billion CFU of LactoSpore probiotics.
+
+Not a separate bottle. Not an add-on. Built in. Because gut health shouldn't be optional.
+
+One scoop covers the organs, the protein, and the gut. Your body gets everything it needs in one hit.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: gut as control centre</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="faith family">
+<div class="card-header">
+<span class="card-number">16 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">The Family Table</span>
+<span class="tag tag-narrative">Faith and Legacy</span>
+</div>
+</div>
+<div class="card-title">Stewardship</div>
+<div class="card-direction">Bear at home. Quiet, reflective. End-of-day energy.</div>
+<div class="card-body">
+<div class="script-text">I believe we've been given these bodies to look after. And I believe we've been given our families to protect.
+
+That means feeding them properly. Not with whatever is cheapest or most convenient, but with real nutrition that does what it's supposed to do.
+
+Modern Savage was born out of that conviction. It's not just a product. It's how our family eats. It's the standard we've set for ourselves.
+
+Grass-fed organs. Whole-food sourced. No compromises. For us and for our kids.
+
+What you feed your family says something about what you believe. We believe in doing it right.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: values-driven nutrition</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food">
+<div class="card-header">
+<span class="card-number">17 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-tone">Quick / punchy</span>
+</div>
+</div>
+<div class="card-title">Synthetic vs Real</div>
+<div class="card-direction">Bear to camera. Fast-paced, almost like a challenge.</div>
+<div class="card-body">
+<div class="script-text">Your multivitamin was made in a lab. Modern Savage was made by a cow.
+
+<span class="action">[Beat.]</span>
+
+I know which one your body recognises.
+
+The difference between synthetic and whole-food nutrition is bioavailability. Your body absorbs nutrients from real food at a completely different rate than it absorbs synthetic compounds.
+
+Organ meats are the most bioavailable source of micronutrients that exist. Retinol from liver. CoQ10 from heart. Selenium from kidney. In forms your body was literally designed to use.
+
+That's what's in every scoop. Real food, not lab food.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~20 sec</span>
+<span>Hook: blunt comparison</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust shelf">
+<div class="card-header">
+<span class="card-number">18 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-narrative">Whole Food Simplicity</span>
+</div>
+</div>
+<div class="card-title">No Compromises</div>
+<div class="card-direction">Bear in a simple setting. Direct eye contact. Founder conviction.</div>
+<div class="card-body">
+<div class="script-text">When you own 100% of a brand, you make different decisions.
+
+No one told us to use cheaper ingredients. No investor said "cut the organ dose in half to save money." No board meeting decided that synthetic would do.
+
+Every ingredient in Modern Savage is there because we chose it. Every dose is what our nutritionists recommended, not what the accountant approved.
+
+Quality is non-negotiable. That's easy to say. It's harder when it's your money on the line.
+
+But if I'm feeding this to my kids, it has to be right. There's no version of this where we cut corners.
+
+Modern Savage. No compromises.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: ownership = quality control</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="family kids">
+<div class="card-header">
+<span class="card-number">19 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">One Family, One Brand</span>
+<span class="tag tag-narrative">Provide and Protect</span>
+</div>
+</div>
+<div class="card-title">The Same Standard</div>
+<div class="card-direction">Bear holding both bags, one in each hand. Warm.</div>
+<div class="card-body">
+<div class="script-text"><span class="action">[product placement would be inserted - both blends]</span>
+
+Same sourcing. Same grass-fed organs. Same manufacturing standards. Same transparency.
+
+The only difference? The Kids Blend has half the organ dose, added colostrum, and slightly lower vitamin levels. Because children need different amounts. But they don't need different quality.
+
+That's what frustrated me about the children's supplement market. It's treated as an afterthought. Lower standards. More fillers. More sugar.
+
+We built the Kids Blend to the same standard as the Adult Blend. Because my kids eat from the same kitchen. They should supplement from the same philosophy.
+
+One family. One brand. Same trust in both.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: two bags, one standard</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food gut">
+<div class="card-header">
+<span class="card-number">20 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-narrative">Gut Health</span>
+</div>
+</div>
+<div class="card-title">What's Actually in This</div>
+<div class="card-direction">Bear holding the bag, reading from it. Almost like unboxing energy.</div>
+<div class="card-body">
+<div class="script-text">Let me just tell you what's in this. No marketing. Just the ingredients.
+
+Ten grams of primal protein from collagen peptides and beef protein isolate. Grass-fed.
+
+Two and a half grams of organ blend. Liver, heart, spleen, kidney, lung, and bison liver.
+
+Three and a half grams of prebiotic and probiotic blend. Agave inulin, baobab, two billion CFU.
+
+One and a quarter grams of superfood nutrients. Marine algae, broccoli, spinach, kale, fermented vitamin K2.
+
+One gram of superfruit antioxidants. Date, goji, acai, blueberry, maqui.
+
+Flavoured with organic honey and vanilla bean.
+
+That's it. That's the whole label. Nothing hidden. Nothing synthetic. (Nothing you can't pronounce.)
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~35 sec</span>
+<span>Hook: full ingredient read-through</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust">
+<div class="card-header">
+<span class="card-number">21 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-tone">Challenger energy</span>
+</div>
+</div>
+<div class="card-title">What Ownership Means</div>
+<div class="card-direction">Bear to camera. Warm. Founder pride, not challenger energy.</div>
+<div class="card-body">
+<div class="script-text">There's a big difference between putting your name on something and building something.
+
+I've worked with great brands over the years. Learnt a lot. But with Modern Savage, I wanted to go further. I wanted to be the one making the decisions. Choosing the ingredients. Sitting in the meetings with the nutritionists. Testing the formula on my own family before anyone else saw it.
+
+Me and Jesse own 100% of this. There's no parent company. No licensing partner. No one else's logo on the back.
+
+When I say I trust this product, it's because I built it. I know what's in it because I chose what's in it.
+
+That's what ownership means to me. And it's why this feels different from anything I've done before.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: ownership pride</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="shelf">
+<div class="card-header">
+<span class="card-number">22 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Replace the Shelf</span>
+<span class="tag tag-tone">Relatable</span>
+</div>
+</div>
+<div class="card-title">The 12-Capsule Morning</div>
+<div class="card-direction">Bear miming taking capsule after capsule. Slightly comedic.</div>
+<div class="card-body">
+<div class="script-text">Some people's morning routine is: wake up, open six bottles, swallow twelve capsules, wonder if any of it is working, then get on with the day.
+
+<span class="action"><br/></span>
+
+I did that for years. It's miserable. And the worst part? Half those products overlap and the other half your body barely absorbs.
+
+Modern Savage is one scoop in a glass. Stir it. Drink it. You've just taken your protein, your organ nutrition, your gut health stack, and your antioxidants.
+
+Thirty seconds. No capsule fatigue. No guessing.
+
+The simplest change you'll make this year. And probably the most effective.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: capsule fatigue comedy</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="kids">
+<div class="card-header">
+<span class="card-number">23 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">The Family Table</span>
+<span class="tag tag-tone">Educational</span>
+</div>
+</div>
+<div class="card-title">Colostrum</div>
+<div class="card-direction">Bear to camera. Parent-to-parent. Informative.</div>
+<div class="card-body">
+<div class="script-text">You know what colostrum is?
+
+It's the first milk a mother produces. It's packed with antibodies, growth factors, and immune compounds. It's nature's way of giving a newborn the strongest possible start.
+
+We put it in the Kids Blend.
+
+Because the same immune support that protects a newborn can support a growing child's gut health, immune system, and overall development.
+
+Grass-fed bovine colostrum. Alongside the organ blend and the probiotic stack.
+
+One scoop gives your child what most children's supplements don't even come close to.
+
+Quick note: it does contain milk, so check for allergies. Full allergen declaration on the label.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: colostrum education for parents</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust real-food">
+<div class="card-header">
+<span class="card-number">24 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-narrative">Real Ingredients</span>
+</div>
+</div>
+<div class="card-title">Why Powder, Not Capsules</div>
+<div class="card-direction">Bear holding the bag. Explaining a deliberate choice.</div>
+<div class="card-body">
+<div class="script-text">People ask why we made a powder and not capsules.
+
+Simple. Capsules limit what you can fit in a serving. You'd need about fifteen capsules to get what we put in one scoop.
+
+Powder lets us give you ten grams of protein, a full organ blend, and a complete gut health stack in one hit. You can't do that in a capsule. Not at these doses.
+
+Plus, you can mix it into a smoothie, into water, however you like. The kids have theirs with a bit of milk. Takes thirty seconds.
+
+We wanted the format that lets us give you the most nutrition in the simplest way. Powder wins. Every time.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: format justification</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="family faith">
+<div class="card-header">
+<span class="card-number">25 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">One Family, One Brand</span>
+<span class="tag tag-narrative">Legacy</span>
+</div>
+</div>
+<div class="card-title">Generational Health</div>
+<div class="card-direction">Bear outdoors. Thoughtful, slower pace.</div>
+<div class="card-body">
+<div class="script-text">I think a lot about what we pass on.
+
+Not money. Not stuff. But health. Habits. The standards your kids grow up with and carry into their own families.
+
+If my children grow up eating real food, understanding what their bodies need, and knowing that organs are the most powerful nutrition on earth, that's a legacy worth building.
+
+Modern Savage isn't a quick fix. It's a family standard. The Adult Blend for us, the Kids Blend for them. The same nutrition, the same philosophy, passed down.
+
+We're not building a supplement brand. We're building something our grandkids will use.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: legacy thinking</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food">
+<div class="card-header">
+<span class="card-number">26 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-tone">Quick hit</span>
+</div>
+</div>
+<div class="card-title">Liver Is King</div>
+<div class="card-direction">Bear to camera. 15-second format. Fast, factual.</div>
+<div class="card-body">
+<div class="script-text">Gram for gram, liver is the most nutrient-dense food on the planet.
+
+More vitamin A than carrots. More B12 than any other food. More bioavailable iron than spinach.
+
+Your ancestors ate it first. Every culture. Every continent. For thousands of years.
+
+Then we stopped. And we replaced it with a synthetic tablet.
+
+Modern Savage puts it back. Grass-fed bovine liver. In every single scoop.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~15 sec</span>
+<span>Hook: liver as the king of nutrition</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="shelf trust">
+<div class="card-header">
+<span class="card-number">27 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Replace the Shelf</span>
+<span class="tag tag-tone">Testimonial prompt</span>
+</div>
+</div>
+<div class="card-title">What People Keep Telling Us</div>
+<div class="card-direction">Bear to camera. Conversational, like sharing feedback he's received.</div>
+<div class="card-body">
+<div class="script-text">The thing people keep telling us, and I mean this is the number one piece of feedback, is: "I didn't know I could feel this different."
+
+Not "wow, great product." Not "nice packaging." But: "My energy is different. My gut feels different. I'm sleeping better. My skin has changed."
+
+And that's not because Modern Savage is magic. It's because most people have been running on the wrong fuel for years. And when you finally give your body what it was designed to eat, it responds.
+
+Six organs. A full gut health stack. Real protein. One scoop.
+
+Your body knows what to do with this. Just give it the chance.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~25 sec</span>
+<span>Hook: real feedback</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust">
+<div class="card-header">
+<span class="card-number">28 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-tone">Direct / punchy</span>
+</div>
+</div>
+<div class="card-title">The Pitch</div>
+<div class="card-direction">Bear to camera. Fast. No filler. 15-second cut.</div>
+<div class="card-body">
+<div class="script-text">This is Modern Savage.
+
+One scoop. Six organs. Full gut health stack. Real protein. Superfood antioxidants.
+
+No synthetics. No fillers. No proprietary blends.
+
+100% owned by my family. 100% what we use.
+
+Making family health the powerhouse it should be.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~12 sec</span>
+<span>Hook: rapid-fire brand summary</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="real-food gut">
+<div class="card-header">
+<span class="card-number">29 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Real Food, Not Lab Food</span>
+<span class="tag tag-narrative">Gut Health</span>
+</div>
+</div>
+<div class="card-title">Women and Organ Nutrition</div>
+<div class="card-direction">Bear to camera. Thoughtful, inclusive. Breaking the "bro supplement" frame.</div>
+<div class="card-body">
+<div class="script-text">Organ nutrition is not a men's thing. And I want to be clear about that because most brands in this space market almost exclusively to blokes.
+
+Liver is one of the richest sources of bioavailable iron on earth. That matters for women, especially during menstruation and pregnancy.
+
+Heart provides CoQ10 which supports energy at the cellular level. Kidney offers selenium which plays a role in thyroid function.
+
+These are nutrients women need. In forms the body actually absorbs.
+
+Modern Savage was built for families. That means everyone. Mums, dads, kids. One brand, one philosophy.
+
+This isn't a biohacking product for men in their thirties. It's real nutrition for real households.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: breaking the bro-supplement frame</span>
+</div>
+</div>
+<div class="script-card" data-batch="ad" data-tags="trust family faith">
+<div class="card-header">
+<span class="card-number">30 / 70</span>
+<div class="card-tags">
+<span class="tag tag-pillar">Proof, Not Promises</span>
+<span class="tag tag-narrative">Family / Legacy</span>
+</div>
+</div>
+<div class="card-title">Why We Built This</div>
+<div class="card-direction">Bear at home, end of day. Quiet. The most personal script.</div>
+<div class="card-body">
+<div class="script-text">People ask me why I built a supplement brand. As if there aren't enough of them already.
+
+And the honest answer is: there are too many. And almost none of them are what they claim to be.
+
+I wanted one product I could trust completely. For me, for Shara, for the kids. One thing on the counter every morning that I know is doing exactly what it should.
+
+So me and Jesse built it. We picked the team. We chose every ingredient. We tested it on ourselves first. And we put our name on it. Not as endorsers. As owners.
+
+Modern Savage is our family feeding yours.
+
+That's it. That's the whole story.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer">
+<span>~30 sec</span>
+<span>Hook: the honest "why"</span>
+</div>
+</div>
+</div>
+<div class="batch-divider" id="batch-conv">
+<h2 class="batch-heading">Batch 2: Conversational</h2>
+<div class="batch-desc">Voice-note energy. Walking and talking. Mid-thought. The product appears naturally because it is part of Bear's life. Film handheld, phone-quality, no lighting rig. The rawer the better.</div>
+<div class="batch-line"></div>
+</div>
+<div class="scripts-container">
+<div class="script-card" data-batch="conv" data-tags="honesty founder">
+<div class="card-header">
+<span class="card-number">31 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span><span class="tag tag-pillar">Founder</span></div>
+</div>
+<div class="card-title">The Honest Answer</div>
+<div class="card-direction">Bear walking outside. Phone-filmed. Windbreaker on. Looks like he just decided to record this.</div>
+<div class="card-body">
+<div class="script-text">Someone asked me the other day why I'm building a supplement brand when there are already thousands of them.
+
+And the honest answer is: because I couldn't find one I trusted.
+
+I've been eating organ meats in the field for thirty years. Liver, heart, kidney. The stuff most people won't touch. And it's the stuff that kept me going when nothing else did.
+
+I wanted that nutrition for my family without having to convince my kids to eat raw liver. So me and Jesse built it ourselves.
+
+That's genuinely it. There's no bigger strategy. I just wanted something real for the people I love most.<div><br/></div><div>And that's why you should choose Modern Savage for yours. </div></div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Voice note energy</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="personal honesty">
+<div class="card-header">
+<span class="card-number">32 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Personal</span><span class="tag tag-pillar">Honest Talk</span></div>
+</div>
+<div class="card-title">The Next Step</div>
+<div class="card-direction">Bear sitting somewhere quiet. Close-up. Thoughtful.</div>
+<div class="card-body">
+<div class="script-text">I've been lucky to work with some brilliant brands over the years. And I've learnt a lot from every one of those partnerships.
+
+But there was always this thing in the back of my mind: what would I build if it was completely mine? If I chose every ingredient, picked the team, made every call?
+
+That's Modern Savage. It's the thing I've been building towards without realising it. All those years of partnerships taught me what matters. What to prioritise. What not to compromise on.
+
+This is me and Jesse taking everything we've learnt and putting it into something we own completely. Every decision is ours. Every ingredient is ours.
+
+It's not a step away from anything. It's a step towards the thing I always wanted to make.<div><br/></div><div><br/></div></div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Evolution / gratitude</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">33 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">Why Organs</div>
+<div class="card-direction">Bear at a table with a cup of tea. No product visible. Just talking.</div>
+<div class="card-body">
+<div class="script-text">When you look at how humans ate for most of history, one thing stands out: they ate the organs first.
+
+Not the steak. Not the muscle meat. The organs. Because that's where all the good stuff is. Liver alone has more vitamin A, more B12, more bioavailable iron than almost anything else you can eat. Heart has CoQ10. Kidney has selenium.
+
+We stopped eating organs maybe a hundred years ago. Which in the span of human history is nothing. And we replaced that nutrition with synthetic tablets.
+
+I'm not saying everyone needs to go back to eating offal. I'm saying we should at least put those nutrients back into our diet. That's all Modern Savage does.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Casual education</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="kids family">
+<div class="card-header">
+<span class="card-number">34 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Kids</span><span class="tag tag-pillar">Family</span></div>
+</div>
+<div class="card-title">The Breakfast Argument</div>
+<div class="card-direction">Bear in the kitchen. Morning. Casual. Feels unplanned.</div>
+<div class="card-body">
+<div class="script-text">Our mornings are chaos. Same as everyone else's. Shouting up the stairs, lost school shoes, arguments about breakfast.
+
+But one thing that's just become part of the routine now is the scoop. I have mine, the kids have theirs. Takes thirty seconds. Nobody argues about it because it just goes in whatever they're having.
+
+And I know that whatever else happens that morning, whatever they eat or don't eat at school, they've had the nutrition they need.
+
+That's what I wanted when we built this. Something that fits into the mess of real family life. Not something that adds to it.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Real family life</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="honesty">
+<div class="card-header">
+<span class="card-number">35 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span></div>
+</div>
+<div class="card-title">I'm Not a Scientist</div>
+<div class="card-direction">Bear sitting on a step or a wall outside. Relaxed. Sun on his face.</div>
+<div class="card-body">
+<div class="script-text">I want to be upfront about something. I'm not a scientist. I'm not a nutritionist. I'm not going to pretend I understand every biochemical pathway in the body.
+
+What I do know is that for thirty years I've eaten the way humans ate for thousands of years before us. Whole food. Organ meats. What the land gives you.
+
+And I've seen what it does. In myself. In the people I've worked with in the field.
+
+So we found the best nutritionists we could, told them what we wanted, and let them build the formula. Then we tested it on ourselves.
+
+That's the honest process. Not a lab, not a marketing brief. Just: what works, and how do we put it in a scoop.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Vulnerability / credibility</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">36 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">The Gut Thing</div>
+<div class="card-direction">Bear walking his dog, or just walking. Phone footage. Talking mid-stride.</div>
+<div class="card-body">
+<div class="script-text">I've been reading a lot about gut health lately. And the more I read, the more I think we've all been looking at health from the wrong end.
+
+We focus on what we eat. Which matters. But if your gut can't absorb it properly, it doesn't matter how clean your diet is.
+
+That's why we put a full prebiotic and probiotic stack into Modern Savage. Not as an afterthought. It's three and a half grams of the blend. Two billion CFU.
+
+Because the organs are incredible, but they work better when your gut is actually able to do its job.
+
+The whole formula is designed to work together. That's the bit most supplement brands miss. They sell you individual ingredients. We built a system.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Walking and learning</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="founder personal">
+<div class="card-header">
+<span class="card-number">37 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Founder</span><span class="tag tag-tone">Personal</span></div>
+</div>
+<div class="card-title">Building with Jesse</div>
+<div class="card-direction">Bear at home or in an office. Warm. Talking about his son.</div>
+<div class="card-body">
+<div class="script-text">One of the best parts of this whole thing has been building it with Jesse.
+
+He runs the business. He's sharper than me on the detail. He challenges everything. And he's got this instinct for what's real and what's rubbish that I trust completely.
+
+We argue. Course we do. He'll push back on something I want to include and half the time he's right. That's what you want in a business partner. Someone who doesn't just agree with you.
+
+But the thing that matters most is that we both use it. Our families use it. Every decision we make, the first question is: would we give this to our kids?
+
+If the answer's no, it doesn't go in.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Father-son dynamic</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="honesty education">
+<div class="card-header">
+<span class="card-number">38 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">The Supplement Aisle</div>
+<div class="card-direction">Bear talking to camera. Could be filmed in an actual shop aisle if possible.</div>
+<div class="card-body">
+<div class="script-text">Have you ever stood in the supplement aisle of a health food shop and just felt completely lost?
+
+There are hundreds of products. They all say roughly the same thing. "Natural." "Clean." "Clinically proven." And they all cost thirty, forty quid. Multiply that by the five or six things you think you need and it's a fortune.
+
+I've stood there. Picking things up, reading the backs, putting them down again. And you walk out either spending too much or buying nothing because the whole thing felt overwhelming.
+
+That experience is basically why we built Modern Savage. One product. Everything in it. Read the label, understand every word, trust what's inside.
+
+I just wanted to make the decision simple.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Relatable frustration</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="kids family">
+<div class="card-header">
+<span class="card-number">39 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Kids</span><span class="tag tag-pillar">Family</span></div>
+</div>
+<div class="card-title">What I Wish I'd Known Earlier</div>
+<div class="card-direction">Bear sitting down. Reflective. Talking to parents.</div>
+<div class="card-body">
+<div class="script-text">If I could go back and tell myself one thing as a new dad, it would be: look at the back of the bottle.
+
+I gave my kids gummy vitamins for years. Thought I was doing a good job. They liked them. They were brightly coloured. They came in bear shapes, which felt like fate.
+
+<span class="action"><br/></span>Then I actually read the ingredients. And it was mostly sugar, glucose syrup, citric acid, and synthetic compounds with names I couldn't pronounce.
+
+The actual vitamins? Tiny amounts. In forms the body barely recognises.
+
+I'm not trying to make anyone feel bad. I did the same thing. I'm just saying: if you're going to supplement your kids, look at what's actually in it. That's all.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Parental hindsight</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="personal">
+<div class="card-header">
+<span class="card-number">40 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Personal</span></div>
+</div>
+<div class="card-title">The Field</div>
+<div class="card-direction">Bear outdoors. Adventure setting if available. Raw footage energy.</div>
+<div class="card-body">
+<div class="script-text">When you're in the field, you eat what keeps you alive. That's it.
+
+And I learnt very early on that the bits of the animal most people throw away are the bits that keep you going the longest. Liver gives you energy that lasts. Heart keeps you strong. Marrow keeps you warm.
+
+Indigenous communities all over the world know this. It's not new information. We just forgot it.
+
+I've spent thirty years eating this way when it matters most. And I thought: why do I only eat like this when I'm in survival mode? Why isn't this how I eat at home, every day?
+
+That's where Modern Savage came from. Not a business plan. Just a question I couldn't stop asking.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Origin story, raw</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">41 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">Bioavailability</div>
+<div class="card-direction">Bear at a table. Cup of something. Teaching but casual, like explaining to a friend.</div>
+<div class="card-body">
+<div class="script-text">There's a word you'll hear a lot in nutrition: bioavailability. Sounds complicated. It's not.
+
+It just means: how much of what you swallow does your body actually use?
+
+And the answer, for most synthetic supplements, is: not much. Your body gets handed a compound it's never seen in nature and goes: I don't know what to do with this. And most of it passes straight through.
+
+Whole-food nutrients are different. Your body recognises them because they're the same form it's been processing for thousands of years. The iron in liver is absorbed completely differently than iron from a tablet.
+
+That's the whole argument for organ nutrition in one word. Bioavailability. Your body knows what to do with real food.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Concept explained simply</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="honesty founder">
+<div class="card-header">
+<span class="card-number">42 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span><span class="tag tag-pillar">Founder</span></div>
+</div>
+<div class="card-title">Earning Trust</div>
+<div class="card-direction">Bear to camera. Quiet. No performance energy. Just thinking aloud.</div>
+<div class="card-body">
+<div class="script-text">Trust takes time. I know that.
+
+You can't just launch a product and expect people to believe in it on day one. Doesn't matter whose name is on it.
+
+So all we can do is be transparent. Show the label. Explain every ingredient. Tell you exactly how much of each thing is in the scoop and where it comes from.
+
+We own it. We use it. Our kids use it. We chose every single ingredient and we'll tell you why we chose it.
+
+That's the deal. No hype. No shortcuts. Just honesty and time.
+
+And if people try it and it works for them, they'll tell someone. That's how real brands are built. Not with marketing. With trust.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Building trust patiently</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="family">
+<div class="card-header">
+<span class="card-number">43 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Family</span></div>
+</div>
+<div class="card-title">Shara's Take</div>
+<div class="card-direction">Bear at home. Talking naturally, like someone just asked him off camera.</div>
+<div class="card-body">
+<div class="script-text">Shara was sceptical at first. She is about most things I come home excited about.
+<span class="action"><br/></span>
+She said: "If you're going to do this, the kids' product has to be as good as the adult one. Not a watered-down version with a cartoon on the front."
+
+And she was right. That's exactly what most brands do. They take the adult formula, halve everything, add some sugar to make it taste nice, and call it a kids' product.
+
+The Kids Blend is built from scratch. Half the organ dose because that's what's appropriate. Added colostrum for immune and gut development. Proper prebiotic and probiotic levels.
+
+Shara uses the Adult Blend now too, by the way. She just took longer to admit it.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Family voice, Shara's challenge</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">44 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">The Heart</div>
+<div class="card-direction">Bear to camera. Short. Quick lesson energy.</div>
+<div class="card-body">
+<div class="script-text">Quick one on heart.
+
+Not the emotional kind. The organ.
+
+Bovine heart is one of the richest natural sources of CoQ10 on the planet. CoQ10 is what your mitochondria use to produce energy at the cellular level. It's the engine behind everything.
+
+Your body makes less of it as you get older. Most people over thirty are running on declining levels without knowing it.
+
+You can buy a CoQ10 supplement. Synthetic version, thirty quid a bottle. Or you can get it from the source that your body actually recognises.
+
+We put heart in every scoop. Not because it sounds impressive. Because it does something real.</div>
+</div>
+<div class="card-footer"><span>~20 sec</span><span>Single organ spotlight</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="honesty personal">
+<div class="card-header">
+<span class="card-number">45 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span><span class="tag tag-tone">Personal</span></div>
+</div>
+<div class="card-title">My Energy at 52</div>
+<div class="card-direction">Bear outdoors, maybe post-exercise or mid-walk. Real setting.</div>
+<div class="card-body">
+<div class="script-text">People ask me how I still have the energy to do what I do. I'm fifty-two. I've broken my back, broken more bones than I can count, been through surgeries that should have slowed me down.
+
+And the truth is, I don't have some secret. I sleep when I can. I move every day. And I eat real food.
+
+The organ nutrition is a big part of that. It has been for decades. The only difference now is that it comes in a scoop instead of from whatever animal I've managed to catch.
+
+<span class="action">[Pause.]</span>
+
+I'm not selling you energy. I'm just telling you what I do. And this is what I do.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Personal testimony, quiet</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="kids">
+<div class="card-header">
+<span class="card-number">46 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Kids</span></div>
+</div>
+<div class="card-title">Sugar in Children's Supplements</div>
+<div class="card-direction">Bear at a table. Calm. Parent-to-parent.</div>
+<div class="card-body">
+<div class="script-text">I want to talk about sugar for a second.
+
+The most popular children's vitamins in the UK contain between two and three grams of sugar per serving. That's per gummy. Most kids take two. Some take more because they taste like sweets. Because they basically are sweets.
+
+We're giving children sugar, calling it a vitamin, and feeling good about it.
+
+The Kids Blend has no added sugar. The sweetness comes from organic honey powder and vanilla. And the nutrition comes from actual food. Organs, colostrum, prebiotics, probiotics.
+
+I'm not having a go at anyone. We did the same thing for years. I'm just saying: once you see it, you can't unsee it.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Gentle exposé, no judgement</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="honesty">
+<div class="card-header">
+<span class="card-number">47 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span></div>
+</div>
+<div class="card-title">What I'd Say to a Sceptic</div>
+<div class="card-direction">Bear to camera. Direct but warm. Like answering a DM.</div>
+<div class="card-body">
+<div class="script-text">If you're sceptical about this, good. You should be. The supplement industry has earned your scepticism.
+
+Every brand says they're different. Every brand says they're clean and natural and evidence-based. And most of them are hiding behind the words "proprietary blend," which is just a legal way of saying "we won't tell you how much of each ingredient is actually in here."
+
+Modern Savage doesn't use proprietary blends. Every ingredient is listed. Every dose is declared. You can read the label and know exactly what you're getting.
+
+That's not a marketing angle. It's just what transparency looks like. If a brand won't tell you what's in their product, ask yourself why.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Addressing sceptics directly</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">48 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">Spleen</div>
+<div class="card-direction">Bear to camera. Slight smile. He knows this one's unusual.</div>
+<div class="card-body">
+<div class="script-text">Spleen.
+
+Yeah, I know. It's not the sexiest/most appealing ingredient on the list.
+
+But spleen is packed with immune peptides that you genuinely cannot get from any other food source. It's been used in traditional nutrition across cultures for centuries specifically for immune support.
+
+Most people have never eaten spleen. Most people have never even thought about it. But their great-great-grandparents almost certainly did.
+
+We put it in Modern Savage because the science is there and because the historical use is there. Not everything in nutrition needs to sound appealing. Sometimes it just needs to work.</div>
+</div>
+<div class="card-footer"><span>~20 sec</span><span>Organ spotlight, humour</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="founder honesty">
+<div class="card-header">
+<span class="card-number">49 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Founder</span><span class="tag tag-tone">Honest Talk</span></div>
+</div>
+<div class="card-title">The Money Question</div>
+<div class="card-direction">Bear to camera. Direct. No flinching from the question.</div>
+<div class="card-body">
+<div class="script-text">Alright, let's talk about price. Because seventy-nine dollars for a bag of powder sounds like a lot.
+
+Until you add up what most people are already spending. A protein powder, a probiotic, a collagen, a greens supplement, maybe a multivitamin. That's easily over a hundred a month. Often more.
+
+Modern Savage replaces all of that. One bag. Twenty-eight servings. Under three dollars a day.
+
+But honestly, the real question isn't whether it's expensive. The real question is: what are you actually getting for your money? Because with most supplements, you're paying for marketing and packaging. With this, you're paying for ingredients.
+
+Read the label. Compare it to whatever you're currently taking. That's all I'd ask.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Addressing price head-on</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="family personal">
+<div class="card-header">
+<span class="card-number">50 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Family</span><span class="tag tag-tone">Personal</span></div>
+</div>
+<div class="card-title">The Packed Lunch</div>
+<div class="card-direction">Bear in the kitchen. Morning energy. Real life happening around him.</div>
+<div class="card-body">
+<div class="script-text">I was making the kids' packed lunches the other morning and I had this moment where I thought: I care so much about what goes in these sandwiches, what fruit they've got, whether the yoghurt is any good. And then I hand them a synthetic gummy vitamin and don't think twice.
+
+That's the gap, isn't it? We care about food but we don't apply the same standard to supplements. We just trust the packaging.
+
+That's what changed for me. Once I started looking at supplements the same way I look at food, the whole category fell apart. And the answer was obvious: eat real food. Even if it comes in a scoop.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Mundane moment, real insight</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">51 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">Powder vs Capsules</div>
+<div class="card-direction">Bear holding the bag. Conversational. Answering a question someone clearly asked him.</div>
+<div class="card-body">
+<div class="script-text">A lot of organ supplement brands use capsules. And capsules are fine. But there's a limit to how much you can fit in one.
+
+If you wanted to get everything that's in one scoop of Modern Savage from capsules, you'd be swallowing about fifteen of them. Every morning.
+
+We chose powder because it lets us give you proper doses. Ten grams of protein. Two and a half grams of organs. Three and a half grams of gut health. Plus the superfoods and the antioxidants.
+
+You can't fit that in a capsule. Not honestly.
+
+Mix it in water, milk, a smoothie, whatever. Thirty seconds. And you've actually got the doses that make a difference, not just a token amount so they can list it on the label.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Format explanation, honest</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="personal">
+<div class="card-header">
+<span class="card-number">52 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Personal</span></div>
+</div>
+<div class="card-title">The Taste</div>
+<div class="card-direction">Bear mixing the product live. Drinks it. Real reaction.</div>
+<div class="card-body">
+<div class="script-text"><span class="action">[Scoops powder, mixes it in a glass, takes a drink.]</span>
+
+I'm not going to pretend it tastes like a milkshake. It doesn't.
+
+It tastes like what it is. Honey, vanilla, and a whole lot of real food underneath it.
+
+We tried about fifteen different flavour profiles before we landed on this one. The brief was: it has to taste good enough that you'll have it every day, but it can't be loaded with sugar or sweeteners to get there.
+
+Organic honey powder and vanilla bean. That's it. No sucralose. No stevia. No artificial flavourings.
+
+It's good. It's not dessert. But it's good. And honestly, after a week it just becomes your morning. You don't think about it.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Honest taste review</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">53 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">Iron</div>
+<div class="card-direction">Bear to camera. Quick. One idea.</div>
+<div class="card-body">
+<div class="script-text">Iron deficiency is one of the most common nutrient deficiencies in the world. Especially in women.
+
+And most people try to fix it with iron tablets. Which are notorious for causing stomach problems, constipation, nausea. Because the body struggles to process synthetic iron.
+
+The iron in liver is heme iron. It's the form your body evolved to absorb. It's gentler on the stomach and far more effective.
+
+One scoop of Modern Savage contains grass-fed bovine liver. Real iron. From real food. In a form that actually works.
+
+If you've ever struggled with iron supplements, this is worth knowing about.</div>
+</div>
+<div class="card-footer"><span>~20 sec</span><span>Nutrient spotlight, women's health angle</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="founder">
+<div class="card-header">
+<span class="card-number">54 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Founder</span></div>
+</div>
+<div class="card-title">The Hard Part</div>
+<div class="card-direction">Bear to camera. Honest, no polish. Founder reality.</div>
+<div class="card-body">
+<div class="script-text">People think the hard part of building a brand is making the product. It's not. The formula took time but we knew what we wanted.
+
+The hard part is convincing people it's real.
+
+Because the supplement industry has spent decades making claims it can't back up. And now when someone comes along and says "this is genuinely different," people's first reaction is: yeah, sure, that's what they all say.
+
+I get it. I would think the same thing.
+
+So we're just going to keep doing this. Showing the label. Explaining the ingredients. Being honest about what we know and what we don't know. And hopefully, over time, that builds something worth trusting.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Founder vulnerability</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="kids family">
+<div class="card-header">
+<span class="card-number">55 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Kids</span><span class="tag tag-pillar">Family</span></div>
+</div>
+<div class="card-title">Colostrum, Simply</div>
+<div class="card-direction">Bear to camera. Explaining something to another parent.</div>
+<div class="card-body">
+<div class="script-text">Colostrum is the first thing a mother produces for a newborn. Before breast milk. It's packed with antibodies and immune compounds designed to give a baby the strongest start possible.
+
+We put bovine colostrum in the Kids Blend because the research on it is compelling. It supports gut lining integrity, immune function, and growth in children.
+
+Quick thing: it does come from milk, so it contains a milk allergen. We declare that clearly on the label and in everything we put out. If your child has a dairy allergy, this one isn't right for them. Full transparency.
+
+For everyone else, it's an ingredient I wish I'd known about years ago.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Honest education with allergen flag</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="honesty">
+<div class="card-header">
+<span class="card-number">56 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span></div>
+</div>
+<div class="card-title">What It Won't Do</div>
+<div class="card-direction">Bear to camera. This is the most honest script in the batch. No selling at all.</div>
+<div class="card-body">
+<div class="script-text">Let me tell you what Modern Savage won't do.
+
+It won't fix a bad diet. If you're eating rubbish, a scoop of powder in the morning isn't going to save you.
+
+It won't give you energy by lunch if you slept four hours. It's not caffeine. It's nutrition.
+
+It won't make you feel different overnight. Real nutrition builds over weeks, not hours. Anyone who tells you otherwise is lying.
+
+What it will do is give your body the raw materials it needs to work properly. Organs, protein, gut health, micronutrients. In forms the body recognises.
+
+But it's a piece of the puzzle. It's not the whole puzzle. I'd never tell you otherwise.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Managing expectations honestly</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="personal education">
+<div class="card-header">
+<span class="card-number">57 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Personal</span><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">Travelling with It</div>
+<div class="card-direction">Bear packing a bag or in a hotel room. Casual. Real context.</div>
+<div class="card-body">
+<div class="script-text">One thing I've noticed is how much easier this makes travelling.
+
+I used to pack a bag of supplements when I went anywhere. Individual bottles, capsules rolling around at the bottom of my kit bag, half of them probably expired.
+
+Now it's just the bag. One scoop in water wherever I am. Hotel room, airport lounge, the back of a Land Rover somewhere.
+
+Sounds like a small thing but when you're on the road a lot, it matters. Because the days you need good nutrition most are the days you're least likely to get it. Early flights, skipped meals, jet lag.
+
+Having everything in one bag means I actually take it. Every day. That consistency is where the real benefit is.</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Real-life use case</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="education">
+<div class="card-header">
+<span class="card-number">58 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Education</span></div>
+</div>
+<div class="card-title">The Label Test (maybe do - if have facilities)</div>
+<div class="card-direction">Bear at a table. Two products in front of him (Modern Savage and a generic supplement, label facing camera).</div>
+<div class="card-body">
+<div class="script-text">I want to show you something. It takes two minutes and it'll change how you buy supplements forever.
+
+Pick up any supplement you own. Turn it over. Look for two things.
+
+First: does it say "proprietary blend" anywhere? If it does, that means they're not telling you how much of each ingredient is in the product. They're allowed to list the ingredients but not the amounts. Think about that.
+
+Second: look at the source of each ingredient. If it just says "vitamin A" or "iron," it's almost certainly synthetic. If it says the actual food source, like bovine liver or acerola cherry, it's whole-food derived.
+
+<span class="action">[Turns the Modern Savage bag around.]</span>
+
+Every ingredient. Every dose. Every source. That's what a label should look like.</div>
+</div>
+<div class="card-footer"><span>~35 sec</span><span>Teach them to read labels</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="family personal">
+<div class="card-header">
+<span class="card-number">59 / 70</span>
+<div class="card-tags"><span class="tag tag-pillar">Family</span><span class="tag tag-tone">Personal</span></div>
+</div>
+<div class="card-title">What It Means to Own It</div>
+<div class="card-direction">Bear at home. End of day. Quiet. The last thing he'd say about it.</div>
+<div class="card-body">
+<div class="script-text">Owning something means you can't walk away from it.
+
+If this was a licensing deal and something went wrong, I could step back. Issue a statement. Distance myself. That's how most celebrity brands work.
+
+I can't do that with Modern Savage. My name is on it because I built it. My family's name. My son's name.
+
+If the product isn't good enough, that's on me. If someone has a bad experience, that's on me. If the ingredients don't do what we say they do, that's on me.
+
+That's terrifying, honestly. But it's also why I trust it more than anything I've ever been involved with. Because there's nowhere to hide.<div><br/></div><div>modernsavage.co</div></div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Deepest founder vulnerability</span></div>
+</div>
+<div class="script-card" data-batch="conv" data-tags="honesty personal founder">
+<div class="card-header">
+<span class="card-number">60 / 70</span>
+<div class="card-tags"><span class="tag tag-tone">Honest Talk</span><span class="tag tag-tone">Personal</span><span class="tag tag-pillar">Founder</span></div>
+</div>
+<div class="card-title">Just Try It</div>
+<div class="card-direction">Bear to camera. Relaxed. Closing the conversation, not making a pitch.</div>
+<div class="card-body">
+<div class="script-text">I'm not going to sit here and tell you this will change your life. I don't know your life.
+
+What I know is my life. And in my life, eating this way for thirty years has been the single best health decision I've made. Better than any training programme. Better than any diet I've tried. Better than any supplement I've ever bought.
+
+Modern Savage is just that nutrition in a scoop. Organs, protein, gut health, real food. Nothing else.
+
+If you're curious, try it. Give it a month. See how you feel. If it's not for you, fair enough.
+
+But if you've been looking for one simple thing you can trust, this is what I'd give you. Because it's what I give my family.</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>The quiet close</span></div>
+</div>
+</div>
+<div class="batch-divider" id="batch-family">
+<h2 class="batch-heading">Batch 3: Family-to-Family</h2>
+<div class="batch-desc">Built entirely around "we." Our family built this for other families. We're in this together. Nobody is being sold to. Everybody is being invited in. Bear speaks as a dad, a husband, a son. Film warm: kitchen tables, garden, morning light.</div>
+<div class="batch-line"></div>
+</div>
+<div class="scripts-container">
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">61 / 70</span>
+<div class="card-tags"><span class="tag tag-family">Family-to-Family</span><span class="tag tag-community">Community</span></div>
+</div>
+<div class="card-title">Our Family, Your Family</div>
+<div class="card-direction">Bear at the kitchen table. Morning. Warm light. Both products on the counter behind him. Feels like he's talking to another parent over a cup of tea.</div>
+<div class="card-body">
+<div class="script-text">We built Modern Savage around our kitchen table.
+
+Me, Jesse, Shara. Talking about what we actually wanted for our family. What we wished existed. What we'd been looking for and couldn't find.
+
+And we realised that if we were asking these questions, other families probably were too. Families who care about what goes into their bodies. Who read labels. Who want one thing they can trust rather than a shelf full of maybes.
+
+So we made it. Our family built this for families like ours. Same values. Same standards. Same refusal to settle for rubbish.
+
+If that sounds like where you're at, come join us. We'd love to have you.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>The core invitation</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">62 / 70</span>
+<div class="card-tags"><span class="tag tag-family">Family-to-Family</span></div>
+</div>
+<div class="card-title">The Same Counter</div>
+<div class="card-direction">Bear in the kitchen making both scoops. Morning routine. Kids audible or visible in the background if possible. Handheld, phone-quality.</div>
+<div class="card-body">
+<div class="script-text"><span class="action">(If and when we have the actual product, we can do this properly - but for now we can use a plain powder and handle it through editing)</span>
+This is what our morning looks like. Every morning. Same counter. Same routine. My scoop, their scoop.
+
+And that's what we wanted for every family using this. One brand that the whole household can share. Not one product for dad and a different brand for the kids. One philosophy. One set of ingredients we all trust. One counter.
+
+We're all trying to do the same thing, right? Give our families the best we can. We just wanted to make that a little bit simpler.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~20 sec</span><span>Shared morning ritual</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">63 / 70</span>
+<div class="card-tags"><span class="tag tag-community">Community</span></div>
+</div>
+<div class="card-title">We All Want the Same Thing</div>
+<div class="card-direction">Bear walking outdoors. Reflective. Talking to camera like a friend walking beside him.</div>
+<div class="card-body">
+<div class="script-text">Something I've learnt from talking to thousands of people over the years is that most of us want the same thing.
+
+We want to feel well. We want our families to be healthy. We want to know what we're putting in our bodies. And we want to stop feeling like every health product on the shelf is trying to confuse us or take our money.
+
+That's it. Those are pretty simple things to want.
+
+Modern Savage was built around exactly those things. Real food. Full transparency. Something the whole family can use. Something we can all understand.
+
+We're not trying to build the biggest supplement brand in the world. We're trying to build one that families actually trust. Starting with ours. Hopefully including yours.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>Shared values</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">64 / 70</span>
+<div class="card-tags"><span class="tag tag-family">Family-to-Family</span><span class="tag tag-community">Community</span></div>
+</div>
+<div class="card-title">Built Together</div>
+<div class="card-direction">Bear to camera. Close-up. Quiet pride. Like telling a friend about something his family made.</div>
+<div class="card-body">
+<div class="script-text">Modern Savage is a family project in the truest sense.
+
+Jesse runs the business. He's the one in the detail, questioning every ingredient, pushing every decision. Shara was the one who said the kids' product had to be just as good as the adult one. Our nutritionists are people we handpicked because we trust their judgement the way we trust family.
+
+We made every call together. What goes in, what stays out, what we're willing to compromise on. Which is nothing, by the way.
+
+And now we're inviting other families to be part of it. Same product we give our kids. Same scoop we have every morning. From our family to yours.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Collective build story</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">65 / 70</span>
+<div class="card-tags"><span class="tag tag-community">Community</span></div>
+</div>
+<div class="card-title">Join Us</div>
+<div class="card-direction">Bear outdoors. Golden hour. Open, warm, invitational. This is the community-building script.</div>
+<div class="card-body">
+<div class="script-text">We're at the beginning of something here. And that's the exciting part.
+
+Modern Savage is brand new. We haven't been around for years building a reputation. We're right at the start. Which means the people who join us now are the people who shape what this becomes.
+
+We want to hear from families. What's working. What could be better. What else we should be thinking about. Because this was never meant to be a brand that talks at people. It's meant to be a brand that's built with the people who use it.
+
+Our family started this. But we want it to belong to every family that shares these values.
+
+Come be part of it.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Early community invitation</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">66 / 70</span>
+<div class="card-tags"><span class="tag tag-family">Family-to-Family</span></div>
+</div>
+<div class="card-title">Every Family Is Different</div>
+<div class="card-direction">Bear at home. Natural. Talking about real families, not ideal ones.</div>
+<div class="card-body">
+<div class="script-text">Our family is a bit chaotic. I'll be honest. Mornings are loud. Nobody can find their shoes. Someone's always running late.
+
+And I know every family has their own version of that. We're all just trying to hold it together and do our best.
+
+That's who Modern Savage is for. Not the family that has it all figured out. The family that's doing its best and wants one less thing to worry about.
+
+One scoop for the adults. One scoop for the kids. Same brand. Same trust. Thirty seconds and it's done, whatever else the morning throws at us.
+
+We built this for real family life. The messy, loud, wonderful reality of it.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Imperfect families welcome</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">67 / 70</span>
+<div class="card-tags"><span class="tag tag-family">Family-to-Family</span><span class="tag tag-community">Community</span></div>
+</div>
+<div class="card-title">The Standard We Set</div>
+<div class="card-direction">Bear to camera. Warm but with quiet conviction. Kitchen or sitting room.</div>
+<div class="card-body">
+<div class="script-text">When we were building the formula, Jesse said something that stuck with me. He said: "If we wouldn't give it to our kids, we don't put it in."
+
+And that became the rule for everything. Every ingredient had to pass that test. Every dose. Every source.
+
+It's a high bar. It made the process harder and more expensive. But it meant that when we finally had the product in our hands, we knew it was right.
+
+That's the standard. The same thing we give our children is the same thing we're offering to yours. No different version. No cheaper option. One standard for everyone.
+
+From our family to yours. That's the promise.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Shared standard</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">68 / 70</span>
+<div class="card-tags"><span class="tag tag-community">Community</span></div>
+</div>
+<div class="card-title">We're Learning Too</div>
+<div class="card-direction">Bear walking or sitting outside. Humble. Open. No performance.</div>
+<div class="card-body">
+<div class="script-text">We don't have all the answers. I want to be clear about that.
+
+We've built what we believe is the best whole-food supplement we can make right now. But nutrition science moves forward. New research comes out. We learn things.
+
+And when we do, we'll improve the formula. We'll share what we've learnt. We'll be honest about what's changed and why.
+
+That's the deal with Modern Savage. We're not a brand that launches a product and walks away. We're a family that's on this journey with everyone who joins us.
+
+We'll keep learning. We'll keep getting better. And we'll bring everyone with us.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Humility and shared journey</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">69 / 70</span>
+<div class="card-tags"><span class="tag tag-family">Family-to-Family</span></div>
+</div>
+<div class="card-title">What We All Deserve</div>
+<div class="card-direction">Bear at the kitchen table. Both products in front of him. Gentle, direct, parent-to-parent.</div>
+<div class="card-body">
+<div class="script-text">Every family deserves to know what's in their food. Every family deserves nutrition that's real, that's transparent, that the body actually recognises.
+
+That shouldn't be a luxury. It shouldn't be complicated. It shouldn't require a science degree to understand the label.
+
+We built Modern Savage because we believe family nutrition can be simple, honest, and genuinely good. One product for the adults. One for the kids. Everything listed. Everything real.
+
+We're a family that cares about this stuff. And we know we're not the only ones. If this matters to your family too, we made this for you.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~25 sec</span><span>Shared belief, gentle invitation</span></div>
+</div>
+<div class="script-card" data-batch="family">
+<div class="card-header">
+<span class="card-number">70 / 70</span>
+<div class="card-tags"><span class="tag tag-family">Family-to-Family</span><span class="tag tag-community">Community</span></div>
+</div>
+<div class="card-title">From Us to You</div>
+<div class="card-direction">Bear at home. End of day light. The warmest, most personal script in the batch. This is Bear as a dad talking to other parents.</div>
+<div class="card-body">
+<div class="script-text">I spend a lot of my life doing big things. Climbing, jumping out of planes, surviving in places most people wouldn't choose to go.
+
+But the thing I care about most is small. It's breakfast. It's what my kids eat before school. It's whether the people I love are getting the nutrition their bodies need.
+
+That's where Modern Savage lives. Not in the big moments. In the small ones. The morning scoop. The daily routine. The quiet knowledge that we've done something good for the people we care about.
+
+Our family built this for your family. Same product. Same care. Same refusal to compromise on what matters.
+
+We hope you'll join us.
+
+modernsavage.co</div>
+</div>
+<div class="card-footer"><span>~30 sec</span><span>The warm close</span></div>
+</div>
+</div>
+<div class="footer-note">
+  Modern Savage · 70 Founder-Led Scripts · April 2026 · Prepared by Bear Witness<br/>
+  Confidential. For BGV internal use.
+</div>
+<script>
+let activeBatch = 'all';
+let activeTopic = null;
+
+function filterBatch(batch) {
+  activeBatch = batch;
+  activeTopic = null;
+  // Reset topic buttons
+  document.querySelectorAll('.filter-row:nth-child(2) .filter-btn').forEach(b => b.classList.remove('active'));
+  // Set batch buttons
+  document.querySelectorAll('.filter-row:first-child .filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  applyFilters();
+}
+
+function filterTopic(topic) {
+  if (activeTopic === topic) {
+    activeTopic = null;
+    event.target.classList.remove('active');
+  } else {
+    activeTopic = topic;
+    document.querySelectorAll('.filter-row:nth-child(2) .filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+  // Reset batch to all when filtering by topic
+  activeBatch = 'all';
+  document.querySelectorAll('.filter-row:first-child .filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-row:first-child .filter-btn').classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  let count = 0;
+  document.querySelectorAll('.script-card').forEach(card => {
+    const batch = card.getAttribute('data-batch') || '';
+    const tags = card.getAttribute('data-tags') || '';
+    let show = true;
+    if (activeBatch !== 'all' && batch !== activeBatch) show = false;
+    if (activeTopic && !tags.includes(activeTopic)) show = false;
+    card.style.display = show ? 'block' : 'none';
+    if (show) count++;
+  });
+
+  // Show/hide batch dividers
+  document.querySelectorAll('.batch-divider').forEach(d => {
+    if (activeBatch === 'all' && !activeTopic) { d.style.display = 'block'; }
+    else if (activeTopic) { d.style.display = 'none'; }
+    else { d.style.display = d.id === 'batch-' + activeBatch ? 'block' : 'none'; }
+  });
+
+  document.getElementById('count-display').textContent = 'Showing ' + count + ' script' + (count !== 1 ? 's' : '');
+}
+</script>
+</body>
+</html>

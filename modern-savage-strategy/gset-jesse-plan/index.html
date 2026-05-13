@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSET — Concrete Plan for Jesse · 12 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.15; }
+  p { margin-bottom: 0.9em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; background: var(--cream-warm); padding: 1px 6px; border-radius: 3px; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(40px, 6vw, 64px); color: var(--cream); margin-bottom: 18px; }
+  .hero p { color: rgba(245, 239, 226, 0.78); font-size: 18px; max-width: 680px; }
+  .hero .meta { margin-top: 28px; font-size: 13px; color: rgba(245, 239, 226, 0.55); letter-spacing: 0.06em; }
+
+  section { padding: 60px 24px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+
+  h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 18px; color: var(--evergreen-deep); }
+  h3 { font-size: 22px; margin: 32px 0 12px; color: var(--evergreen-deep); }
+  h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin: 24px 0 8px; }
+
+  .summary {
+    background: var(--cream-warm);
+    border-left: 3px solid var(--gold);
+    padding: 22px 26px;
+    border-radius: 4px;
+    margin: 24px 0 34px;
+  }
+  .summary p { margin-bottom: 0.5em; }
+  .summary p:last-child { margin-bottom: 0; }
+
+  .callout {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--evergreen);
+    padding: 28px;
+    border-radius: 4px;
+    margin: 28px 0 36px;
+  }
+  .callout h3 { margin-top: 0; color: var(--evergreen); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 8px;
+    font-size: 14.5px;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table th {
+    background: var(--cream-warm);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  table.kv td:first-child { font-weight: 600; color: var(--evergreen-deep); width: 32%; }
+
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--evergreen);
+    color: var(--cream);
+    margin-right: 8px;
+  }
+  .pill.gold { background: var(--gold); color: var(--ink); }
+  .pill.warn { background: var(--rust); }
+
+  ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding: 22px 0 22px 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  ol.steps > li:last-child { border-bottom: none; }
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 22px;
+    width: 42px; height: 42px;
+    background: var(--evergreen);
+    color: var(--cream);
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  ol.steps > li strong.step-title {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 19px;
+    color: var(--evergreen-deep);
+    margin-bottom: 6px;
+  }
+  ol.steps > li em.who {
+    color: var(--slate);
+    font-size: 13.5px;
+    display: block;
+    margin-top: 6px;
+  }
+
+  .milestones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+  }
+  .milestones .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--gold);
+    padding: 22px;
+    border-radius: 4px;
+  }
+  .milestones .card strong.day {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--evergreen-deep);
+    margin-bottom: 6px;
+  }
+  .milestones .card .when {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px;
+  }
+  .milestones .card ul { padding-left: 18px; margin: 0; font-size: 14px; }
+  .milestones .card li { margin-bottom: 6px; }
+
+  ul.checklist { list-style: none; padding: 0; }
+  ul.checklist li { padding: 8px 0 8px 30px; position: relative; border-bottom: 1px dashed var(--line); }
+  ul.checklist li:last-child { border-bottom: none; }
+  ul.checklist li::before {
+    content: "✓"; position: absolute; left: 0; top: 8px;
+    width: 20px; height: 20px;
+    background: var(--evergreen); color: var(--cream);
+    border-radius: 50%; font-weight: 700; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ul.dontlist { list-style: none; padding: 0; }
+  ul.dontlist li { padding: 8px 0 8px 30px; position: relative; border-bottom: 1px dashed var(--line); }
+  ul.dontlist li:last-child { border-bottom: none; }
+  ul.dontlist li::before {
+    content: "×"; position: absolute; left: 0; top: 7px;
+    width: 20px; height: 20px;
+    background: var(--rust); color: var(--cream);
+    border-radius: 50%; font-weight: 700; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  footer {
+    padding: 40px 24px 60px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--slate);
+    font-size: 13px;
+  }
+  footer a { color: var(--slate); }
+  footer code { background: transparent; color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 60px 20px 70px; }
+    section { padding: 44px 20px; }
+    table { font-size: 13px; }
+    table th, table td { padding: 10px 8px; }
+    ol.steps > li { padding-left: 56px; }
+    ol.steps > li::before { width: 36px; height: 36px; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">GSET · Concrete plan · For Jesse</div>
+    <h1>One reader. 20 episodes. Single shoot. Launch 19 June.</h1>
+    <p>The drama version is gone. This is the locked plan, costed and dated, that puts a YouTube series on air from the book's anniversary at roughly half the previously-modelled spend — and removes the production risks that nearly killed the original framing.</p>
+    <div class="meta">Prepared by Olly · 12 May 2026 · Post-pivot · Hodder rights ask going out the same day</div>
+  </div>
+</div>
+
+<section>
+  <div class="inner">
+    <h2>Headline</h2>
+    <div class="summary">
+      <p>We're flipping GSET from a drama-production to a <strong>single-reader audiobook-immersive series for YouTube</strong>. 20 episodes, ~8 minutes each, dropping fortnightly from the <strong>anniversary on 19 June 2026</strong>.</p>
+      <p>One studio shoot of 2–3 days produces all visual content for the entire 40-week run. <strong>Total year-one cost lands at £18–26k</strong> — roughly half of the previously-modelled drama budget — with materially lower execution risk.</p>
+    </div>
+
+    <div class="callout">
+      <span class="pill gold">Format locked — Option C</span>
+      <h3>What the format actually looks like (Hybrid)</h3>
+      <p>Every episode is built around one chapter of <em>The Greatest Story Ever Told</em> audiobook. The chapter audio carries the narrative; the visual layer is two things, intercut:</p>
+      <ul style="list-style: disc; padding-left: 22px; margin-top: 10px;">
+        <li><strong>The spine (60–70%):</strong> one professional reader on-camera in a single neutral studio set — sitting, sometimes standing, performing the chapter silently while the audiobook plays beneath. Same person across all 20 episodes — the recognisable visual anchor of the series.</li>
+        <li><strong>The bed (30–40%):</strong> atmospheric B-roll cutaways that match the chapter's setting and emotional beats — landscapes, hands, candlelight, scripture text, ambient texture. Cinematic, restrained, no dialogue overlays.</li>
+      </ul>
+      <p style="margin-top: 14px;">This gives YouTube the human anchor a viewer locks onto, plus the immersive quality that justifies the "immersive audiobook takes" framing. It is materially cheaper than drama production, and the editor controls 100% of the pacing in post.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="inner">
+    <h2>The series at a glance</h2>
+    <table class="kv">
+      <tr><td>Episodes</td><td>20 (one per audiobook chapter, confirmed against contents page)</td></tr>
+      <tr><td>Length</td><td>8:30–10:30 each (clears YouTube mid-roll ad threshold)</td></tr>
+      <tr><td>Reader</td><td>One performer across all 20 — single casting decision</td></tr>
+      <tr><td>Bear's on-camera role</td><td>None — pre-recorded / archive only, per existing lock</td></tr>
+      <tr><td>Channel</td><td>"The Greatest Story" on YouTube (channel created, dormant)</td></tr>
+      <tr><td>Launch</td><td>19 June 2026 — anniversary; channel goes live with ep 1 + trailer + Substack post 1</td></tr>
+      <tr><td>Cadence</td><td>One episode every two weeks → 40-week run, ending early April 2027 (Easter window)</td></tr>
+      <tr><td>Calendar anchors in-run</td><td>Advent / Christmas; Easter 2027 — content sequenced to land big moments at anchor weeks</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>Production plan</h2>
+    <table>
+      <thead>
+        <tr><th>Phase</th><th>When</th><th>What</th><th>Owner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Rights confirm</td><td>This week</td><td>Andy Lyon email — audiobook clip rights, editorial cut rights, YouTube monetisation</td><td>Olly</td></tr>
+        <tr><td>Reader cast</td><td>Longlist Wed 21 May → sign Fri 30 May</td><td>Single performer, 2–3 batch shoot days, buyout-inclusive</td><td>Olly + Ted drafts brief</td></tr>
+        <tr><td>Editor hire</td><td>Brief Fri 22 May → hire Fri 30 May</td><td>Freelance, retainer. Brief explicitly: experienced in audiobook-audio-over-picture cuts</td><td>Olly</td></tr>
+        <tr><td>Studio book</td><td>By Fri 6 Jun</td><td>London neutral studio, 2–3 day block, basic lighting + sound</td><td>Olly</td></tr>
+        <tr><td>Pre-prod</td><td>First half of Jun</td><td>Read-through, blocking, mood boards per chapter</td><td>Reader + Olly</td></tr>
+        <tr><td>Shoot</td><td>Mon–Wed 16–18 Jun</td><td>All 20 chapters in one block, tight against anniversary</td><td>Reader + crew</td></tr>
+        <tr><td>Edit ep 1 + trailer</td><td>Wed–Thu 17–18 Jun</td><td>Editor cuts ep 1 + 90-sec sizzle in parallel</td><td>Editor</td></tr>
+        <tr style="background: var(--cream-warm);"><td><strong>Launch</strong></td><td><strong>Thu 19 Jun 2026</strong></td><td><strong>Channel live, episode 1 + trailer + Substack post 1</strong></td><td><strong>Olly</strong></td></tr>
+        <tr><td>Steady-state edits</td><td>Jun 26 → Apr 27</td><td>One episode every two weeks, fed by the single shoot</td><td>Editor</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 16px; color: var(--slate); font-size: 14.5px;">The single-shoot model is the load-bearing decision. We commit reader and crew for one block, capture everything, and the entire 40-week run becomes an editing exercise. No re-shoots, no scheduling fragility, no calendar drift.</p>
+  </div>
+</section>
+
+<section style="background: var(--cream-warm);">
+  <div class="inner">
+    <h2>Team and budget — year one</h2>
+    <table>
+      <thead><tr><th>Line</th><th>Estimate (£)</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Reader fee + buyout</td><td>3,000–5,000</td><td>2–3 days + global digital rights perpetuity. Bands by profile (no-name → known faith-space face).</td></tr>
+        <tr><td>Editor retainer</td><td>13,500–18,000</td><td>9 months at £1.5–2k/month. Covers shoot wrap, episode cuts, audiograms, clip-factory output.</td></tr>
+        <tr><td>Studio + crew (DP, sound)</td><td>4,000–6,000</td><td>3 days, London mid-tier. Basic lighting included.</td></tr>
+        <tr><td>B-roll / stock / music licence</td><td>1,000–1,500</td><td>Where chapters need texture not shot on the day.</td></tr>
+        <tr><td>Domain, hosting, Substack pro</td><td>200–400</td><td>Already partially in place.</td></tr>
+        <tr><td>Contingency (10%)</td><td>~2,000</td><td></td></tr>
+        <tr style="background: white;"><td><strong>Total year one</strong></td><td><strong>~£23,700–32,900</strong></td><td><strong>Centre of range ~£26–28k. Below the £35–45k previously modelled for the drama version.</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 14px; font-size: 14px; color: var(--slate);">Excludes: paid distribution (deliberately — see below), Bear-specific filming (locked at zero), presenter fee for Olly.</p>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>30 / 60 / 90 day milestones</h2>
+    <div class="milestones">
+      <div class="card">
+        <strong class="day">Day 30</strong>
+        <div class="when">12 Jun · Pre-launch locked</div>
+        <ul>
+          <li>Hodder rights answered in writing</li>
+          <li>Reader signed</li>
+          <li>Editor onboarded; ep 1 + Substack post 1 in progress</li>
+          <li>Studio booked, shoot block secured 16–18 Jun</li>
+        </ul>
+      </div>
+      <div class="card">
+        <strong class="day">Day 60</strong>
+        <div class="when">12 Jul · Channel live, cadence proving</div>
+        <ul>
+          <li>Channel launched 19 Jun, ep 1 + trailer up</li>
+          <li>Ep 2 cut and scheduled</li>
+          <li>1,000+ YouTube subs (from clip engine pre-launch)</li>
+          <li>Substack signups tracking &gt;300</li>
+        </ul>
+      </div>
+      <div class="card">
+        <strong class="day">Day 90</strong>
+        <div class="when">12 Aug · Inside the run</div>
+        <ul>
+          <li>Episodes 1–4 live</li>
+          <li>First measurable book-attribution data (UTMs / Amazon affiliate)</li>
+          <li>First BGV cross-promo block live</li>
+          <li>Decision: add paid amplification against best-performing ep?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="inner">
+    <h2>What Jesse needs to sign off this week</h2>
+    <ol class="steps">
+      <li>
+        <strong class="step-title">Format confirmed — Option C (Hybrid).</strong>
+        <p>Reader spine + atmospheric B-roll. This doc is the proposal; needs an explicit yes so Olly can sign the reader and book the studio.</p>
+      </li>
+      <li>
+        <strong class="step-title">Year-one budget — £26–28k centre of range.</strong>
+        <p>Sign-off on the band, not a line-item breakdown. Drawdown against the BGV marketing budget on Olly's existing approval scope.</p>
+      </li>
+      <li>
+        <strong class="step-title">Owner naming — Olly.</strong>
+        <p>Olly operates this end to end. Monthly KPI report to Jesse. Escalation triggers: missed shoot, editor departure, Hodder rights refusal.</p>
+      </li>
+      <li>
+        <strong class="step-title">No Bear filming, confirmed in writing.</strong>
+        <p>The patron-not-host position holds. No quiet expectation that Bear "pops in for a piece" — that would unwind the entire production model.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>What we don't recommend (deliberately restrained)</h2>
+    <ul class="dontlist">
+      <li><strong>No paid distribution at launch.</strong> YouTube monetisation requires 1k subs + 4k watch hours; we get there organically via the clip engine. Paid spend before we know which creative works wastes budget.</li>
+      <li><strong>No multiple readers / no rotating cast.</strong> Jesse's earlier "five voices, one per disciple" idea is overridden by the pivot — one reader is the visual anchor, full stop. Re-introducing a rotating cast collapses the model back to drama.</li>
+      <li><strong>No new Bear content commissioned for this engine.</strong> Bear is a patron. Two calendar-anchored posts/year on his own channels using existing archive footage — that's the entirety of his on-camera load.</li>
+      <li><strong>No third-party podcast deals before the run is proving itself.</strong> Save the relationship trades for when we have an audience to bring.</li>
+    </ul>
+  </div>
+</section>
+
+<section style="background: var(--cream-warm);">
+  <div class="inner">
+    <h2>Risks worth naming</h2>
+    <table>
+      <thead><tr><th>Risk</th><th>Likelihood</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Hodder refuses or stalls on audiobook clip rights</td>
+          <td>Medium</td>
+          <td>Andy Lyon email goes today. If refused, format pivots to commissioning the reader to perform chapters in our own audio — adds ~£3–4k, doesn't kill the plan.</td>
+        </tr>
+        <tr>
+          <td>Reader is wrong choice / lacks on-screen presence</td>
+          <td>Medium</td>
+          <td>Multiple test recordings before signing. Reader budget includes a 1-day paid screen test in longlist phase.</td>
+        </tr>
+        <tr>
+          <td>Editor departs mid-run</td>
+          <td>Low-Medium</td>
+          <td>Retainer with 60-day notice. Backup editor briefed lightly to step in.</td>
+        </tr>
+        <tr>
+          <td>Channel doesn't hit YT monetisation thresholds before ep 1</td>
+          <td>Medium</td>
+          <td>Clip engine runs full pre-launch period (5 weeks). If we're under threshold at launch, episodes still ship — just no ad revenue until thresholds cleared.</td>
+        </tr>
+        <tr>
+          <td>BGV cross-promo blocks don't land at the same time</td>
+          <td>Low</td>
+          <td>Briefs to brand heads (Ted's Health, Modern Savage, Sister Directory, BMF) coordinated for a single launch week.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>Why this beats the original drama plan</h2>
+    <ul class="checklist">
+      <li><strong>Half the cost</strong> (~£26k vs the £35–45k year-one range the drama version implied once casting + scenes + costume were honest).</li>
+      <li><strong>Single shoot, single reader.</strong> No casting fragility, no scheduling chains, no scenes that have to "match" between episodes.</li>
+      <li><strong>YouTube-native.</strong> 8-minute format clears mid-roll monetisation; episode rhythm matches the platform's preference for sequenced playlists.</li>
+      <li><strong>Bear's load is zero new filming</strong>, not the 3–4 set-pieces/year an earlier draft assumed. Removes the single biggest production risk.</li>
+      <li><strong>The audiobook does the storytelling.</strong> We're amplifying an asset Hodder already produced and owns rights to — not building a new narrative product from scratch.</li>
+    </ul>
+  </div>
+</section>
+
+<section style="background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="inner">
+    <h2>What happens after Jesse signs off</h2>
+    <p>Olly sends the Hodder rights email the same day. Reader longlist starts that week. Studio holds go in by next Friday. Editor brief posted by next Friday. Shoot dates blocked in Olly's calendar as immovable.</p>
+    <p>If Jesse wants a 30-minute call before signing off, the agenda is: format (5 min), budget (5 min), owner + escalation (5 min), Bear's no-filming line (5 min), risk register (5 min), Q&amp;A.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Related: <code>gset-pivot-action-steps-2026-05-12.md</code> · <code>gset-operator-playbook.md</code> · <code>gset-self-execution-plan.md</code> · <code>gset-action-steps-may-2026.md</code></p>
+  <p style="margin-top: 8px;">Prepared by Olly · 12 May 2026</p>
+</footer>
+
+</body>
+</html>
