@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIRTEA — Competitor Social + Paid Audit (US-Lens)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15181c;
+    --charcoal: #232830;
+    --evergreen: #1f3a32;
+    --evergreen-deep: #15291f;
+    --cream: #f5efe2;
+    --cream-warm: #ede4cf;
+    --gold: #b08a3e;
+    --gold-soft: #d4b06a;
+    --rust: #a8412a;
+    --rust-soft: #c46b51;
+    --slate: #5a6470;
+    --line: rgba(21, 24, 28, 0.12);
+    --line-strong: rgba(21, 24, 28, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; }
+  p { margin-bottom: 0.95em; }
+  a { color: var(--evergreen); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; word-break: break-word; }
+  em { font-style: italic; }
+  strong { font-weight: 600; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft); margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(34px, 5.2vw, 54px); color: var(--cream); margin-bottom: 18px; }
+  .hero p { color: rgba(245, 239, 226, 0.78); font-size: 18px; max-width: 680px; }
+  .hero .meta { margin-top: 28px; font-size: 13px; color: rgba(245, 239, 226, 0.55); letter-spacing: 0.06em; }
+  .hero .actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--gold); color: var(--ink); }
+  .btn-ghost { background: transparent; color: var(--cream); border: 1px solid rgba(245, 239, 226, 0.35); }
+
+  main { padding: 56px 24px 40px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+
+  #content h1 { font-size: clamp(30px, 4.2vw, 40px); margin: 36px 0 18px; color: var(--evergreen-deep); }
+  #content h2 { font-size: clamp(24px, 3.4vw, 32px); margin: 40px 0 14px; color: var(--evergreen-deep); padding-top: 14px; border-top: 1px solid var(--line); }
+  #content h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  #content h3 { font-size: 20px; margin: 28px 0 10px; color: var(--evergreen-deep); }
+  #content h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin: 22px 0 8px; }
+
+  #content ul, #content ol { margin: 0.4em 0 1.1em 1.5em; }
+  #content li { margin-bottom: 0.45em; }
+
+  #content blockquote {
+    border-left: 3px solid var(--gold);
+    background: var(--cream-warm);
+    padding: 16px 22px;
+    margin: 22px 0;
+    border-radius: 0 4px 4px 0;
+    color: var(--charcoal);
+  }
+  #content blockquote p:last-child { margin-bottom: 0; }
+
+  #content code {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.88em;
+    background: rgba(21, 24, 28, 0.06);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  #content pre {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 14px 0 20px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  #content pre code { background: transparent; padding: 0; color: var(--cream); }
+
+  #content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 22px;
+    font-size: 14.5px;
+  }
+  #content th, #content td {
+    text-align: left;
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  #content th {
+    background: var(--cream-warm);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  #content hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 36px 0;
+  }
+
+  /* Jesse summary executive box — first blockquote-style highlight */
+  .jesse-box {
+    background: linear-gradient(180deg, #1f3a32 0%, #15291f 100%);
+    color: var(--cream);
+    padding: 36px 32px;
+    border-radius: 6px;
+    margin: 0 0 40px;
+  }
+  .jesse-box h2, .jesse-box h3 { color: var(--gold-soft) !important; border: none !important; padding-top: 0 !important; margin-top: 18px; }
+  .jesse-box h2:first-child { margin-top: 0; }
+  .jesse-box p, .jesse-box li { color: rgba(245, 239, 226, 0.88); }
+  .jesse-box strong { color: var(--cream); }
+  .jesse-box a { color: var(--gold-soft); }
+
+  footer {
+    padding: 40px 24px 60px;
+    text-align: center;
+    color: var(--slate);
+    font-size: 13px;
+    border-top: 1px solid var(--line);
+    margin-top: 60px;
+  }
+  footer a { color: var(--evergreen); }
+
+  .loader { text-align: center; padding: 80px 0; color: var(--slate); }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">DIRTEA · Competitor Audit · US-Lens</div>
+    <h1>Competitor Social + Paid Audit</h1>
+    <p>11 brands across the direct functional-mushroom category and adjacent scale benchmarks. Diagnosis, growth play, asset implications — and a stand-alone Jesse summary designed to be read first.</p>
+    <div class="meta">Prepared 13 May 2026 · For Olly Westmacott (BGV) → Jesse Grylls</div>
+    <div class="actions">
+      <a class="btn btn-primary" href="audit.md" download>Download Markdown</a>
+      <a class="btn btn-ghost" href="../">Back to Modern Savage Strategy</a>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="inner" id="content">
+    <div class="loader">Loading audit…</div>
+  </div>
+</main>
+<footer>
+  Modern Savage Strategy · BGV · <a href="../../">Strategy Hub root</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+(async function() {
+  const target = document.getElementById('content');
+  try {
+    const res = await fetch('audit.md', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load audit.md (' + res.status + ')');
+    const md = await res.text();
+    marked.setOptions({ gfm: true, breaks: false });
+    const html = marked.parse(md);
+    target.innerHTML = html;
+
+    // Promote the first h2 (Jesse Summary executive box) into a highlighted dark card
+    const headings = target.querySelectorAll('h2');
+    for (const h of headings) {
+      const txt = (h.textContent || '').toLowerCase();
+      if (txt.includes('jesse summary') || txt.includes('executive summary') || txt.includes('jesse')) {
+        // Wrap until next h2
+        const box = document.createElement('section');
+        box.className = 'jesse-box';
+        const parent = h.parentNode;
+        let node = h;
+        const toMove = [];
+        while (node) {
+          toMove.push(node);
+          node = node.nextSibling;
+          if (node && node.nodeType === 1 && node.tagName === 'H2') break;
+        }
+        parent.insertBefore(box, toMove[0]);
+        for (const n of toMove) box.appendChild(n);
+        break;
+      }
+    }
+  } catch (e) {
+    target.innerHTML = '<p style="color:var(--rust)">Could not render audit. <a href="audit.md">Open raw markdown</a>.</p><pre>' + (e && e.message ? e.message : e) + '</pre>';
+  }
+})();
+</script>
+</body>
+</html>
